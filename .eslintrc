@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": "airbnb",
+  "rules": {
+    "arrow-body-style": [1, "as-needed"],
+    "new-cap": [0],
+    "no-unused-vars": [0],
+    "no-param-reassign": [0],
+    "consistent-return": [0],
+    "no-shadow": [0],
+    "func-names": [0],
+    "global-require": [0]
+  },
+  "globals": {
+    "__DEVELOPMENT__": true,
+    "__DEVTOOLS__": true
+  }
+}
