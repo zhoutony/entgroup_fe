@@ -7,23 +7,23 @@
     "clean": "rm -rf ./build",
     "development-server": "better-npm-run development-server",
     "development-build": "npm run init && better-npm-run development-build",
-    "development-build-client": "webpack --config ./webpack/webpack.config.client.js -w -c --display-error-details",
-    "development-build-server": "webpack --config ./webpack/webpack.config.server.js -w -c --display-error-details",
+    "development-build-gulp": "gulp watch",
+    "development-build-webpack": "webpack -w -c --display-error-details",
     "production-server": "better-npm-run production-server",
     "production-build": "npm run init && better-npm-run production-build",
-    "production-build-client": "webpack --config ./webpack/webpack.config.client.js",
-    "production-build-server": "webpack --config ./webpack/webpack.config.server.js"
+    "production-build-gulp": "webpack --config ./webpack/webpack.config.client.js",
+    "production-build-webpack": "webpack --config ./webpack/webpack.config.server.js"
   },
   "betterScripts": {
     "development-build": {
-      "command": "run-p development-build-server development-build-client",
+      "command": "run-p development-build-gulp development-build-webpack",
       "env": {
         "NODE_ENV": "development",
         "PORT": "3000"
       }
     },
     "development-server": {
-      "command": "nodemon ./app.js --watch ./build/server",
+      "command": "nodemon ./bin/www",
       "env": {
         "NODE_ENV": "development",
         "PORT": "3000"
@@ -37,7 +37,7 @@
       }
     },
     "production-server": {
-      "command": "node ./app.js",
+      "command": "node ./bin/www",
       "env": {
         "NODE_ENV": "production",
         "PORT": "3000"
@@ -45,62 +45,36 @@
     }
   },
   "dependencies": {
-    "autoprefixer": "^6.3.6",
     "babel-core": "^6.8.0",
     "babel-loader": "^6.2.4",
-    "babel-plugin-transform-react-constant-elements": "^6.8.0",
-    "babel-plugin-transform-react-inline-elements": "^6.8.0",
     "babel-polyfill": "^6.8.0",
     "babel-preset-es2015": "^6.6.0",
-    "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-runtime": "^6.9.2",
     "better-npm-run": "0.0.8",
     "body-parser": "^1.15.1",
-    "classnames": "^2.2.5",
     "cookie-parser": "^1.4.1",
-    "css-loader": "^0.23.1",
-    "css-modules-require-hook": "^4.0.0",
-    "dots": "^0.1.0",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-loader": "^1.3.0",
     "eslint-plugin-import": "^1.8.0",
-    "eslint-plugin-jsx-a11y": "^1.2.0",
-    "eslint-plugin-react": "^5.1.1",
     "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
-    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.1.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.2.3",
     "json-loader": "^0.5.4",
-    "less": "^2.7.1",
-    "less-loader": "^2.2.3",
+    "less-plugin-autoprefix": "^1.5.1",
     "lodash": "^4.12.0",
     "moment": "^2.13.0",
     "morgan": "^1.7.0",
     "nodemon": "^1.9.2",
     "npm-run-all": "^2.1.1",
-    "postcss-less": "^0.10.0",
-    "postcss-loader": "^0.9.1",
-    "react": "^15.0.2",
-    "react-dom": "^15.0.2",
-    "react-helmet": "^3.1.0",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.4.0",
-    "react-router-redux": "^4.0.4",
-    "react-tappable": "^0.8.1",
-    "redial": "^0.4.2",
-    "redux": "^3.5.2",
-    "redux-api-middleware": "^1.0.2",
-    "redux-thunk": "^2.1.0",
-    "style-loader": "^0.13.1",
-    "universal-webpack": "^0.1.11",
     "url-loader": "^0.5.7",
     "urlencode": "^1.1.0",
-    "webpack": "^1.13.0",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-isomorphic-tools": "^2.3.0"
+    "webpack": "^1.13.0"
   }
 }

@@ -1,0 +1,19 @@
+{{> head
+  title="图书"
+  keywords=""
+  description=""
+  style="/book/book.css" }}
+
+{{#book}}
+书名：{{title}}
+作者：{{author}}
+标签：
+<ul>
+  {{#tags}}
+    <li>{{title}}</li>
+  {{/tags}}
+</ul>
+{{/book}}
+
+{{> foot
+  script="/book/book.js"}}

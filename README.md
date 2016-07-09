@@ -46,15 +46,7 @@ npm run production-server
 
 整体上前后端技术同源，都基于`JavaScript`，所以需要注意的是业务代码的执行环境并不限定在浏览器中。
 
-应用使用`React`渲染页面、`Redux`管理状态、`React Router`负责路由和`redial`预加载数据，这些库协同工作在服务器和浏览器中。
-
-页面的渲染分为后端渲染和前端渲染两种。
-
-后端渲染是指服务器接到页面访问请求时，使用`React Router`获取到页面对应的`React`组件，并通过`redial`加载组件依赖的数据，然后使用`Redux`将数据转换成状态，最终和组件结合生成`HTML`代码返回给访问者。
-
-前端渲染是指用户在应用中点击某个页面的链接，触发`React Router`的跳转操作，`React Router`获取页面对应的`React`组件，然后和后端渲染一样走后续的流程。不同的是前端渲染在生成`HTML`代码后，会直接输出到页面中。
-
-页面中的样式，使用`LESS`编写，遵循[CSS Modules](https://github.com/css-modules/css-modules)规范，在编译的过程中经过了[Autoprefixer](https://github.com/postcss/autoprefixer)的处理。
+页面中的样式，使用`LESS`编写，在编译的过程中经过了[Autoprefixer](https://github.com/postcss/autoprefixer)的处理。
 
 项目中用到的其他技术不一一列举了，请自行查询资料。
 
