@@ -11,8 +11,8 @@
     "development-build-webpack": "webpack -w -c --display-error-details",
     "production-server": "better-npm-run production-server",
     "production-build": "npm run init && better-npm-run production-build",
-    "production-build-gulp": "webpack --config ./webpack/webpack.config.client.js",
-    "production-build-webpack": "webpack --config ./webpack/webpack.config.server.js"
+    "production-build-gulp": "gulp",
+    "production-build-webpack": "webpack"
   },
   "betterScripts": {
     "development-build": {
@@ -30,7 +30,7 @@
       }
     },
     "production-build": {
-      "command": "npm run production-build-server && npm run production-build-client",
+      "command": "npm run production-build-gulp && npm run production-build-webpack",
       "env": {
         "NODE_ENV": "production",
         "PORT": "3000"
