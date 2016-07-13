@@ -1,6 +1,8 @@
 </body>
 
 <script src="{{CDN}}/base/base.js"></script>
-<script src="{{CDN}}{{script}}"></script>
+{{#script}}
+<script src="{{CDN}}{{.}}"></script>
+{{/script}}
 
 </html>

@@ -10,6 +10,8 @@
   <meta name="description" content="{{description}}">
 
   <link rel="stylesheet" href="{{CDN}}/base/base.css" />
-  <link rel="stylesheet" href="{{CDN}}{{style}}" />
+  {{#style}}
+  <link rel="stylesheet" href="{{CDN}}{{.}}" />
+  {{/style}}
 </head>
 <body>
