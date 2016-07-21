@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>首页</title>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">                
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta http-equiv="Expires" CONTENT="-1">
+	<meta http-equiv="Cache-Control" CONTENT="no-cache">
+	<meta http-equiv="Pragma" CONTENT="no-cache">  
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+	<link href="{{CDN}}/home/reset.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{{CDN}}/home/swiper.min.css"/>
+	<link href="{{CDN}}/home/index_home.css" rel="stylesheet" type="text/css">
+	<link href="{{CDN}}/home/footer.css" rel="stylesheet" type="text/css">
+	
+</head>
+{{> foot
+  script="/home/home.js"}}
+<body style="background: url({{CDN}}/home/index_home/back.jpg) no-repeat;background-size: 100% 100%;">
+	<div class="index_home">
+		 <div class="swiper-container swiper_body" >
+	        <div class="swiper-wrapper">
+	            <div class="swiper-slide">
+	            	<img src="{{CDN}}/home/index/flim.jpg" />
+	            </div>
+	            <div class="swiper-slide">
+	            	<img src="{{CDN}}/home/index/flim.jpg" />
+	            </div>
+	            <div class="swiper-slide">
+	            	<img src="{{CDN}}/home/index/flim.jpg" />
+	            </div>
+	            <div class="swiper-slide">
+	            	<img src="{{CDN}}/home/index/flim.jpg" />
+	            </div>
+	            <div class="swiper-slide">
+	            	<img src="{{CDN}}/home/index/flim.jpg" />
+	            </div>
+
+	            
+	        </div>       
+	    </div>
+	    <div class="flime_h2">
+	    	<p class="flime_name">致青春.原来你还在这里</p>
+	    	<div class="flime_xing">
+	    		<ul class="flime_xing_ul">
+	    			<li class='li_list'></li>
+	    			<li class='li_list'></li>
+	    			<li class='li_list'></li>
+	    			<li class='li_list'></li>
+	    			<li></li>
+	    		</ul>
+	    		<p class='flime_text'>0.8</p>
+	    	</div>
+	    	<div class="flime_style">
+	    		<p class="p1">颜值爆棚 青涩爱情</p>
+	    		<p class="p1">周拓如/吴亦凡/刘亦菲</p>
+	    		<p class="p1">2016-07-08 上映</p>
+	    	</div>
+	    	<div class="Btn_gou">
+	    		<div  class="Btn_input">购票</div>
+	    	</div>
+	    </div>
+
+
+
+	</div>
+
+<script language="javascript"> 
+
+var mySwiper = new Swiper('.swiper_body',{
+ 		effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+		slidesPerView: 3,
+        slidesPerView: 'auto',
+        coverflow: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true
+        }
+
+})
+</script>
+
