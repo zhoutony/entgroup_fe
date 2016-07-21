@@ -1,3 +1,5 @@
 import $ from 'jquery';
+import { foo } from "./swiper.js";  
 
-$('body').html('来自于脚本');
+import { footer } from "./footer.js";
+import { film } from "./Flime_init.js";
