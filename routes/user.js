@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', (req, res, next) => res.render('user/user'));
 
 
-//订单详情
+//订单详情 
 router.get('/orderdetails', (req, res, next) => res.render('user/orderdetails'));
 
 //优惠券详情
