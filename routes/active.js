@@ -6,20 +6,20 @@ const router = express.Router();
 //活动列表
 router.get('/', (req, res, next) => {
 	var jsonparameter = '888';
-	console.log(jsonparameter);
+	console.log(global.name);
 	res.render('active/active',{ foot_on_4:'_on' });
 });
 
 
 //活动详情
 router.get('/:aid',(req, res, next) => {
-	fetch(`http://10.10.16.173/test/selciname/selciname/bycinemaID?cinemaID=${req.params.aid}`)
+	fetch(api_url+`selciname/bycinemaID?cinemaID=${req.params.aid}`)
 	.then(response => response.json())
 	.then(book => {
-		fetch('http://10.10.16.173/test/selciname/bycinemaID?cinemaID=2')
+		fetch(api_url+'selciname/bycinemaID?cinemaID=2')
 		.then(response => response.json())
 		.then(cinema => {
-			console.log(req.params);
+			console.log(api_url);
 			console.log(cinema);
 			res.render('active/details',{ book:book.resl , cinema:cinema.resl});
 		});

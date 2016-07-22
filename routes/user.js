@@ -16,7 +16,7 @@ router.get('/coupondetails', (req, res, next) => res.render('user/coupondetails'
 
 
 router.get('/:aid',(req, res, next) => {
-	fetch('http://10.10.16.173/test/selciname/bycinemaID?cinemaID=2')
+	fetch(api_url+'selciname/bycinemaID?cinemaID=2')
 	.then(response => response.json())
 	.then(book => {
 		console.log(book);
