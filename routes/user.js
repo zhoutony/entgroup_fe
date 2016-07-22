@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 //个人中心首页
-router.get('/', (req, res, next) => res.render('user/user'));
+router.get('/', (req, res, next) => res.render('user/user',{ foot_on_5:'_on' }));
 
 
 //订单详情 

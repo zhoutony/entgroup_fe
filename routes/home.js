@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
 
     .then(zzz =>{
       console.log(zzz.resl)
-      res.render('index_home', { zzz:zzz.resl })
+      res.render('index_home', { zzz:zzz.resl , foot_on_1:'_on' })
   })
     //console.log(book)
     .catch(next);
@@ -52,7 +52,7 @@ router.get('/indexInit', (req, res, next) => {
 
     .then(zzz =>{
       //console.log(zzz.resl)
-      res.render('index', { zzz:zzz.resl })
+      res.render('index', { zzz:zzz.resl, foot_on_2:'_on' })
   })
     //console.log(book)
     .catch(next);

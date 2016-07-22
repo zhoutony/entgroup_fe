@@ -4,7 +4,7 @@ import fetch from 'isomorphic-fetch';
 const router = express.Router();
 
 //影讯列表
-router.get('/', (req, res, next) => res.render('filmnews/filmnews'));
+router.get('/', (req, res, next) => res.render('filmnews/filmnews',{ foot_on_3:'_on' }));
 
 
 //影讯详情

@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
 	var jsonparameter = '888';
 	console.log(jsonparameter);
-	res.render('active/active');
+	res.render('active/active',{ foot_on_4:'_on' });
 });
 
 
