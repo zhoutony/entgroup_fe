@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import { foo } from "./swiper.js"; 
+var obj_index = 1;
 $(document).ready(function(){
+	
 	$.initData();
 	
 });
@@ -24,25 +26,25 @@ function touchChange(index_text){
 			  //Load_img(1);
 			  $.ajax({
 				 type: "GET",
-				 url: "/index.php/index/indexData/?yc="+yc,
+				 url: "/indexData/?yc="+yc,
 				 data: {film_id:vald},
 				 dataType: "json",
 				 success: function(msg){
+				 	//alert(vald)
 				//alert(msg.data.KB);
-				for (key in msg.lists) {
-						var h3html = '<div class="banner_h3_top">';
-									h3html += '<div class="BL_G_article_H3_a1" id="BL_G_article_H3_a1"><p class="p1"><span class="p1">'+msg.lists[key].movieName+'</span>';
-									if(msg.data.KB!=null&&msg.data.KB!=0.0){
-										h3html += '<span class="span2">'+msg.data.KB+'</span>';
-									}
-									h3html += '</p>';
-								h3html += '</div>';
-							h3html += '<p class="banner_h3_bottom">'+msg.data.movieTime+'分钟</p>';
-							h3html += '</div>';
-						$('.banner_h3').html(h3html);
-						$('.banner_h3').html(h3html);
-					break;
+				for (var key in msg.resl) {		
+				//alert()
+					if(msg.resl[key].entMovieId==vald){
+						var h3html = '<span class="span1">'+msg.resl[key].movieZname+'</span>';
+							if(msg.resl[key].entdataKb!=null){
+								h3html += '<span class="span2">'+msg.resl[key].entdataKb+'</span>';
+							}
+							$('.banner_h2_tex').html(h3html);
+						break;
+					}			
+						
 				}
+				
 
 					
 					
@@ -202,6 +204,8 @@ function touchChange(index_text){
 					
 				}
 	
+
+
 
 
 				  }
@@ -503,7 +507,7 @@ $.extend({
 								"width":img_wid
 						})
 
-				var index = 1
+				
 				var mySwiper = new Swiper('.swiper_body',{
 				 		effect: 'coverflow',
 				        grabCursor: true,
@@ -519,16 +523,16 @@ $.extend({
 				            slideShadows : true
 				        },
 				        onTransitionStart: function(mySwiper){
-				        	index = mySwiper.activeIndex;
-				        	//alert(index)
-				        	touchChange(index);
+				        	obj_index = mySwiper.activeIndex;
+				        	//alert(obj_index)
+				        	touchChange(obj_index);
 				        }
 				})
 
 				$(".swiper_body").on('click','.swiper-slide',function(){
-					  index = $(this).index();
-					mySwiper.slideTo(index,1000,false);
-					touchChange(index);
+					  obj_index = $(this).index();
+					mySwiper.slideTo(obj_index,1000,false);
+					touchChange(obj_index);
 				})
 
 
@@ -581,10 +585,6 @@ $.extend({
 		})
 
 
-$(document).ready(function(){
 
-
-
-})
 
 
