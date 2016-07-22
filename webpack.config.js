@@ -9,6 +9,7 @@ var configuration = {
     'home/home': './public/home/home.js',
     'book/book': './public/book/book.js',
     'active/reset': './public/active/reset.js',
+    'user/user': './public/user/user.js',
   },
   node: {
     __filename: true,
