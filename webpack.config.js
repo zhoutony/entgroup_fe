@@ -21,7 +21,7 @@ var configuration = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel!eslint?quiet=true' },
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
       { test: /\.json$/, loader: 'json' },
     ],
   },
