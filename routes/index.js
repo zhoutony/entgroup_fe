@@ -13,7 +13,7 @@ const router = express.Router();
 
 global.api_url = 'http://10.10.16.173/test/';
 
-router.use('/', home);
+router.use('/', setdata, home);
 router.use('/book', book);
 router.use('/active', setdata, active);
 router.use('/user', user);
