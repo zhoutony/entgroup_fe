@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { foo } from "./swiper.js"; 
 var obj_index = 1;
+var obj_index1 = 1;
 $(document).ready(function(){
 	
 	$.initData();
@@ -26,8 +27,8 @@ function touchChange(index_text){
 			  //Load_img(1);
 			  $.ajax({
 				 type: "GET",
-				 url: "/indexData/?yc="+yc,
-				 data: {film_id:vald},
+				 url: '/indexData/'+yc+'/'+vald,
+				 data: {},
 				 dataType: "json",
 				 success: function(msg){
 				 	//alert(vald)
@@ -218,7 +219,75 @@ function touchChange(index_text){
 		//$('.swiper-nav .swiper-slide').removeClass('swiper-slide-active').eq(0).addClass('swiper-slide-active');
 	}
 
+function touchChange1(index_text){
+		var index_text = index_text>0?index_text:0;
 
+
+		 vals =  vald!=0?vald:0;
+		  vald = $('#ypdetail2').find('.swiper-slide').eq(index_text).find('input[type="hidden"]').eq(0).val();
+
+		 console.log(vald);
+		 if(vald==vals){
+			return false;
+		 }else{
+			
+			  var htmlLoad = '';
+			  var htmlLoads = '';
+			  var htmlk= '';
+			  //Load_img(1);
+			  $.ajax({
+				 type: "GET",
+				 url: '/indexData/'+yc+'/'+vald,
+				 data: {},
+				 dataType: "json",
+				 success: function(msg){
+					 	//alert(vald)
+					//alert(msg.data.KB);
+					for (var key in msg.resl) {		
+					//alert()
+						if(msg.resl[key].entMovieId==vald){
+							var h3html = '<p class="flime_name">'+msg.resl[key].movieZname+'</p>';
+								h3html += '<div class="flime_xing">';
+									h3html += '<ul class="flime_xing_ul">';
+										h3html += '<li class="li_list"></li>';
+										h3html += '<li class="li_list"></li>';
+										h3html += '<li class="li_list"></li>';
+										h3html += '<li class="li_list"></li>';
+										h3html += '<li></li>';
+									h3html += '</ul>';
+									h3html += '<p class="flime_text">0.8</p>';
+								h3html += '</div>';
+								h3html += '<div class="flime_style">';
+									h3html += '<p class="p1">'+msg.resl[key].oneTalk+'</p>';
+									h3html += '<p class="p1">2016-07-08 上映</p>';
+								h3html +='</div>';
+								h3html +='<div class="Btn_gou">';
+									h3html +='<div  class="Btn_input">购票</div>';
+								h3html +='</div>';
+								h3html +='</div>';
+								
+
+
+
+
+
+	    		
+	    	
+	    		
+	    		
+	    		
+	    	
+								$('.flime_h2').html(h3html);
+							break;
+						}			
+							
+					}
+				  }
+			 }); 
+		 }
+	//alert(1111);
+	//console.log(index_text);
+}
 $.extend({
 	
 	  
@@ -226,11 +295,11 @@ $.extend({
 	initData: function() {
 		//alert('系统维护中……预计1小时');return false;
 		//alert(222);
-		var href = '/indexData/?yc='+yc;
+		var href = '/indexData/'+yc+'/'+INIT_FILM_ID;
 		//INIT_LOADING = true;
 		//Load_img(1);
 		//alert(INIT_FILM_ID);
-		$.get(href, {'data_type':1, 'film_id':INIT_FILM_ID}, function(msg) {
+		$.get(href, {}, function(msg) {
 			//Load_img(1);
 			//alert(msg.lists);
 			console.log(msg);
@@ -495,7 +564,7 @@ $.extend({
 								//fixPagesHeight(0);
 							},
 							onSlideTouch: function(mySwiper1){
-								alert(22)
+								//alert(22)
 								mySwiper1.swipeTo(mySwiper1.activeIndex);
 								
 							}
@@ -535,8 +604,34 @@ $.extend({
 					touchChange(obj_index);
 				})
 
+				var mySwiper_home = new Swiper('.swiper_body2',{
+				 		effect: 'coverflow',
+				        grabCursor: true,
+				        centeredSlides: true,
+						slidesPerView: 3,
+				        slidesPerView: 'auto',
+				        coverflow: {
+				            rotate: 50,
+				            stretch: 0,
+				            depth: 100,
+				            modifier: 1,
+				            slideShadows : true
+				        },
+				        onTransitionStart: function(mySwiper_home){
+							//alert( mySwiper_home.activeIndex);
+							obj_index1 = mySwiper_home.activeIndex;
+							touchChange1(obj_index1);
+								
+								  
+								//fixPagesHeight(0);
+							}
 
-	
+				})
+				$(".swiper_body2").on('click','.swiper-slide',function(){
+					 obj_index1 = $(this).index();
+					mySwiper_home.slideTo(obj_index1,1000,false);
+					touchChange1(obj_index1);
+				})
 
 
 			}
@@ -546,6 +641,7 @@ $.extend({
 	}
 	
 })
+
  		$('#swiper-wrapper').on('click','.click_ul li',function(){
 		//alert(1111111111);
 			pid = $(this).find('input[type="hidden"]').eq(0).val();
