@@ -16,27 +16,28 @@
 	<link href="{{CDN}}/home/footer.css" rel="stylesheet" type="text/css">
 	
 </head>
+<script>
+var MOVIE_ID = 1;
+var yc = 'test';
+var INIT_FILM_ID = 1;
+var INIT_SWIPER = null;
+var vals = 0;
+var vald = 0;
+</script>
 {{> foot
   script="/home/home.js"}}
 <body style="background: url({{CDN}}/home/index_home/back.jpg) no-repeat;background-size: 100% 100%;">
 	<div class="index_home">
-		 <div class="swiper-container swiper_body" >
-	        <div class="swiper-wrapper">
-	            <div class="swiper-slide">
-	            	<img src="{{CDN}}/home/index/flim.jpg" />
-	            </div>
-	            <div class="swiper-slide">
-	            	<img src="{{CDN}}/home/index/flim.jpg" />
-	            </div>
-	            <div class="swiper-slide">
-	            	<img src="{{CDN}}/home/index/flim.jpg" />
-	            </div>
-	            <div class="swiper-slide">
-	            	<img src="{{CDN}}/home/index/flim.jpg" />
-	            </div>
-	            <div class="swiper-slide">
-	            	<img src="{{CDN}}/home/index/flim.jpg" />
-	            </div>
+		 <div class="swiper-container swiper_body2" >
+	        <div class="swiper-wrapper" id="ypdetail2">
+	           {{#zzz}}
+	           		
+	           		<div class="swiper-slide">
+	           			<input type="hidden" value="{{entMovieId}}">
+	            		<img src="{{titleImg}}" />
+	            	</div>
+					
+	           {{/zzz}}
 
 	            
 	        </div>       
@@ -66,23 +67,5 @@
 
 
 	</div>
-
-<script language="javascript"> 
-
-var mySwiper = new Swiper('.swiper_body',{
- 		effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-		slidesPerView: 3,
-        slidesPerView: 'auto',
-        coverflow: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows : true
-        }
-
-})
-</script>
-
+{{> foot
+  script="/home/home.js"}}
