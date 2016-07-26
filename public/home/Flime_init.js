@@ -226,7 +226,7 @@ function touchChange1(index_text){
 		 vals =  vald!=0?vald:0;
 		  vald = $('#ypdetail2').find('.swiper-slide').eq(index_text).find('input[type="hidden"]').eq(0).val();
 
-		 console.log(vald);
+		 //console.log(vald);
 		 if(vald==vals){
 			return false;
 		 }else{
