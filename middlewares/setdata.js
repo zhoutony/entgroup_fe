@@ -10,9 +10,13 @@ const setdata = router.get('/indexInit/:yc', (req, res, next) => {
 	.then(book => {
 		//console.log(book.resl[0]['cinemaid']);
 		req.session.cinemaid = book.resl[0]['cinemaid'];//写入至session   影院id
+		 return next();
+
 		//console.log(req.session.cinemaid);
 	});
-	return next();
+
+	
+	
 	
 });
 
