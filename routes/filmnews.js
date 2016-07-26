@@ -1,10 +1,14 @@
 import express from 'express';
 import fetch from 'isomorphic-fetch';
+import session from 'express-session';
 
 const router = express.Router();
 
 //影讯列表
-router.get('/', (req, res, next) => res.render('filmnews/filmnews',{ foot_on_3:'_on' }));
+router.get('/', (req, res, next) => {
+	var cinemaid=req.session.cinemaid;
+	res.render('filmnews/filmnews',{ foot_on_3:'_on' , cinemaid:cinemaid})
+});
 
 
 //影讯详情
@@ -17,4 +21,4 @@ router.get('/:aid',(req, res, next) => {
 	});
 });
 
-export default router;
+export default router; 

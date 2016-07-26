@@ -1,11 +1,15 @@
 import express from 'express';
 import fetch from 'isomorphic-fetch';
+import session from 'express-session';
 
 const router = express.Router();
 
 
 //个人中心首页
-router.get('/', (req, res, next) => res.render('user/user',{ foot_on_5:'_on' }));
+router.get('/', (req, res, next) => {
+	var cinemaid=req.session.cinemaid;
+	res.render('user/user',{ foot_on_5:'_on' , cinemaid:cinemaid})
+});
 
 
 //订单详情 
