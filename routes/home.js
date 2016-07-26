@@ -20,18 +20,17 @@ router.get('/', (req, res, next) => {
     .then(response => response.json())
 
     .then(zzz =>{
-      console.log(zzz.resl)
-      res.render('index_home', { zzz:zzz.resl , foot_on_1:'_on' })
+      res.render('index_home', { zzz:zzz.resl , foot_on_1:'_on',cinemaid:cinemaid })
   })
     //console.log(book)
     .catch(next);
 });
 //********************影片轮播页面*******************2016-7
-router.get('/indexInit', (req, res, next) => {
+router.get('/indexInit/:yc', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
+  //cinemaid=req.session.cinemaid;      //影院id 的session 读取
   console.log(cinemaid);
-
   fetch(api_url+`selmovie/bycinemaID?cinemaID=1`)
     .then(response => response.json())
     .then(zzz =>{
