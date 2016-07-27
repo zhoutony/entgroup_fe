@@ -10,6 +10,7 @@ var configuration = {
     'book/book': './public/book/book.js',
     'active/reset': './public/active/reset.js',
     'user/user': './public/user/user.js',
+    'pay/payment': './public/pay/payment.js',
   },
   node: {
     __filename: true,
