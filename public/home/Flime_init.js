@@ -244,8 +244,10 @@ function touchChange1(index_text){
 					 	//alert(vald)
 					//alert(msg.data.KB);
 					for (var key in msg.resl) {		
-					//alert()
+					//console.log(msg.resl)
 						if(msg.resl[key].entMovieId==vald){
+							var Time = msg.resl[key].movieBetime;
+							//console.log(Time)
 							var h3html = '<p class="flime_name">'+msg.resl[key].movieZname+'</p>';
 								h3html += '<div class="flime_xing">';
 									h3html += '<ul class="flime_xing_ul">';
@@ -259,12 +261,15 @@ function touchChange1(index_text){
 								h3html += '</div>';
 								h3html += '<div class="flime_style">';
 									h3html += '<p class="p1">'+msg.resl[key].oneTalk+'</p>';
-									h3html += '<p class="p1">2016-07-08 上映</p>';
+									Time=Time.substring(0,10);
+									//console.log(Time)
+									h3html += '<p class="p1">'+msg.resl[key].movieStar+'</p>';
+									h3html += '<p class="p1">'+Time+' 上映</p>';
 								h3html +='</div>';
 								h3html +='<div class="Btn_gou">';
 									h3html +='<div  class="Btn_input">购票</div>';
 								h3html +='</div>';
-								h3html +='</div>';
+								
 								
 
 
