@@ -28,21 +28,20 @@ var vald = 0;
 <body>
 <div class="head">
 	<div class="head_body">
-		<div class="head_body_left">
-		{{#zzz}}
-			<div class="head_body_left_top">{{cinemaaddress}}</div>
-			<ul class="head_body_left_botton">
-				<li class='color_red'>可停车</li>
-				<li class='color_red'>儿童票</li>
-				<li class='color_red'>休息区</li>
-				<li class='color_red'>餐饮区</li>
-				<li class='color_red'>3D眼睛</li>
-			</ul>
-		{{/zzz}}
-		</div>
-		<div class="head_body_right">
-			<p class="head_body_right_img"><img src="{{CDN}}/home/index/right_san.png"/></p>
-		</div>
+		<a href="http://www.baidu.com">
+			<div class="head_body_left">
+				{{#zzz}}
+					<div class="head_body_left_top">{{cinemaaddress}}</div>
+					<ul class="head_body_left_botton">
+						<li class='color_red'>{{cinemaservice}}</li>
+					</ul>
+				{{/zzz}}
+			</div>
+
+			<div class="head_body_right">
+				<p class="head_body_right_img"><img src="{{CDN}}/home/index/right_san.png"/></p>
+			</div>
+		</a>
 	</div>
 </div>
 <div class="banner">
