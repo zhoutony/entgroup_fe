@@ -26,14 +26,17 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 //********************影片轮播页面*******************2016-7
-router.get('/indexInit/:yc', (req, res, next) => {
+router.get('/indexInit/yc/:yc', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   //cinemaid=req.session.cinemaid;      //影院id 的session 读取
+  //console.log(req.params.film_id);
   console.log(cinemaid);
-  fetch(api_url+`selmovie/bycinemaID?cinemaID=1`)
+  fetch(api_url+`selciname/bycinemaID?cinemaID=`+cinemaid)
     .then(response => response.json())
+
     .then(zzz =>{
+      console.log(zzz)
       res.render('index', { zzz:zzz.resl, foot_on_2:'_on',cinemaid:cinemaid })
   })
     .catch(next);
@@ -42,12 +45,15 @@ router.get('/indexInit/:yc', (req, res, next) => {
 router.get('/indexData/:yc/:film_id', (req, res, next) => {
   var user_id=req.session.user;
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
+  var movieid = req.params.film_id;
+  //console.log(req.params.film_id);
   fetch(api_url+`selmovie/bycinemaID?cinemaID=`+cinemaid)   //  读取当前影片
+  //fetch(api_url+`selmovie/bycinemaIDandMovieID?cinemaID=`+cinemaid+`&movieId=`+movieid)   //  读取当前影片
     .then(response => response.json())
 
     .then(zzz =>{
       res.json(zzz);
-  })
+    })
     .catch(next);
 });
 export default router;
