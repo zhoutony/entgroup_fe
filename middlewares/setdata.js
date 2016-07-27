@@ -2,7 +2,7 @@ import express from 'express';
 import fetch from 'isomorphic-fetch';
 const router = express.Router();
 
-const setdata = router.get('/indexInit/:yc', (req, res, next) => {
+const setdata = router.get('/indexInit/yc/:yc', (req, res, next) => {
 	//console.log(req.params.yc);
 
 	fetch(api_url+'selciname/bycinemaID?cinemaID='+req.params.yc)
