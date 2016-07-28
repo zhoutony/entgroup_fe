@@ -32,12 +32,60 @@ router.get('/indexInit', (req, res, next) => {
   //cinemaid=req.session.cinemaid;      //影院id 的session 读取
   //console.log(req.params.film_id);
   //console.log(cinemaid);
+  var service=new Array();
   fetch(api_url+`selciname/bycinemaID?cinemaID=`+cinemaid)
     .then(response => response.json())
 
     .then(zzz =>{
        //var result=json_decode(zzz,true);
-      //console.log(result)
+      //zzz.resl[0]['cinemaservice']=zzz.resl[0]['cinemaservice'].replace('{' , ""); 
+      //zzz.resl[0]['cinemaservice']=zzz.resl[0]['cinemaservice'].replace('}' , ""); 
+      //zzz.resl[0]['cinemaservice'] = zzz.resl[0]['cinemaservice'].split(',');
+      zzz.resl[0]['cinemaservice'] = JSON.parse([zzz.resl[0]['cinemaservice']])
+      
+      if(zzz.resl[0]['cinemaservice']['mianya']){
+        zzz.resl[0]['cinemaservice']['mianya']='免押金';
+      }
+      if(zzz.resl[0]['cinemaservice']['wifi']){
+        zzz.resl[0]['cinemaservice']['wifi']='WIFI';
+      }
+      if(zzz.resl[0]['cinemaservice']['park']){
+        zzz.resl[0]['cinemaservice']['park']='免费停车';
+      }
+      if(zzz.resl[0]['cinemaservice']['canyin']){
+        zzz.resl[0]['cinemaservice']['canyin']='餐饮';
+      }
+      if(zzz.resl[0]['cinemaservice']['jvmu']){
+        zzz.resl[0]['cinemaservice']['jvmu']='巨幕';
+      }
+      if(zzz.resl[0]['cinemaservice']['yule']){
+        zzz.resl[0]['cinemaservice']['yule']='娱乐';
+      }
+      if(zzz.resl[0]['cinemaservice']['vip']){
+        zzz.resl[0]['cinemaservice']['vip']='VIP';
+      }
+      if(zzz.resl[0]['cinemaservice']['shopping']){
+        zzz.resl[0]['cinemaservice']['shopping']='购物';
+      }
+      if(zzz.resl[0]['cinemaservice']['imax']){
+        zzz.resl[0]['cinemaservice']['imax']='IMAX';
+      }
+      if(zzz.resl[0]['cinemaservice']['feimai']){
+        zzz.resl[0]['cinemaservice']['feimai']='卖品';
+      }
+      if(zzz.resl[0]['cinemaservice']['card']){
+        zzz.resl[0]['cinemaservice']['card']='刷卡';
+      }
+      if(zzz.resl[0]['cinemaservice']['zhoubian']){
+        zzz.resl[0]['cinemaservice']['zhoubian']='周边';
+      }
+      if(zzz.resl[0]['cinemaservice']['qinglv']){
+        zzz.resl[0]['cinemaservice']['qinglv']='情侣座';
+      }
+      if(zzz.resl[0]['cinemaservice']['restArea']){
+        zzz.resl[0]['cinemaservice']['restArea']='休息区';
+      }
+      console.log(zzz.resl[0]['cinemaservice']);
       res.render('index', { zzz:zzz.resl, foot_on_2:'_on',cinemaid:cinemaid })
   })
     .catch(next);
