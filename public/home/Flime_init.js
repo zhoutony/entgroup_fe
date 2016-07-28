@@ -298,7 +298,7 @@ function touchChange1(index_text){
         }else{
            hei_ght = win_hei+fot_hei+5;
         }
-        console.log(hei_ght)
+        //console.log(hei_ght)
         $('body').css({
           "height":hei_ght
         })
