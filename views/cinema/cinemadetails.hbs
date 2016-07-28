@@ -29,8 +29,8 @@
 					</a>
 				</li>
 				<li class="cinema_de_li cinema_de_li3">
-					<a href="tel:1888888888">
-						<p class="li_tit3">1888888888</p>
+					<a href="tel:{{cinematel}}">
+						<p class="li_tit3">{{cinematel}}</p>
 					</a>
 				</li>
 
@@ -39,36 +39,14 @@
 				<li class="feature_li">
 					<p class="feature_li_p">影院服务特色</p>
 				</li>
-				<li class="feature_li">
-					<p class="left_p">
-						<span class="left_span">3D眼睛</span>
-					</p>
-					<span class="right_span">免押金</span>
-				</li>
-				<li class="feature_li">
-					<p class="left_p">
-						<span class="left_span">取票机</span>
-					</p>
-					<span class="right_span">影院大厅取票机</span>
-				</li>
-				<li class="feature_li">
-					<p class="left_p">
-						<span class="left_span">4DX厅</span>
-					</p>
-					<span class="right_span">支持4DX厅</span>
-				</li>
-				<li class="feature_li">
-					<p class="left_p">
-						<span class="left_span">儿童优惠</span>
-					</p>
-					<span class="right_span">支持4DX厅</span>
-				</li>
-				<li class="feature_li">
-					<p class="left_p">
-						<span class="left_span">4DX厅</span>
-					</p>
-					<span class="right_span">支持4DX厅</span>
-				</li>
+				{{#each cinemaservice}}
+					<li class="feature_li">
+						<p class="left_p">
+							<span class="left_span">{{@key}}</span>
+						</p>
+						<span class="right_span">{{this}}</span>
+					</li>
+				{{/each}}
 			</ul>
 		</div>
 	</div>
