@@ -7,6 +7,7 @@ import weixin from './weixin';
 import user from './user';
 import filmnews from './filmnews';
 import pay from './pay';
+import cinema from './cinema';
 
 import setdata from '../middlewares/setdata';
 
@@ -22,6 +23,7 @@ router.use('/user', user);
 router.use('/filmnews', filmnews);
 router.use('/weixin',weixin);
 router.use('/pay',pay);
+router.use('/cinema',cinema);
 
 export default router;
 

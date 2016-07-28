@@ -26,23 +26,26 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 //********************影片轮播页面*******************2016-7
-router.get('/indexInit/yc/:yc', (req, res, next) => {
+router.get('/indexInit', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   //cinemaid=req.session.cinemaid;      //影院id 的session 读取
   //console.log(req.params.film_id);
-  console.log(cinemaid);
+  //console.log(cinemaid);
   fetch(api_url+`selciname/bycinemaID?cinemaID=`+cinemaid)
     .then(response => response.json())
 
     .then(zzz =>{
-      console.log(zzz)
+       //var result=json_decode(zzz,true);
+      //console.log(result)
       res.render('index', { zzz:zzz.resl, foot_on_2:'_on',cinemaid:cinemaid })
   })
     .catch(next);
 });
 ////***************影片轮播页面indexdata*****************//2016-7
 router.get('/indexData/:yc/:film_id', (req, res, next) => {
+  //console.log(1111111)
+  //console.log(req.session.cinemaid)
   var user_id=req.session.user;
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var movieid = req.params.film_id;
