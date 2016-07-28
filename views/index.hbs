@@ -28,12 +28,16 @@ var vald = 0;
 <body>
 <div class="head">
 	<div class="head_body">
-		<a href="http://www.baidu.com">
+		<a href="/cinema">
 			<div class="head_body_left">
 				{{#zzz}}
 					<div class="head_body_left_top">{{cinemaaddress}}</div>
 					<ul class="head_body_left_botton">
-						<li class='color_red'>{{cinemaservice}}</li>
+						{{#each cinemaservice}}
+							{{#if this}}
+								<li class='color_red'>{{this}}</li>
+							{{/if}}	
+						{{/each}}
 					</ul>
 				{{/zzz}}
 			</div>
