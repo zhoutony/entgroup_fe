@@ -85,7 +85,7 @@ router.get('/indexInit', (req, res, next) => {
       if(zzz.resl[0]['cinemaservice']['restArea']){
         zzz.resl[0]['cinemaservice']['restArea']='休息区';
       }
-      console.log(zzz.resl[0]['cinemaservice']);
+      //console.log(zzz.resl[0]['cinemaservice']);
       res.render('index', { zzz:zzz.resl, foot_on_2:'_on',cinemaid:cinemaid })
   })
     .catch(next);

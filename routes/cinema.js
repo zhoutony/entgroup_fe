@@ -12,12 +12,13 @@ router.get('/', (req, res, next) => {
   //     res.redirect('/weixin');
   //      return;
   //  }
-  console.log(cinemaid);
+  //console.log(cinemaid);
   fetch(api_url+`selciname/bycinemaID?cinemaID=`+cinemaid)
   //fetch(`https://api.douban.com/v2/book/isbn/9787508654294`)
     .then(response => response.json())
 
     .then(zzz =>{
+    	zzz.resl[0]['cinemaservice'] = JSON.parse([zzz.resl[0]['cinemaservice']])
     	console.log(zzz);
       res.render('cinema/cinemadetails', { zzz:zzz.resl , foot_on_1:'_on',cinemaid:cinemaid })
   	})
