@@ -9,10 +9,12 @@ $(document).ready(function(){
 });
 var vals = 0;
 var vald = 0;
+var indehhjhhj = 0;
 function touchChange(index_text){
+	indehhjhhj++;
 		var index_text = index_text>0?index_text:0;
 
-
+console.log(111+'------------------------'+indehhjhhj)
 		 vals =  vald!=0?vald:0;
 		  vald = $('#ypdetail1').find('.swiper-slide').eq(index_text).find('input[type="hidden"]').eq(0).val();
 
@@ -267,7 +269,7 @@ function touchChange1(index_text){
 									h3html += '<p class="p1">'+Time+' 上映</p>';
 								h3html +='</div>';
 								h3html +='<div class="Btn_gou">';
-									h3html +='<div  class="Btn_input">购票</div>';
+									h3html +='<a href="/indexInit/?yc='+yc+'&film_id='+msg.resl[key].entMovieId+'"><div  class="Btn_input">购票</div></a>';
 								h3html +='</div>';
 
 
@@ -611,7 +613,7 @@ $.extend({
 				            modifier: 1,
 				            slideShadows : true
 				        },
-				        onTransitionStart: function(mySwiper){
+				        onSlideChangeStart: function(mySwiper){
 				        	obj_index = mySwiper.activeIndex;
 				        	//alert(obj_index)
 				        	touchChange(obj_index);
@@ -637,7 +639,7 @@ $.extend({
 				            modifier: 1,
 				            slideShadows : true
 				        },
-				        onTransitionStart: function(mySwiper_home){
+				        onTransitionEnd: function(mySwiper_home){
 							//alert( mySwiper_home.activeIndex);
 							obj_index1 = mySwiper_home.activeIndex;
 							touchChange1(obj_index1);
