@@ -11,6 +11,7 @@ var configuration = {
     'active/reset': './public/active/reset.js',
     'user/user': './public/user/user.js',
     'pay/payment': './public/pay/payment.js',
+    'pay/paywx': './public/pay/paywx.js',
   },
   node: {
     __filename: true,

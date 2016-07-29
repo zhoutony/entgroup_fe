@@ -4,29 +4,21 @@ import session from 'express-session';
 
 const router = express.Router();
 
-//支付
+//支付页面
 router.get('/', (req, res, next) => {
 
 	var cinemaid=req.session.cinemaid;
 
-	res.render('pay/payment',{ cinemaid:cinemaid});
+	var out_time = '2016-07-29 16:00:00';
+
+	res.render('pay/payment',{ cinemaid:cinemaid , out_time:out_time});
 });
 
 
-//
-router.get('/:aid',(req, res, next) => {
-	var cinemaId = req.session.cinemaid; 
-	fetch(api_url+`selciname/bycinemaID?cinemaID=${req.params.aid}`)
-	.then(response => response.json())
-	.then(book => {
-		fetch(api_url+'selciname/bycinemaID?cinemaID=2')
-		.then(response => response.json())
-		.then(cinema => {
-			console.log(cinemaId);
-			console.log(book);
-			res.render('active/details',{ book:book.resl , cinema:cinema.resl});
-		});
-	});
+//微信支付
+router.get('/paywx',(req, res, next) => {
+
+	res.render('pay/paywx');
 });
 
 export default router;
