@@ -14,7 +14,6 @@ function touchChange(index_text){
 	indehhjhhj++;
 		var index_text = index_text>0?index_text:0;
 
-console.log(111+'------------------------'+indehhjhhj)
 		 vals =  vald!=0?vald:0;
 		  vald = $('#ypdetail1').find('.swiper-slide').eq(index_text).find('input[type="hidden"]').eq(0).val();
 
@@ -316,7 +315,7 @@ $.extend({
 	//初始化数据
 	initData: function() {
 		//alert('系统维护中……预计1小时');return false;
-		//alert(222);
+		//alert(INIT_FILM_ID);
 		var href = '/indexData/'+yc+'/'+INIT_FILM_ID;
 		//INIT_LOADING = true;
 		//Load_img(1);
