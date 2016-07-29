@@ -20,6 +20,7 @@ router.get('/', (req, res, next) => {
     .then(response => response.json())
 
     .then(zzz =>{
+      //console.log(zzz.resl)
       res.render('index_home', { zzz:zzz.resl , foot_on_1:'_on',cinemaid:cinemaid })
   })
     //console.log(book)
@@ -33,6 +34,8 @@ router.get('/indexInit', (req, res, next) => {
   //console.log(req.params.film_id);
   //console.log(cinemaid);
   var service=new Array();
+       var film_id=req.query.film_id;
+     //console.log(film_id)
   fetch(api_url+`selciname/bycinemaID?cinemaID=`+cinemaid)
     .then(response => response.json())
 
@@ -86,7 +89,7 @@ router.get('/indexInit', (req, res, next) => {
         zzz.resl[0]['cinemaservice']['restArea']='休息区';
       }
       //console.log(zzz.resl[0]['cinemaservice']);
-      res.render('index', { zzz:zzz.resl, foot_on_2:'_on',cinemaid:cinemaid })
+      res.render('index', { zzz:zzz.resl, foot_on_2:'_on',cinemaid:cinemaid,film_id:film_id })
   })
     .catch(next);
 });
@@ -94,15 +97,16 @@ router.get('/indexInit', (req, res, next) => {
 router.get('/indexData/:yc/:film_id', (req, res, next) => {
   //console.log(1111111)
   //console.log(req.session.cinemaid)
-  var user_id=req.session.user;
+  //var user_id=req.session.user;
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
-  var movieid = req.params.film_id;
-  //console.log(req.params.film_id);
+  var film_id=req.query.film_id;
+  //alert(movieid);
   fetch(api_url+`selmovie/bycinemaID?cinemaID=`+cinemaid)   //  读取当前影片
   //fetch(api_url+`selmovie/bycinemaIDandMovieID?cinemaID=`+cinemaid+`&movieId=`+movieid)   //  读取当前影片
     .then(response => response.json())
 
     .then(zzz =>{
+      console.log(zzz.resl)
       res.json(zzz);
     })
     .catch(next);
