@@ -35,6 +35,9 @@ router.get('/indexInit', (req, res, next) => {
   //console.log(cinemaid);
   var service=new Array();
        var film_id=req.query.film_id;
+       if(film_id==null){
+          film_id='test';
+       }
      //console.log(film_id)
   fetch(api_url+`selciname/bycinemaID?cinemaID=`+cinemaid)
     .then(response => response.json())
@@ -99,13 +102,24 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
   //console.log(req.session.cinemaid)
   //var user_id=req.session.user;
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
-  var film_id=req.query.film_id;
+  var film_id=req.params.film_id;
   //alert(movieid);
   fetch(api_url+`selmovie/bycinemaID?cinemaID=`+cinemaid)   //  读取当前影片
   //fetch(api_url+`selmovie/bycinemaIDandMovieID?cinemaID=`+cinemaid+`&movieId=`+movieid)   //  读取当前影片
     .then(response => response.json())
 
     .then(zzz =>{
+      var new_array=new Array();
+      if(film_id!='undefined'){
+        for(var i=0;i<zzz.resl.length;i++){
+          if(zzz.resl[i]['entMovieId']==film_id){
+             new_array.push(zzz.resl[i]);
+             zzz.resl.splice(i,1);
+             zzz.resl.unshift(new_array[0]);
+          }
+        } 
+      }
+
       console.log(zzz.resl)
       res.json(zzz);
     })
