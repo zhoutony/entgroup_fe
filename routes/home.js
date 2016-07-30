@@ -120,7 +120,7 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
         } 
       }
 
-      console.log(zzz.resl)
+      //console.log(zzz.resl)
       res.json(zzz);
     })
     .catch(next);
