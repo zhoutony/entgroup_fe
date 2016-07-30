@@ -111,7 +111,7 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
     .then(zzz =>{
       var new_array=new Array();
       if(film_id!='undefined'){
-        for(var i=0;i<zzz.resl.length;i++){
+        for(var i=0;i<zzz.resl.length;i++){       //根据   film_id  重新排列影片列表顺序
           if(zzz.resl[i]['entMovieId']==film_id){
              new_array.push(zzz.resl[i]);
              zzz.resl.splice(i,1);
