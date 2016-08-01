@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-	<title>首页</title>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">                
-	<meta content="yes" name="apple-mobile-web-app-capable" />
-	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
-	<meta name="format-detection" content="telephone=no" />
-	<meta http-equiv="Expires" CONTENT="-1">
-	<meta http-equiv="Cache-Control" CONTENT="no-cache">
-	<meta http-equiv="Pragma" CONTENT="no-cache">  
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
-	<link href="{{CDN}}/home/reset.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="{{CDN}}/home/swiper.min.css"/>
-	<link href="{{CDN}}/home/index_home.css" rel="stylesheet" type="text/css">
-	<link href="{{CDN}}/home/footer.css" rel="stylesheet" type="text/css">
-	
-</head>
+{{> head
+  title="首页"
+  keywords=""
+  description=""
+  style="/home/index_home.css" }}
 <script>
 var MOVIE_ID = 1;
 var yc = {{cinemaid}};
@@ -29,16 +16,16 @@ var vald = 0;
 		 <div class="swiper-container swiper_body2" >
 	        <div class="swiper-wrapper" id="ypdetail2">
 	           {{#zzz}}
-	           		
+
 	           		<div class="swiper-slide">
 	           			<input type="hidden" value="{{entMovieId}}">
 	            		<img src="{{titleImg}}" />
 	            	</div>
-					
+
 	           {{/zzz}}
 
-	            
-	        </div>       
+
+	        </div>
 	    </div>
 	    <div class="flime_h2">
 
