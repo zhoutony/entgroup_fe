@@ -270,19 +270,6 @@ function touchChange1(index_text){
 								h3html +='<div class="Btn_gou">';
 									h3html +='<a href="/indexInit/?yc='+yc+'&film_id='+msg.resl[key].entMovieId+'"><div  class="Btn_input">购票</div></a>';
 								h3html +='</div>';
-
-
-
-
-
-
-
-
-
-
-
-
-
 								$('.flime_h2').html(h3html);
 							break;
 						}
@@ -372,9 +359,11 @@ $.extend({
 				}
 				var h2html='';
 				for (var zzz in msg.resl) {
-            			 h2html += '<div class="swiper-slide">';
+                   h2html += '<div class="swiper-slide">';
+            			 h2html += '<a href="/Video_details/yc='+msg.resl[zzz].entMovieId+'">';
             					h2html += '<input type="hidden" value='+msg.resl[zzz].entMovieId+'>';
             					h2html += '<img src='+msg.resl[zzz].titleImg+' />';
+                    h2html += ' </a>';
             				h2html += ' </div>';
 
 
@@ -612,15 +601,18 @@ $.extend({
 				            modifier: 1,
 				            slideShadows : true
 				        },
-				        onSlideChangeStart: function(mySwiper){
+				        onTransitionStart: function(mySwiper){
 				        	obj_index = mySwiper.activeIndex;
-				        	//alert(obj_index)
+
+
 				        	touchChange(obj_index);
 				        }
 				})
 
 				$(".swiper_body").on('click','.swiper-slide',function(){
 					  obj_index = $(this).index();
+
+
 					mySwiper.slideTo(obj_index,1000,false);
 					touchChange(obj_index);
 				})
@@ -638,7 +630,7 @@ $.extend({
 				            modifier: 1,
 				            slideShadows : true
 				        },
-				        onTransitionEnd: function(mySwiper_home){
+				        onTransitionStart: function(mySwiper_home){
 							//alert( mySwiper_home.activeIndex);
 							obj_index1 = mySwiper_home.activeIndex;
 							touchChange1(obj_index1);
@@ -650,6 +642,8 @@ $.extend({
 				})
 				$(".swiper_body2").on('click','.swiper-slide',function(){
 					 obj_index1 = $(this).index();
+
+
 					mySwiper_home.slideTo(obj_index1,1000,false);
 					touchChange1(obj_index1);
 				})
