@@ -9,7 +9,9 @@ router.get('/', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   //delete req.session.user;
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
-  //console.log(user_id);
+  var cinemaname=req.session.cinemaname;      //影院name 的session 读取
+
+  console.log(cinemaname);
   // if(user_id==null||user_id==undefined){
   //     res.redirect('/weixin');
   //      return;
@@ -21,7 +23,7 @@ router.get('/', (req, res, next) => {
 
     .then(zzz =>{
       //console.log(zzz.resl)
-      res.render('index_home', { zzz:zzz.resl , foot_on_1:'_on',cinemaid:cinemaid })
+      res.render('index_home', { zzz:zzz.resl , foot_on_1:'_on',cinemaid:cinemaid,cinemaname:cinemaname })
   })
     //console.log(book)
     .catch(next);
@@ -30,6 +32,7 @@ router.get('/', (req, res, next) => {
 router.get('/indexInit', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
+  var cinemaname=req.session.cinemaname;      //影院name 的session 读取
   //cinemaid=req.session.cinemaid;      //影院id 的session 读取
   //console.log(req.params.film_id);
   //console.log(cinemaid);
@@ -44,11 +47,11 @@ router.get('/indexInit', (req, res, next) => {
 
     .then(zzz =>{
        //var result=json_decode(zzz,true);
-      //zzz.resl[0]['cinemaservice']=zzz.resl[0]['cinemaservice'].replace('{' , ""); 
-      //zzz.resl[0]['cinemaservice']=zzz.resl[0]['cinemaservice'].replace('}' , ""); 
+      //zzz.resl[0]['cinemaservice']=zzz.resl[0]['cinemaservice'].replace('{' , "");
+      //zzz.resl[0]['cinemaservice']=zzz.resl[0]['cinemaservice'].replace('}' , "");
       //zzz.resl[0]['cinemaservice'] = zzz.resl[0]['cinemaservice'].split(',');
       zzz.resl[0]['cinemaservice'] = JSON.parse([zzz.resl[0]['cinemaservice']])
-      
+
       if(zzz.resl[0]['cinemaservice']['mianya']){
         zzz.resl[0]['cinemaservice']['mianya']='免押金';
       }
@@ -92,7 +95,7 @@ router.get('/indexInit', (req, res, next) => {
         zzz.resl[0]['cinemaservice']['restArea']='休息区';
       }
       //console.log(zzz.resl[0]['cinemaservice']);
-      res.render('index', { zzz:zzz.resl, foot_on_2:'_on',cinemaid:cinemaid,film_id:film_id })
+      res.render('index', { zzz:zzz.resl, foot_on_2:'_on',cinemaid:cinemaid,film_id:film_id,cinemaname:cinemaname })
   })
     .catch(next);
 });
@@ -117,7 +120,7 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
              zzz.resl.splice(i,1);
              zzz.resl.unshift(new_array[0]);
           }
-        } 
+        }
       }
 
       //console.log(zzz.resl)

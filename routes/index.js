@@ -14,7 +14,7 @@ import setdata from '../middlewares/setdata';
 
 const router = express.Router();
 
-global.api_url = 'http://10.10.12.3/test/';
+global.api_url = 'http://10.10.11.15:8086/mobileApi/';
 
 
 router.use('/', setdata, home);

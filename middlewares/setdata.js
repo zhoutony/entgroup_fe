@@ -14,16 +14,17 @@ const setdata = (req, res, next) => {
 		.then(book => {
 			//console.log(book.resl[0]['cinemaid']);
 			req.session.cinemaid = book.resl[0]['cinemaid'];//写入至session   影院id
+      req.session.cinemaname = book.resl[0]['cinemaname'];//写入至session   影院名称
 			 return next();
 
 			//console.log(req.session.cinemaid);
-		});		
+		});
 	}
 
 
-	
-	
-	
+
+
+
 };
 
 export default setdata;
