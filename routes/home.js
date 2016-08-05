@@ -11,18 +11,19 @@ router.get('/', (req, res, next) => {
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var cinemaname=req.session.cinemaname;      //影院name 的session 读取
 
-  console.log(cinemaname);
+  //console.log(cinemaid);
   // if(user_id==null||user_id==undefined){
   //     res.redirect('/weixin');
   //      return;
   //  }
-  fetch(api_url+`selmovie/bycinemaID?cinemaID=`+cinemaid)
+  //console.log(cinemaid)
+  fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)
   //fetch(`https://api.douban.com/v2/book/isbn/9787508654294`)
 
     .then(response => response.json())
 
     .then(zzz =>{
-      //console.log(zzz.resl)
+      console.log(zzz.resl)
       res.render('index_home', { zzz:zzz.resl , foot_on_1:'_on',cinemaid:cinemaid,cinemaname:cinemaname })
   })
     //console.log(book)
@@ -42,10 +43,11 @@ router.get('/indexInit', (req, res, next) => {
           film_id='test';
        }
      //console.log(film_id)
-  fetch(api_url+`selciname/bycinemaID?cinemaID=`+cinemaid)
+  fetch(api_url+`cinema/getcinemadetail?cinemaID=`+cinemaid)
     .then(response => response.json())
 
     .then(zzz =>{
+      console.log(zzz)
        //var result=json_decode(zzz,true);
       //zzz.resl[0]['cinemaservice']=zzz.resl[0]['cinemaservice'].replace('{' , "");
       //zzz.resl[0]['cinemaservice']=zzz.resl[0]['cinemaservice'].replace('}' , "");
@@ -107,7 +109,7 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var film_id=req.params.film_id;
   //alert(movieid);
-  fetch(api_url+`selmovie/bycinemaID?cinemaID=`+cinemaid)   //  读取当前影片
+  fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)   //  读取当前影片
   //fetch(api_url+`selmovie/bycinemaIDandMovieID?cinemaID=`+cinemaid+`&movieId=`+movieid)   //  读取当前影片
     .then(response => response.json())
 

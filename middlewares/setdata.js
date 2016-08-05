@@ -9,7 +9,7 @@ const setdata = (req, res, next) => {
 		return next();
 	}else{
 		var yc=req.query.yc;
-		fetch(api_url+'selciname/bycinemaID?cinemaID='+yc)
+		fetch(api_url+'cinema/getcinemadetail?cinemaID='+yc)
 		.then(response => response.json())
 		.then(book => {
 			//console.log(book.resl[0]['cinemaid']);
