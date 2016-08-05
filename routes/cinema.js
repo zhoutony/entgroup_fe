@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
   //      return;
   //  }
   //console.log(cinemaid);
-  fetch(api_url+`selciname/bycinemaID?cinemaID=`+cinemaid)
+  fetch(api_url+`cinema/getcinemadetail?cinemaID=`+cinemaid)
   //fetch(`https://api.douban.com/v2/book/isbn/9787508654294`)
     .then(response => response.json())
 
