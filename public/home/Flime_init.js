@@ -694,7 +694,11 @@ $.extend({
 
 
 		})
-
+$('.flim_Time_list').on('click','li',function(){
+  var index = $(this).index();
+  $(this).addClass('this_on').siblings('.this_on').removeClass('this_on');
+  $(".flim_list").find('.flim_list_body').hide(200).eq(index).show(200)
+})
 
 
 
