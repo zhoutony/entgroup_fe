@@ -9,6 +9,7 @@ import filmnews from './filmnews';
 import pay from './pay';
 import cinema from './cinema';
 import Video_details from './Video_details';
+import sign from './check_sign';
 
 import setdata from '../middlewares/setdata';
 
@@ -26,6 +27,7 @@ router.use('/weixin',weixin);
 router.use('/pay',pay);
 router.use('/cinema',cinema);
 router.use('/Video_details',Video_details);
+router.use('/sign',sign);
 
 export default router;
 

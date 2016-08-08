@@ -5,17 +5,19 @@
   style="/user/coupondetails.css" }}
 
 <div class="list list2">
+{{#coupondetails}}
 	<dl class="coupon_dl">
-		<dt class="coupon_dt">¥10</dt>
+		<dt class="coupon_dt">¥{{denomination}}</dt>
 		<dd class="coupon_dd">
 			<div class="coupon_all">
-				<p class="user_quan">客户端会员代金券</p>
-				<p class="validity">有效期至：2016-6-29</p>
-				<p class="validity">会员专享</p>
+				<p class="user_quan">{{couponName}}</p>
+				<p class="validity">有效期至：{{overtime}}</p>
+				<p class="validity">{{instructions}}</p>
 			</div>
 			
 		</dd>
 	</dl>
+{{/coupondetails}}
 	<div class="notice_all">
 		<div class="notice">
 			<p class="notice_p">使用须知</p>
