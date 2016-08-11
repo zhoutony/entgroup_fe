@@ -5,25 +5,30 @@
   style="/filmnews/film.css" }}
 
 <div class="film_all">
-		<div class="film_top">
-			<img src="/assets/filmnews/images/top.jpg"/>
-			<div class="top_font">
-				<p class="top_p">他让观众自己选择感动他们得事物</p>
-				<p class="comment">7637人评</p>
-			</div>
-		</div>
-		<dl class="film_dl">
-			<a href="filmnews/details">
-				<dt class="film_dt">
-					<p class="dt_tit">《逆战》—看周董和谢柠檬在失衡故事中的表扬</p>
-					<p class="dt_p"><span class="num">7637人评</span><span class="date">6月3日</span></p>
-				</dt>
-				<dd class="film_dd">
-					<img src="/assets/filmnews/images/list1.jpg">
-				</dd>
-			</a>
-		</dl>
-		<dl class="film_dl">
+    {{#filmList}}
+    {{#if isp}}
+      <div class="film_top">
+        <img src="{{consultImg}}"/>
+        <div class="top_font">
+          <p class="top_p">{{consultTitle}}</p>
+          <p class="comment">{{consultCommentCount}}人评</p>
+        </div>
+      </div>
+    {{else}}
+      <dl class="film_dl">
+        <a href="filmnews/details">
+          <dt class="film_dt">
+            <p class="dt_tit">{{consultTitle}}</p>
+            <p class="dt_p"><span class="num">{{consultCommentCount}}人评</span><span class="date">{{createTime}}</span></p>
+          </dt>
+          <dd class="film_dd">
+            <img src={{consultImg}}>
+          </dd>
+        </a>
+      </dl>
+    {{/if}}
+    {{/filmList}}
+		{{!-- <dl class="film_dl">
 			<a href="javascript:;">
 				<dt class="film_dt">
 					<p class="dt_tit">《功夫》中被星爷救下她如今成大美女</p>
@@ -44,8 +49,18 @@
 					<img src="/assets/filmnews/images/list3.jpg">
 				</dd>
 			</a>
-		</dl>
+		</dl> --}}
 	</div>
-
+  <script id="entry-template" type="text/x-handlebars-template">
+    <div class="entry">
+      <h1>{{title}}</h1>
+      <div class="body">
+        {{body}}
+      </div>
+    </div>
+    var source   = $("#entry-template").html();
+    var template = Handlebars.compile(source);
+    console.log(template);
+  </script>
 {{> foot
   script="/active/reset.js"}}

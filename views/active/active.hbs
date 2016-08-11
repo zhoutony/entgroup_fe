@@ -5,19 +5,21 @@
   style="/active/active.css" }}
 
 <ul class="active_all">
+  {{#active}}
 	<li class="active_li">
-		<a href="javascript:;">
+		<a href="active/details/{{activityId}}">
 			<img src="/assets/active/images/list1.jpg"/>
 			<div class="describe">
-				<p class="film_name">假装看不见</p>
+				<p class="film_name">{{activityName}}</p>
 				<p class="film_date">
-					<span class="span_date">6月28日</span>
-					<span class="span_num">11234</span>
+					<span class="span_date">{{opentime}}</span>
+					<span class="span_num">{{lookCount}}</span>
 				</p>
 			</div>
 		</a>
 	</li>
-	<li class="active_li">
+  {{/active}}
+	{{!-- <li class="active_li">
 		<a href="javascript:;">
 			<img src="/assets/active/images/list2.jpg"/>
 			<div class="describe">
@@ -28,7 +30,7 @@
 				</p>
 			</div>
 		</a>
-	</li>
+	</li> --}}
 </ul>
 
 {{> foot

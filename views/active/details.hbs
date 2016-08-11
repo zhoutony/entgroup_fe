@@ -2,70 +2,38 @@
   title="活动列表"
   keywords=""
   description=""
-  style="/active/active.css" }}
+  style="/active/details.css" }}
+{{#details}}
+<div class="ActiveDetails_all">
+    <div class="active_con">
+      <h3 class="active_tit">超值特惠，等你来看</h3>
+      <p class="active_date">07-08 09:19</p>
+      <img class="active_img" src="/assets/active/images/ActiveDetails/img.jpg"/>
+    </div>
+    <div class="active_all">
+      <div class="Active_bo_all">
+        <div class="active_bottom">
+          <div class="active_rule">
+            <p class="line"></p>
+            <p class="line_p">活动规则</p>
+          </div>
+          <div class="p_all">
+            {{!-- <p>1.活动时间：2016/07/02－2016/07/10</p>
+            <p>2.适用影片：全部影片</p>
+            <p>3.目标用户：新用户</p>
+            <p>4.优惠一：7月6日－7月10日13:00-15:00 立减2元</p>
+            <p>5.次数限制：每天不超过两张</p>
+            <p>6.票数限制：每天不超过两张</p> --}}
+            <p>{{activityIntroduce}}</p>
+          </div>
 
-<ul class="active_all">
-	{{#book}}
-	<li class="active_li">
-		<a href="javascript:;">
-			<img src="/assets/active/images/list1.jpg"/>
-			<div class="describe">
-				<p class="film_name">{{cinemaname}}</p>
-				<p class="film_date">
-					<span class="span_date">6月28日</span>
-					<span class="span_num">11234</span>
-				</p>
-			</div>
-		</a>
-	</li>
-	{{/book}}
-	{{#cinema}}
-	<li class="active_li">
-		<a href="javascript:;">
-			<img src="/assets/active/images/list1.jpg"/>
-			<div class="describe">
-				<p class="film_name">{{cinemaname}}</p>
-				<p class="film_date">
-					<span class="span_date">6月28日</span>
-					<span class="span_num">11234</span>
-				</p>
-			</div>
-		</a>
-	</li>
-	{{/cinema}}
-</ul>
-<ul class="footer_ul">
-		<li class="footer_li">
-			<a href="javascript:;">
-				<img src="/assets/base/images/footer/img1.png"/>
-				<p>电影</p>
-			</a>
-		</li>
-		<li class="footer_li">
-			<a href="javascript:;">
-				<img src="/assets/base/images/footer/img2.png"/>
-				<p>购票</p>
-			</a>
-		</li>
-		<li class="footer_li footer_li_on">
-			<a href="javascript:;">
-				<img src="/assets/base/images/footer/img3.png"/>
-				<p>影讯</p>
-			</a>
-		</li>
-		<li class="footer_li">
-			<a href="javascript:;">
-				<img src="/assets/base/images/footer/img4_on.png"/>
-				<p>活动</p>
-			</a>
-		</li>
-		<li class="footer_li">
-			<a href="javascript:;">
-				<img src="/assets/base/images/footer/img5.png"/>
-				<p>我的</p>
-			</a>
-		</li>
-	</ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <a href="javascript:;" class="buyTicket"><span>选座购票</span></a>
+{{/details}}
 </body>
 
 </html>

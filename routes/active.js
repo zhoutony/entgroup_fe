@@ -8,25 +8,27 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
 
 	var cinemaid=req.session.cinemaid;
+  fetch(api_url+'fake_activity/activitylist?cinemaId=1')
+  .then(response => response.json())
+  .then(active =>{
+      // console.log(cinemaid);
+      res.render('active/active',{ foot_on_4:'_on' , active:active.list , cinemaid:cinemaid});
+      // console.log(active.list);
+  })
 
-	res.render('active/active',{ foot_on_4:'_on' , cinemaid:cinemaid});
 });
 
 
 //活动详情
-router.get('/:aid',(req, res, next) => {
-	var cinemaId = req.session.cinemaid; 
-	fetch(api_url+`selciname/bycinemaID?cinemaID=${req.params.aid}`)
-	.then(response => response.json())
-	.then(book => {
-		fetch(api_url+'selciname/bycinemaID?cinemaID=2')
-		.then(response => response.json())
-		.then(cinema => {
-			console.log(cinemaId);
-			console.log(book);
-			res.render('active/details',{ book:book.resl , cinema:cinema.resl});
-		});
-	});
+router.get('/details/:aid',(req, res, next) => {
+	var cinemaId = req.session.cinemaid;
+      // console(aid);
+      fetch(api_url+'fake_activity/activitydetail?cinemaId=1')
+      .then(response => response.json())
+      .then(details =>{
+        console.log(details);
+        res.render('active/details',{ details:details.list });
+      })
 });
 
 export default router;

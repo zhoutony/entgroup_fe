@@ -6,19 +6,29 @@ const router = express.Router();
 
 //影讯列表
 router.get('/', (req, res, next) => {
-	var cinemaid=req.session.cinemaid;
-	res.render('filmnews/filmnews',{ foot_on_3:'_on' , cinemaid:cinemaid})
+  var cinemaid=req.session.cinemaid;
+  fetch(api_url+'fake_news/newsList?cinemaId=1')
+  .then(response => response.json())
+  .then(film =>{
+    if(film.list[0]['consultImg']){
+      film.list[0]['isp'] = '1';
+    }
+    res.render('filmnews/filmnews',{ foot_on_3:'_on' ,filmList:film.list , cinemaid:cinemaid })
+     console.log(film.list[1]);
+  })
+
+
 });
 
 
 //影讯详情
 router.get('/:aid',(req, res, next) => {
-	fetch(api_url+'selciname/bycinemaID?cinemaID=2')
+	fetch(api_url+'fake_news/newsDetail?consultId=1')
 	.then(response => response.json())
-	.then(book => {
-		console.log(book);
-		res.render('filmnews/details', { book:book.resl });
+	.then(filmDetails => {
+		console.log(filmDetails);
+		res.render('filmnews/details', { filmDetails:filmDetails.resl });
 	});
 });
 
-export default router; 
+export default router;
