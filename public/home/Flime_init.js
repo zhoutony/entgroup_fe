@@ -360,7 +360,7 @@ $.extend({
 				var h2html='';
 				for (var zzz in msg.resl) {
                    h2html += '<div class="swiper-slide">';
-            			 h2html += '<a href="/Video_details/yc='+msg.resl[zzz].entMovieId+'">';
+            			 h2html += '<a href="/Video_details/movieID='+msg.resl[zzz].entMovieId+'">';
             					h2html += '<input type="hidden" value='+msg.resl[zzz].entMovieId+'>';
             					h2html += '<img src='+msg.resl[zzz].titleImg+' />';
                     h2html += ' </a>';
