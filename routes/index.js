@@ -18,7 +18,7 @@ const router = express.Router();
 global.api_url = 'http://10.10.11.15:8086/mobileApi/';
 
 
-router.use('/', setdata, home);
+router.use('/',setdata,home);
 router.use('/book', book);
 router.use('/active', active);
 router.use('/user', user);

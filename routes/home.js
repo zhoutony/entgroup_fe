@@ -10,49 +10,31 @@ router.get('/', (req, res, next) => {
   //delete req.session.user;
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var cinemaname=req.session.cinemaname;      //影院name 的session 读取
-
-  //console.log(cinemaid);
-  // if(user_id==null||user_id==undefined){
-  //     res.redirect('/weixin');
-  //      return;
-  //  }
-  //console.log(cinemaid)
   fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)
   //fetch(`https://api.douban.com/v2/book/isbn/9787508654294`)
 
     .then(response => response.json())
 
     .then(zzz =>{
-      console.log(zzz.resl)
       res.render('index_home', { zzz:zzz.resl , foot_on_1:'_on',cinemaid:cinemaid,cinemaname:cinemaname })
   })
-    //console.log(book)
     .catch(next);
 });
-//********************影片轮播页面*******************2016-7
+//********************影片轮播页面********  king  ***********2016-7
 router.get('/indexInit', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
-  var cinemaname=req.session.cinemaname;      //影院name 的session 读取
-  //cinemaid=req.session.cinemaid;      //影院id 的session 读取
-  //console.log(req.params.film_id);
-  //console.log(cinemaid);
-  var service=new Array();
+  var cinemaname=req.session.cinemaname;      //影院name 的session   读取
        var film_id=req.query.film_id;
        if(film_id==null){
           film_id='test';
        }
-     //console.log(film_id)
   fetch(api_url+`cinema/getcinemadetail?cinemaID=`+cinemaid)
     .then(response => response.json())
 
     .then(zzz =>{
-      console.log(zzz)
-       //var result=json_decode(zzz,true);
-      //zzz.resl[0]['cinemaservice']=zzz.resl[0]['cinemaservice'].replace('{' , "");
-      //zzz.resl[0]['cinemaservice']=zzz.resl[0]['cinemaservice'].replace('}' , "");
-      //zzz.resl[0]['cinemaservice'] = zzz.resl[0]['cinemaservice'].split(',');
-      zzz.resl[0]['cinemaservice'] = JSON.parse([zzz.resl[0]['cinemaservice']])
+      zzz.resl[0]['cinemaservice'] = JSON.parse([zzz.resl[0]['cinemaservice']]);
+
 
       if(zzz.resl[0]['cinemaservice']['mianya']){
         zzz.resl[0]['cinemaservice']['mianya']='免押金';
@@ -96,37 +78,155 @@ router.get('/indexInit', (req, res, next) => {
       if(zzz.resl[0]['cinemaservice']['restArea']){
         zzz.resl[0]['cinemaservice']['restArea']='休息区';
       }
-      //console.log(zzz.resl[0]['cinemaservice']);
       res.render('index', { zzz:zzz.resl, foot_on_2:'_on',cinemaid:cinemaid,film_id:film_id,cinemaname:cinemaname })
   })
     .catch(next);
 });
-////***************影片轮播页面indexdata*****************//2016-7
+////***************影片轮播页面indexdata*****  king  ************//2016-7
 router.get('/indexData/:yc/:film_id', (req, res, next) => {
-  //console.log(1111111)
-  //console.log(req.session.cinemaid)
-  //var user_id=req.session.user;
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var film_id=req.params.film_id;
-  //alert(movieid);
+
   fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)   //  读取当前影片
-  //fetch(api_url+`selmovie/bycinemaIDandMovieID?cinemaID=`+cinemaid+`&movieId=`+movieid)   //  读取当前影片
     .then(response => response.json())
 
-    .then(zzz =>{
-      var new_array=new Array();
-      if(film_id!='undefined'){
-        for(var i=0;i<zzz.resl.length;i++){       //根据   film_id  重新排列影片列表顺序
-          if(zzz.resl[i]['entMovieId']==film_id){
-             new_array.push(zzz.resl[i]);
-             zzz.resl.splice(i,1);
-             zzz.resl.unshift(new_array[0]);
+    .then(movielist =>{
+      fetch(api_url+`cplan/getplanlist?cinemaID=`+cinemaid+`&MovieID=`+film_id)   //  读取场次列表
+      .then(response => response.json())
+      .then(plan =>{
+        var new_array1={};
+        var new_array=new Array();
+        if(film_id!='undefined'){
+          for(var i=0;i<movielist.resl.length;i++){       //根据   film_id  重新排列影片列表顺序
+            if(movielist.resl[i]['entMovieId']==film_id){
+               new_array.push(movielist.resl[i]);
+               movielist.resl.splice(i,1);
+               movielist.resl.unshift(new_array[0]);
+            }
           }
-        }
-      }
 
-      //console.log(zzz.resl)
-      res.json(zzz);
+        }
+        var mydate = new Date();
+        var t_s=mydate.getTime();
+        mydate.setTime(t_s+1000*60*15);    //开场前15分钟
+        var str = "" + mydate.getFullYear() + "-";
+        str += (mydate.getMonth()+1) + "-";
+        str += mydate.getDate()+ " ";
+        str += mydate.getHours()+ ":";
+        str += mydate.getMinutes()+ ":";
+        str += mydate.getSeconds();
+        //console.log(str);    //开场前15分钟时间
+        var DateInfos_new_array={};
+        var DataPlans_new_array={};
+        //console.log(plan.resl);
+        if(plan.resl){       //判断场次是否为空
+         // console.log(plan.resl.length)
+          for(var key in plan.resl){
+            //console.log(key);
+            var date =  new Date(plan.resl[key].startTime);
+            var ENDdate = new Date(plan.resl[key].endTime);
+           // var time_str = date.getTime();    //传穿成时间戳
+           var vStartTime = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+           var date1 = (date.getMonth()+1)+"月"+date.getDate();
+           var date2 = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+           var date3 = date.getDate();
+           var HM = date.getHours()+":"+date.getMinutes();
+           var EDTM =ENDdate.getHours()+":"+ENDdate.getMinutes();
+           var dayInfos = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+           var da = date.getDate();
+           var db = mydate.getDate();
+           var d = da-db;
+           if(da>db){
+               d = da-db;
+           }else{
+              var da = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+              var db = mydate.getFullYear()+"-"+(mydate.getMonth()+1)+"-"+mydate.getDate();
+              var strSeparator = "-"; //日期分隔符
+              var oDate1= da.split(strSeparator);
+              var oDate2= db.split(strSeparator);
+              var strDateS = new Date(oDate2[0], oDate2[1]-1, oDate2[2]);
+              var strDateE = new Date(oDate1[0], oDate1[1]-1, oDate1[2]);
+              var d = parseInt(Math.abs(strDateS - strDateE )/1000/60/60/24);
+           }
+           var h = date.getHours();
+            if(h >= 18 && h <= 23 ){ //计算太阳月亮图标显示（时间段）
+              h = 'p';
+            }else{
+              h = 'a';
+            }
+            //str = DateTime.parse(str);
+            //vStartTime = DateTime.parse(vStartTime);
+            //str=new Date(str.replace(/-/g,"\/")),
+            //vStartTime=new Date(vStartTime.replace(/-/g,"\/"));
+            //console.log(vStartTime);
+            //console.log(str);
+            var year = date.getFullYear(), month = date.getMonth(),date = date.getDate();// month=6表示7月,下表从0开始结算。
+            var dt = new Date(year,month,date);
+            var weekDay = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+            if(d==0){
+              weekDay[dt.getDay()]='今天';
+            }
+            if(d==1){
+              weekDay[dt.getDay()]='明天';
+            }
+            if(d==2){
+              weekDay[dt.getDay()]='后天';
+            }
+            if(dayInfos){
+
+              if(str<vStartTime){
+                  DateInfos_new_array[dayInfos]={};             //轮播页面  日期轮播功能数据   king
+                  DateInfos_new_array[dayInfos][h]={};
+
+                  DateInfos_new_array[dayInfos][h]['day'] = weekDay[dt.getDay()];
+                  DateInfos_new_array[dayInfos][h]['date'] = date1;
+                  DateInfos_new_array[dayInfos][h]['hd'] = date2;
+                  DateInfos_new_array[dayInfos][h]['fdate'] = date3;
+                  movielist.ddate = da;
+
+
+                  DataPlans_new_array[dayInfos]={};         //  场次数据  king
+                  DataPlans_new_array[dayInfos][h]={};
+                  DataPlans_new_array[dayInfos][h][key]={};
+                  DataPlans_new_array[dayInfos][h][key]['zdate'] = date1;
+                  DataPlans_new_array[dayInfos][h][key]['zday'] = weekDay[dt.getDay()];
+                  DataPlans_new_array[dayInfos][h][key]['stimes'] = HM;
+                  DataPlans_new_array[dayInfos][h][key]['etimes'] = EDTM;
+                  DataPlans_new_array[dayInfos][h][key]['movieid'] = film_id;
+                  DataPlans_new_array[dayInfos][h][key]['price'] = plan.resl[key].price;
+
+                  DataPlans_new_array[dayInfos][h][key]['hallname'] = plan.resl[key].hallName;
+                   //
+                  DataPlans_new_array[dayInfos][h][key]['language'] = plan.resl[key].language;
+                  DataPlans_new_array[dayInfos][h][key]['planId'] = plan.resl[key].planId;
+                  DataPlans_new_array[dayInfos][h][key]['id'] = plan.resl[key].movieId;
+                  var screenType = plan.resl[key].screenType;
+                  DataPlans_new_array[dayInfos][h][key]['screenType'] = screenType;
+
+                  if(screenType){
+                    DataPlans_new_array[dayInfos][h][key]['screenType'] = screenType.toUpperCase();
+                  }
+
+                  DataPlans_new_array[dayInfos][h][key]['data'] = plan.resl[key];
+                  DataPlans_new_array[dayInfos][h][key]['h'] = h;
+
+
+
+                }
+
+            }
+          }
+          //console.log(DateInfos_new_array);
+        }
+
+        movielist.resl1=plan.resl;
+        movielist.plans_date = DateInfos_new_array;    ///轮播页面  日期轮播功能数据
+        movielist.plans = DataPlans_new_array;      //场次具体数据
+       // console.log(movielist.plans);
+        //console.log(plan.resl);
+        res.json(movielist);
+          //console.log(plan.resl)
+      })
     })
     .catch(next);
 });

@@ -61,23 +61,18 @@ function touchChange(index_text){
 					}else{
 						var cur = ' ';
 					}
-					planHtml += '<ul class="list_li_div_ul '+cur+'">';
+					planHtml += '<ul class="flim_list_body_top '+cur+'">';
 							var vp = msg.plans[key];
 							var tc = '';
-							for (vk in vp) {
+							for (var vk in vp) {
 								tc = vk;
-							}
-							if(msg.plans_date[key][tc].bs==1){
-								planHtml += '<div class="swiper_nav_h3">';
-								planHtml += '<a href="/index.php/index/activity/id/'+msg.plans_date[key][tc].id1+'"><p><span class="span1">'+msg.plans_date[key][tc].name1+'</span><span>'+msg.plans_date[key][tc].name2+'</span></p></a>';
-								planHtml += '</div>';
 							}
 							var vp = msg.plans[key];
 							var tc = '';
 							for (vk in vp) {
 								var vpObj = vp[vk];
 								var vpT = 0;
-								for (vok in vpObj) {
+								for (var vok in vpObj) {
 									var tImg = '';
 									if(vpT == 0){
 										if(vk == 'a'){
@@ -94,56 +89,52 @@ function touchChange(index_text){
 									/* console.log(vpObj[vok]); */
 									if((yc=='user120002904' && vpObj[vok].data.hallName=='情侣厅')||(yc=='user120002904' && vpObj[vok].data.hallName=='VIP厅')){
 										planHtml += '<li>';
-										if(msg.plans_date[key][vk].day=='今天'){
-											planHtml += '<a href="###">';
-										}
-										//planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
+                    if(msg.plans_date[key][vk].day=='今天'){
+                      planHtml += '<a href="###">';
+                    }
+                    //planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
+                    if(vpObj[vok].h=='p'){
+                      planHtml += '<div class="div1"><img src="'+CDN+'/home/index/yue.png"></div>';
+                    }else{
+                      planHtml += '<div class="div1"><img src="'+CDN+'/home/index/ri.png"></div>';
+                    }
 
-										planHtml += '<input type="hidden" value='+vpObj[vok].planId+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].id+'>';
-										planHtml += '<input type="hidden" value='+yc+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].zday+''+vpObj[vok].zdate+'>';
-										planHtml += '<input type="hidden" value='+msg.plans_date[key][vk].day+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].data.hallName+'>';
 
-										planHtml += '<p class="p1">'+vpObj[vok].stimes+'</p>';
-										planHtml += '<p class="p2">结束</p>';
-										planHtml += '<p class="p3">'+vpObj[vok].etimes+'</p>';
+                    planHtml += '<div class="div2"><p class="p1">'+vpObj[vok].stimes+'</p><p class="p2">'+vpObj[vok].etimes+'散场</p></div>';
+                    planHtml += '<div class="div3"><p class="p1">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</p><p class="p2">'+vpObj[vok].data.hallName+'</p></div>';
 
-										planHtml += '<p class="p4"><span class="span_a1">'+vpObj[vok].data.hallName+'</span> </span class="span_a2">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</span></p>';
-										planHtml += '<p class="p5">';
+                    planHtml += '<div class="div4"><p class="p1">¥'+vpObj[vok].price+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
 
-											planHtml += '<span class="span2">¥'+vpObj[vok].dis_price+'</span>';
-										planHtml += '</p>';
-										if(msg.plans_date[key][vk].day=='今天'){
-											planHtml += '</a>';
-										}
+                    planHtml += '<div class="div4">';
+                      planHtml += '<div class="Btn_input">购票</div>';
+                    planHtml += '</div>';
+                    if(msg.plans_date[key][vk].day=='今天'){
+                      planHtml += '</a>';
+                    }
 										//planHtml += '</a>';
 										planHtml += '</li>';
 									}else{
+                    //alert(CDN);
 										planHtml += '<li>';
 										if(msg.plans_date[key][vk].day=='今天'){
 											planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
 										}
 										//planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
-
-										planHtml += '<input type="hidden" value='+vpObj[vok].planId+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].id+'>';
-										planHtml += '<input type="hidden" value='+yc+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].zday+''+vpObj[vok].zdate+'>';
-										planHtml += '<input type="hidden" value='+msg.plans_date[key][vk].day+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].data.hallName+'>';
+                    if(vpObj[vok].h=='p'){
+                      planHtml += '<div class="div1"><img src="'+CDN+'/home/index/yue.png"></div>';
+                    }else{
+                      planHtml += '<div class="div1"><img src="'+CDN+'/home/index/ri.png"></div>';
+                    }
 
 
-										planHtml += '<p class="p1">'+vpObj[vok].stimes+'</p>';
-										planHtml += '<p class="p2">结束</p>';
-										planHtml += '<p class="p3">'+vpObj[vok].etimes+'</p>';
+                    planHtml += '<div class="div2"><p class="p1">'+vpObj[vok].stimes+'</p><p class="p2">'+vpObj[vok].etimes+'散场</p></div>';
+                    planHtml += '<div class="div3"><p class="p1">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</p><p class="p2">'+vpObj[vok].data.hallName+'</p></div>';
 
-										planHtml += '<p class="p4"><span class="span_a1">'+vpObj[vok].data.hallName+'</span> </span class="span_a2">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</span></p>';
-										planHtml += '<p class="p5">';
+                    planHtml += '<div class="div4"><p class="p1">¥'+vpObj[vok].price+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
 
-											planHtml += '<span class="span2">¥'+vpObj[vok].dis_price+'</span>';
-										planHtml += '</p>';
+										planHtml += '<div class="div5">';
+											planHtml += '<div class="Btn_input">购票</div>';
+										planHtml += '</div>';
 										if(msg.plans_date[key][vk].day=='今天'){
 											planHtml += '</a>';
 										}
@@ -157,29 +148,15 @@ function touchChange(index_text){
 
 							var cur = '';
 							if(dayI == 0){
-								var cur = ' class="click_li"';
+								var cur = ' class="this_on"';
 							}else{
 								var cur = ' ';
 							}
 							//alert(tc);
 							//dayHtml += '<a href="#"'+cur+' id="'+msg.plans_date[key][tc].date+'">'+msg.plans_date[key][tc].day+'<br>'+msg.plans_date[key][tc].fdate+'</a>';
-							dayHtml += '<li '+cur+' id="'+msg.plans_date[key][tc].date+'" data_type="'+msg.plans_date[key][tc].bs+'"><span class="span1">'+msg.plans_date[key][tc].day+'</span><span class="span2">'+msg.plans_date[key][tc].fdate+'</span></li>';
-
+							dayHtml += '<li '+cur+' id="'+msg.plans_date[key][tc].date+'" data_type="'+msg.plans_date[key][tc].bs+'">'+msg.plans_date[key][tc].day+msg.plans_date[key][tc].date+'</li>';
 					planHtml += '</ul>';
 					dayI++;
-				}
-				for (key in msg.noplan) {
-
-					if(msg.noplancount == 4 && key == 1){
-						var nocurli = ' click_li';
-						var nocurul = ' click_ul';
-					}else{
-						var nocurli = ' ';
-						var nocurul = ' ';
-					}
-					//alert(msg.noplancount);
-					dayHtml += '<li class="'+nocurli+'"><span class="span1">'+msg.noplan[key].day+'</span><span class="span2">'+msg.noplan[key].fdate+'</span></li>';
-					planHtml += '<ul class="list_li_div_ul '+nocurul+'" style="text-align:center">暂无排期！</ul>';
 				}
 				var yphd = '';
 				//alert(msg.plans_date[key][tc].bs);
@@ -199,7 +176,7 @@ function touchChange(index_text){
 
 
 				}else{
-					$('#swiper-wrapper').html('');
+					$('#swiper-wrapper').html('<p style="color:red;text-align:center;font-size:1rem">暂无SB</p>');
 					$('.swiper-pages').hide();
 					$('.Null_filme').show();
 					$('#dateTabs').hide();
@@ -222,7 +199,7 @@ function touchChange(index_text){
 
 function touchChange1(index_text){
 		var index_text = index_text>0?index_text:0;
-
+//alert(1111);
 
 		 vals =  vald!=0?vald:0;
 		  vald = $('#ypdetail2').find('.swiper-slide').eq(index_text).find('input[type="hidden"]').eq(0).val();
@@ -243,7 +220,7 @@ function touchChange1(index_text){
 				 dataType: "json",
 				 success: function(msg){
 					 	//alert(vald)
-					//alert(msg.data.KB);
+					//alert(msg.resl);
 					for (var key in msg.resl) {
 					//console.log(msg.resl)
 						if(msg.resl[key].entMovieId==vald){
@@ -310,7 +287,7 @@ $.extend({
 		$.get(href, {}, function(msg) {
 			//Load_img(1);
 			//alert(msg.lists);
-			console.log(msg);
+			//console.log(msg);
 			var htmlLoad = '';
 			if(msg.errorStatus == false){
 				alert('影片信息有误');
@@ -391,8 +368,9 @@ $.extend({
 					}
 					planHtml += '<ul class="list_li_div_ul '+cur+'">';
 							var vp = msg.plans[key];
+             //console.log(vp)
 							var tc = '';
-							for (vk in vp) {
+							for (var vk in vp) {
 								tc = vk;
 							}
 
@@ -401,7 +379,7 @@ $.extend({
 							for (vk in vp) {
 								var vpObj = vp[vk];
 								var vpT = 0;
-								for (vok in vpObj) {
+								for (var vok in vpObj) {
 									var tImg = '';
 									if(vpT == 0){
 										if(vk == 'a'){
@@ -415,59 +393,54 @@ $.extend({
 									//console.log(vpObj[vok]);
 									if((yc=='user120002904' && vpObj[vok].data.hallName=='情侣厅')||(yc=='user120002904' && vpObj[vok].data.hallName=='VIP厅')){
 										planHtml += '<li>';
-										if(msg.plans_date[key][vk].day=='今天'){
-											planHtml += '<a href="###">';
-										}
-										//planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
+                    if(msg.plans_date[key][vk].day=='今天'){
+                      planHtml += '###">';
+                    }
+                    //planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
+                    if(vpObj[vok].h=='p'){
+                      planHtml += '<div class="div1"><img src="'+CDN+'/home/index/yue.png"></div>';
+                    }else{
+                      planHtml += '<div class="div1"><img src="'+CDN+'/home/index/ri.png"></div>';
+                    }
 
-										planHtml += '<input type="hidden" value='+vpObj[vok].planId+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].id+'>';
-										planHtml += '<input type="hidden" value='+yc+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].zday+''+vpObj[vok].zdate+'>';
-										planHtml += '<input type="hidden" value='+msg.plans_date[key][vk].day+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].data.hallName+'>';
 
-										planHtml += '<p class="p1">'+vpObj[vok].stimes+'</p>';
-										planHtml += '<p class="p2">结束</p>';
-										planHtml += '<p class="p3">'+vpObj[vok].etimes+'</p>';
+                    planHtml += '<div class="div2"><p class="p1">'+vpObj[vok].stimes+'</p><p class="p2">'+vpObj[vok].etimes+'散场</p></div>';
+                    planHtml += '<div class="div3"><p class="p1">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</p><p class="p2">'+vpObj[vok].data.hallName+'</p></div>';
 
-										planHtml += '<p class="p4"><span class="span_a1">'+vpObj[vok].data.hallName+'</span> </span class="span_a2">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</span></p>';
-										planHtml += '<p class="p5">';
+                    planHtml += '<div class="div4"><p class="p1">¥'+vpObj[vok].price+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
 
-											planHtml += '<span class="span2">¥'+vpObj[vok].dis_price+'</span>';
-										planHtml += '</p>';
-										if(msg.plans_date[key][vk].day=='今天'){
-											planHtml += '</a>';
-										}
+                    planHtml += '<div class="div4">';
+                      planHtml += '<div class="Btn_input">购票</div>';
+                    planHtml += '</div>';
+                    if(msg.plans_date[key][vk].day=='今天'){
+                      planHtml += '</a>';
+                    }
 										planHtml += '</li>';
 									}else{
 
 										planHtml += '<li>';
-										if(msg.plans_date[key][vk].day=='今天'){
-											planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
-										}
-										//planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
+                    if(msg.plans_date[key][vk].day=='今天'){
+                      planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
+                    }
+                    //planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
+                    if(vpObj[vok].h=='p'){
+                      planHtml += '<div class="div1"><img src="'+CDN+'/home/index/yue.png"></div>';
+                    }else{
+                      planHtml += '<div class="div1"><img src="'+CDN+'/home/index/ri.png"></div>';
+                    }
 
-										planHtml += '<input type="hidden" value='+vpObj[vok].planId+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].id+'>';
-										planHtml += '<input type="hidden" value='+yc+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].zday+''+vpObj[vok].zdate+'>';
-										planHtml += '<input type="hidden" value='+msg.plans_date[key][vk].day+'>';
-										planHtml += '<input type="hidden" value='+vpObj[vok].data.hallName+'>';
 
-										planHtml += '<p class="p1">'+vpObj[vok].stimes+'</p>';
-										planHtml += '<p class="p2">结束</p>';
-										planHtml += '<p class="p3">'+vpObj[vok].etimes+'</p>';
+                    planHtml += '<div class="div2"><p class="p1">'+vpObj[vok].stimes+'</p><p class="p2">'+vpObj[vok].etimes+'散场</p></div>';
+                    planHtml += '<div class="div3"><p class="p1">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</p><p class="p2">'+vpObj[vok].data.hallName+'</p></div>';
 
-										planHtml += '<p class="p4"><span class="span_a1">'+vpObj[vok].data.hallName+'</span> </span class="span_a2">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</span></p>';
-										planHtml += '<p class="p5">';
+                    planHtml += '<div class="div4"><p class="p1">¥'+vpObj[vok].price+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
 
-											planHtml += '<span class="span2">¥'+vpObj[vok].dis_price+'</span>';
-										planHtml += '</p>';
-										if(msg.plans_date[key][vk].day=='今天'){
-											planHtml += '</a>';
-										}
-										//planHtml += '</a>';
+                    planHtml += '<div class="div4">';
+                      planHtml += '<div class="Btn_input">购票</div>';
+                    planHtml += '</div>';
+                    if(msg.plans_date[key][vk].day=='今天'){
+                      planHtml += '</a>';
+                    }
 										planHtml += '</li>';
 									}
 									vpT++;
@@ -485,33 +458,21 @@ $.extend({
 							//dayHtml += '<a href="#"'+cur+' id="'+msg.plans_date[key][tc].date+'">'+msg.plans_date[key][tc].day+'<br>'+msg.plans_date[key][tc].fdate+'</a>';
 
 
-							dayHtml += '<li '+cur+' id="'+msg.plans_date[key][tc].date+'" data_type="'+msg.plans_date[key][tc].bs+'"><span class="span1">'+msg.plans_date[key][tc].day+'</span><span class="span2">'+msg.plans_date[key][tc].fdate+'</span></li>';
+							dayHtml += '<li '+cur+' id="'+msg.plans_date[key][tc].date+'" data_type="'+msg.plans_date[key][tc].bs+'">'+msg.plans_date[key][tc].day+msg.plans_date[key][tc].date+'</li>';
 
 					planHtml += '</ul>';
 					//alert(planHtml);
 					dayI++;
 				}
-				for (key in msg.noplan) {
-
-					if(msg.noplancount == 4 && key == 1){
-						var nocurli = ' click_li';
-						var nocurul = ' click_ul';
-					}else{
-						var nocurli = ' ';
-						var nocurul = ' ';
-					}
-					//alert(msg.noplancount);
-					dayHtml += '<li class="'+nocurli+'"><span class="span1">'+msg.noplan[key].day+'</span><span class="span2">'+msg.noplan[key].fdate+'</span></li>';
-					planHtml += '<ul class="list_li_div_ul '+nocurul+'" style="text-align:center">暂无排期！</ul>';
-				}
 
 				$('.swiper_nav_h3').html(yphd);
 				if(planHtml!=''){
-					$('#dateTabs').show().html(dayHtml);
-					$('#swiper-wrapper').show().html(planHtml);
-					$('.Null_filme').hide();
+					//$('#dateTabs').show().html(dayHtml);
+					//$('#swiper-wrapper').show().html(planHtml);
+					//$('.Null_filme').hide();
 
 				}else{
+          //$('#dateTabs').show().html(dayHtml);
 					$('.Null_filme').show();
 					$('#dateTabs').hide();
 					//$('#swiper-wrapper').hide();
@@ -694,10 +655,11 @@ $.extend({
 
 
 		})
+
 $('.flim_Time_list').on('click','li',function(){
   var index = $(this).index();
   $(this).addClass('this_on').siblings('.this_on').removeClass('this_on');
-  $(".flim_list").find('.flim_list_body').hide(200).eq(index).show(200)
+  $(".flim_list").find('.flim_list_body').find('ul').hide(200).eq(index).show(200)
 })
 
 
