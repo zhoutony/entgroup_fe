@@ -89,7 +89,7 @@ function touchChange(index_text){
 									/* console.log(vpObj[vok]); */
 									if((yc=='user120002904' && vpObj[vok].data.hallName=='情侣厅')||(yc=='user120002904' && vpObj[vok].data.hallName=='VIP厅')){
 										planHtml += '<li>';
-                    if(msg.plans_date[key][vk].day=='今天'){
+                    if(vpObj[vok].zday=='今天'){
                       planHtml += '<a href="###">';
                     }
                     //planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
@@ -108,7 +108,7 @@ function touchChange(index_text){
                     planHtml += '<div class="div4">';
                       planHtml += '<div class="Btn_input">购票</div>';
                     planHtml += '</div>';
-                    if(msg.plans_date[key][vk].day=='今天'){
+                    if(vpObj[vok].zday=='今天'){
                       planHtml += '</a>';
                     }
 										//planHtml += '</a>';
@@ -116,7 +116,7 @@ function touchChange(index_text){
 									}else{
                     //alert(CDN);
 										planHtml += '<li>';
-										if(msg.plans_date[key][vk].day=='今天'){
+										if(vpObj[vok].zday=='今天'){
 											planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
 										}
 										//planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
@@ -135,7 +135,7 @@ function touchChange(index_text){
 										planHtml += '<div class="div5">';
 											planHtml += '<div class="Btn_input">购票</div>';
 										planHtml += '</div>';
-										if(msg.plans_date[key][vk].day=='今天'){
+										if(vpObj[vok].zday=='今天'){
 											planHtml += '</a>';
 										}
 										//planHtml += '</a>';
@@ -388,12 +388,11 @@ $.extend({
 											tImg = '<div><img src="/Public/images/quick_ticket.tai.png"></div>';
 										}
 									}
-
 									if(!vpObj[vok].dis_price) { vpObj[vok].dis_price = vpObj[vok].price; }
 									//console.log(vpObj[vok]);
 									if((yc=='user120002904' && vpObj[vok].data.hallName=='情侣厅')||(yc=='user120002904' && vpObj[vok].data.hallName=='VIP厅')){
 										planHtml += '<li>';
-                    if(msg.plans_date[key][vk].day=='今天'){
+                    if(vpObj[vok].zday=='今天'){
                       planHtml += '###">';
                     }
                     //planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
@@ -412,14 +411,13 @@ $.extend({
                     planHtml += '<div class="div4">';
                       planHtml += '<div class="Btn_input">购票</div>';
                     planHtml += '</div>';
-                    if(msg.plans_date[key][vk].day=='今天'){
+                    if(vpObj[vok].zday=='今天'){
                       planHtml += '</a>';
                     }
 										planHtml += '</li>';
 									}else{
-
 										planHtml += '<li>';
-                    if(msg.plans_date[key][vk].day=='今天'){
+                    if(vpObj[vok].zday=='今天'){
                       planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
                     }
                     //planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
@@ -438,7 +436,7 @@ $.extend({
                     planHtml += '<div class="div4">';
                       planHtml += '<div class="Btn_input">购票</div>';
                     planHtml += '</div>';
-                    if(msg.plans_date[key][vk].day=='今天'){
+                    if(vpObj[vok].zday=='今天'){
                       planHtml += '</a>';
                     }
 										planHtml += '</li>';

@@ -184,10 +184,18 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
                   DateInfos_new_array[dayInfos][h]['fdate'] = date3;
                   movielist.ddate = da;
 
-
-                  DataPlans_new_array[dayInfos]={};         //  场次数据  king
+                  if(!DataPlans_new_array[dayInfos]){
+                      DataPlans_new_array[dayInfos]={};         //  场次数据  king
+                  }
+                  if(!DataPlans_new_array[dayInfos][h]){
+                      DataPlans_new_array[dayInfos][h]={};
+                  }
+                  if(!DataPlans_new_array[dayInfos][h][key]){
+                      DataPlans_new_array[dayInfos][h][key]={};
+                  }
+/*                  DataPlans_new_array[dayInfos]={};
                   DataPlans_new_array[dayInfos][h]={};
-                  DataPlans_new_array[dayInfos][h][key]={};
+DataPlans_new_array[dayInfos][h][key]={};*/
                   DataPlans_new_array[dayInfos][h][key]['zdate'] = date1;
                   DataPlans_new_array[dayInfos][h][key]['zday'] = weekDay[dt.getDay()];
                   DataPlans_new_array[dayInfos][h][key]['stimes'] = HM;
@@ -210,19 +218,20 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
                   DataPlans_new_array[dayInfos][h][key]['data'] = plan.resl[key];
                   DataPlans_new_array[dayInfos][h][key]['h'] = h;
 
-
+                  //break;
 
                 }
 
-            }
+            }//console.log(DataPlans_new_array);
           }
-          //console.log(DateInfos_new_array);
+
         }
 
         movielist.resl1=plan.resl;
         movielist.plans_date = DateInfos_new_array;    ///轮播页面  日期轮播功能数据
         movielist.plans = DataPlans_new_array;      //场次具体数据
-       // console.log(movielist.plans);
+        console.log(DataPlans_new_array);
+        console.log(DateInfos_new_array)
         //console.log(plan.resl);
         res.json(movielist);
           //console.log(plan.resl)
