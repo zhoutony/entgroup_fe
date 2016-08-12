@@ -176,7 +176,7 @@ function touchChange(index_text){
 
 
 				}else{
-					$('#swiper-wrapper').html('<p style="color:red;text-align:center;font-size:1rem">暂无SB</p>');
+					$('#swiper-wrapper').html('<p style="color:red;text-align:center;font-size:1rem">暂无场次</p>');
 					$('.swiper-pages').hide();
 					$('.Null_filme').show();
 					$('#dateTabs').hide();
