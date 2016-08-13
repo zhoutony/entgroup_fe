@@ -12,6 +12,7 @@ var configuration = {
     'user/user': './public/user/user.js',
     'pay/payment': './public/pay/payment.js',
     'pay/paywx': './public/pay/paywx.js',
+    'plan/index': './public/plan/index.js',
   },
   node: {
     __filename: true,

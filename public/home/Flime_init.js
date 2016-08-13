@@ -116,9 +116,9 @@ function touchChange(index_text){
 									}else{
                     //alert(CDN);
 										planHtml += '<li>';
-										if(vpObj[vok].zday=='今天'){
-											planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
-										}
+										//if(vpObj[vok].zday=='今天'){
+											planHtml += '<a href="/plan/selectSeat/?pid='+vpObj[vok].planId+'&id='+vpObj[vok].id+'&yc='+yc+'">';
+										//}
 										//planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
                     if(vpObj[vok].h=='p'){
                       planHtml += '<div class="div1"><img src="'+CDN+'/home/index/yue.png"></div>';
@@ -135,9 +135,9 @@ function touchChange(index_text){
 										planHtml += '<div class="div5">';
 											planHtml += '<div class="Btn_input">购票</div>';
 										planHtml += '</div>';
-										if(vpObj[vok].zday=='今天'){
+										//if(vpObj[vok].zday=='今天'){
 											planHtml += '</a>';
-										}
+										//}
 										//planHtml += '</a>';
 										planHtml += '</li>';
 									}
