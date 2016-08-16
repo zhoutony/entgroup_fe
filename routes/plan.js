@@ -138,7 +138,8 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
       seat.TSeatNo = seatCnt;     //不可售座位图
       seat.seat = Seat_array;   //全部座位图
       seat.num = n;     //总行数
-      seat.col = ls;                      //总列数
+      seat.col = ls;               //总列数
+
       console.log(seat);
       res.json(seat);
   })
