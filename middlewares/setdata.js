@@ -9,12 +9,13 @@ const setdata = (req, res, next) => {
 		return next();
 	}else{
 		var yc=req.query.yc;
-		fetch(api_url+'cinema/getcinemadetail?cinemaID='+yc)
+		fetch(api_url+'cinema/getcinemadetailV3?cinemaID='+yc)
 		.then(response => response.json())
 		.then(book => {
-			//console.log(book.resl[0]['cinemaid']);
+			console.log(book);
 			req.session.cinemaid = book.resl[0]['cinemaid'];//写入至session   影院id
       req.session.cinemaname = book.resl[0]['cinemaname'];//写入至session   影院名称
+      req.session.entInits = book.resl[0]['platformId'];   //影投id
 			 return next();
 
 			//console.log(req.session.cinemaid);

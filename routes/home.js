@@ -230,8 +230,8 @@ DataPlans_new_array[dayInfos][h][key]={};*/
         movielist.resl1=plan.resl;
         movielist.plans_date = DateInfos_new_array;    ///轮播页面  日期轮播功能数据
         movielist.plans = DataPlans_new_array;      //场次具体数据
-        console.log(DataPlans_new_array);
-        console.log(DateInfos_new_array)
+        //console.log(DataPlans_new_array);
+        //console.log(DateInfos_new_array)
         //console.log(plan.resl);
         res.json(movielist);
           //console.log(plan.resl)

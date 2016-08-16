@@ -1,6 +1,7 @@
 
 import $ from 'jquery';
 //ckOrdersSeat();
+
   var Pid = $('#Pid').val(),
     mov_id = $('#Movieid').val(),
     Arrays = new Array(),
@@ -11,7 +12,7 @@ import $ from 'jquery';
     data_id = [],
     re_count = [];
     $.ajax({
-      　　 url:"/index.php?c=plan&a=selectSeatseat",
+      　　 url:"/plan/selectSeatseat",
       　　 type:"get",
         async:false,
       　　 dataType:'json',
