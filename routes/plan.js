@@ -82,7 +82,7 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
       var i = 0;
       //console.log(system_id);
       if(system_id==1||system_id==2){
-        console.log(seat.data);
+        //console.log(seat.data);
           for(var key in seat.data){
             //console.log(seat.data);
                 //console.log(seat.data[key]['seatrow']);return false;
@@ -108,10 +108,39 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
                     Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['pairValue']=seat.data[key].externalseatid;
                 }
 
+                if(seat.data[key].seatstatus != 1){       //不可售座位图（已经售出的  是不可售座位图）
+                  //seatCnt[i] =  "".$v['seatNo']."";
+                  seatCnt[i] =  seat.data[key].externalseatid;
+                  i++;
+                }
+
           }
-          console.log(Seat_array);
+          //console.log(seatCnt);
       }
-      res.render('index_home', { seat:seat , foot_on_1:'_on' })
+      var t = typeof Seat_array;      //  计算总行数
+      if(t == 'object'){
+        var n = 0;
+        var ls = 0;
+        for(var k in Seat_array){
+            n++;
+
+            var l = 0;
+            for(var key in Seat_array[k]){
+              l++;
+            }
+            if(l>ls){
+              ls=l;
+            }
+        }
+      }
+      //var num = count(Seat_array);
+      //console.log(ls);
+      seat.TSeatNo = seatCnt;     //不可售座位图
+      seat.seat = Seat_array;   //全部座位图
+      seat.num = n;     //总行数
+      seat.col = ls;                      //总列数
+      console.log(seat);
+      res.json(seat);
   })
 })
 
