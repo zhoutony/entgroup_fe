@@ -87,25 +87,25 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
             //console.log(seat.data);
                 //console.log(seat.data[key]['seatrow']);return false;
                 //console.log(seat.data[key].seatcoordx);
-                if(!Seat_array[seat.data[key].seatcoordx]){
-                      Seat_array[seat.data[key].seatcoordx]={};         //
+                if(!Seat_array[seat.data[key].seatcoordy]){
+                      Seat_array[seat.data[key].seatcoordy]={};         //
                   }
-                  if(!Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]){
-                      Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]={};         //
+                  if(!Seat_array[seat.data[key].seatcoordy][seat.data[key].seatcoordx]){
+                      Seat_array[seat.data[key].seatcoordy][seat.data[key].seatcoordx]={};         //
                   }
-                Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['id']=seat.data[key].externalseatid;          //座位id
-                Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['row']=seat.data[key].seatrow;          //座位X轴
-                Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['col']=seat.data[key].seatcolumn;          //座位Y轴
-                Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['status']=seat.data[key].seatstatus;          //座位状态  1可用    0不可用
-                Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['type']=seat.data[key].seattype;
+                Seat_array[seat.data[key].seatcoordy][seat.data[key].seatcoordx]['id']=seat.data[key].externalseatid;          //座位id
+                Seat_array[seat.data[key].seatcoordy][seat.data[key].seatcoordx]['row']=seat.data[key].seatrow;          //座位X轴
+                Seat_array[seat.data[key].seatcoordy][seat.data[key].seatcoordx]['col']=seat.data[key].seatcolumn;          //座位Y轴
+                Seat_array[seat.data[key].seatcoordy][seat.data[key].seatcoordx]['status']=seat.data[key].seatstatus;          //座位状态  1可用    0不可用
+                Seat_array[seat.data[key].seatcoordy][seat.data[key].seatcoordx]['type']=seat.data[key].seattype;
                 if(system_id==1){
                     if(seat.data[key].loveseats!=''){
-                        Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['pairValue']=seat.data[key].loveseats;
+                        Seat_array[seat.data[key].seatcoordy][seat.data[key].seatcoordx]['pairValue']=seat.data[key].loveseats;
                     }else{
-                        Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['pairValue']=seat.data[key].externalseatid;
+                        Seat_array[seat.data[key].seatcoordy][seat.data[key].seatcoordx]['pairValue']=seat.data[key].externalseatid;
                     }
                 }else{
-                    Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['pairValue']=seat.data[key].externalseatid;
+                    Seat_array[seat.data[key].seatcoordy][seat.data[key].seatcoordx]['pairValue']=seat.data[key].externalseatid;
                 }
 
                 if(seat.data[key].seatstatus != 1){       //不可售座位图（已经售出的  是不可售座位图）
@@ -180,7 +180,7 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
               }
           }
       }
-      //console.log(ResSeats);
+      console.log(ResSeats);
 
       //var num = count(Seat_array);
       //console.log(Seat_array);
