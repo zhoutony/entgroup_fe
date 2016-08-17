@@ -82,7 +82,7 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
       var i = 0;
       //console.log(system_id);
       if(system_id==1||system_id==2){
-        //console.log(seat.data);
+        //console.log(system_id);
           for(var key in seat.data){
             //console.log(seat.data);
                 //console.log(seat.data[key]['seatrow']);return false;
@@ -133,14 +133,63 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
             }
         }
       }
+      for(var key in Seat_array){           //row值开始
+          var TempRows = key; break;
+      }
+      var TempCols = {};
+      for(var key in Seat_array){           //cols值开始
+        //console.log(k);
+          for(var k in Seat_array[key]){
+
+              TempCols[k] = k;
+
+          }
+      }
+      for(var key in TempCols){         //cols值开始
+          TempCols = key; break;
+      }
+      //console.log(Seat_array[13][31]);
+                                                            //座位图 数据处理      king   8月17
+      var ResSeats = {};
+      for (var i = 1; i < n + 1; i++) {
+          for (var j = 1; j < ls + 1; j++) {
+              var ti = (Number(i) + Number(TempRows)) - 1 ;
+              var tj = (Number(j) + Number(TempCols)) -1 ;
+              var tSeat = Seat_array[ti][tj];
+              var row= Number(tSeat['row']);
+              //var status = Number(tSeat['status']);
+              if(!ResSeats[i]){
+                  ResSeats[i]={};
+              }
+              if(!ResSeats[i][j]){
+                  ResSeats[i][j]={};
+              }
+              if(row==0){
+                 ResSeats[i][j]['id'] = 0;
+                 ResSeats[i][j]['row'] = ti;
+                 ResSeats[i][j]['col'] = tj;
+                 ResSeats[i][j]['status'] = 0;
+                 ResSeats[i][j]['type'] = 'road';
+              }else{
+                 ResSeats[i][j]['id'] = tSeat['id'];
+                 ResSeats[i][j]['row'] = tSeat['row'];
+                 ResSeats[i][j]['col'] = tSeat['col'];
+                 ResSeats[i][j]['pairValue'] = tSeat['pairValue'];
+                 ResSeats[i][j]['status'] =tSeat['status'];
+                 ResSeats[i][j]['type'] = tSeat['type'];
+              }
+          }
+      }
+      //console.log(ResSeats);
+
       //var num = count(Seat_array);
-      //console.log(ls);
+      //console.log(Seat_array);
       seat.TSeatNo = seatCnt;     //不可售座位图
-      seat.seat = Seat_array;   //全部座位图
+      seat.seat = ResSeats;   //全部座位图
       seat.num = n;     //总行数
       seat.col = ls;               //总列数
 
-      console.log(seat);
+      //console.log(seat);
       res.json(seat);
   })
 })
