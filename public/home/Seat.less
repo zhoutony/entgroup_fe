@@ -127,6 +127,8 @@
 	font-size:0.2rem;
 	float:left;
 	color:#ababab;
+  position: relative;
+  z-index: 4;
 	padding:0.6rem 0rem;
 	border-radius:0.4rem;
 }
@@ -137,6 +139,7 @@
 .seat_body_ul_L .text_list li{
 	width:100%;
 	text-align:center;
+  height:1.2rem;
 	line-height:1.2rem;
 }
 .seat_body_ul_R{
@@ -144,16 +147,14 @@
 	position:relative;
 	float:left;
 	z-index: 1;
-	overflow: hidden;
+
 	-ms-touch-action: none;
 }
 .seat_body_ul_R_a{
 	padding-top:0.6rem;
-
-	overflow:hidden;
 }
 .seat_B_ul_R_list{
-	width:100%;
+
 	height:1.2rem;
 }
 .seat_B_ul_R_list .K_X{
@@ -346,9 +347,7 @@
 	top:0;
 	left:0;
 	background:#333;
-	filter:alpha(opacity=30); /*IE滤镜，透明度50%*/
-	-moz-opacity:0.3; /*Firefox私有，透明度50%*/
-	opacity:0.3;/*其他，透明度50%*/
+	opacity:0.3;
 }
 .Pop_body{
 	overflow:hidden;
