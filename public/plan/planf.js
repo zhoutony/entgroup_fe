@@ -21,7 +21,7 @@ import jgestures from "./jgestures.js";*/
       　　 success:function(data){
           Arrays.push(data);
           cntArr=data.TSeatNo;
-          console.log(data)
+          //console.log(data)
           //yin_huo.push(data.cinema_name);
           data_id.push(data.id);
           //re_count.push(data.re_count);
@@ -62,7 +62,7 @@ function init(){
     mouseWheel: true,
     resizeScrollbars:true
   });
-
+click_Seat();
 }
 init();
 
@@ -136,9 +136,17 @@ function data_Handle(){
     ttttt += leftDiv[i]  ;
   }
 
-console.log(text_FLims)
-console.log(text_FLims1)
+/*console.log(text_FLims)
+console.log(text_FLims1)*/
   $(text_FLims).appendTo($('.seat_body_ul_R_a'));
   $(text_FLims1).appendTo($('.text_list'));
 
 }
+
+function click_Seat(){
+$(".seat_body_ul_R_a").on("click","li[data_text='1']",function(){
+  alert('2222')
+})
+
+}
+
