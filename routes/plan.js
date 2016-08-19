@@ -195,6 +195,7 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
       seat.seat = ResSeats;   //全部座位图
       seat.num = n;     //总行数
       seat.col = ls;               //总列数
+      seat.cals = ls+1;
 
       //console.log(seat);
       res.json(seat);
