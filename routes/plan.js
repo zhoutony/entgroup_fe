@@ -76,6 +76,7 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
     .then(response => response.json())
 
     .then(seat =>{
+      //console.log(seat.data);
       //console.log(system_id);
       var Seat_array={};  //定义座位图数据新数组
       var seatCnt = {};
@@ -117,6 +118,7 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
           }
           //console.log(seatCnt);
       }
+      //console.log(Seat_array);
       var t = typeof Seat_array;      //  计算总行数
       if(t == 'object'){
         var n = 0;
@@ -148,23 +150,28 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
       for(var key in TempCols){         //cols值开始
           TempCols = key; break;
       }
-      //console.log(Seat_array[13][31]);
+      //console.log(Seat_array[5][3]);
                                                             //座位图 数据处理      king   8月17
       var ResSeats = {};
+      //console.log(ls);
       for (var i = 1; i < n + 1; i++) {
           for (var j = 1; j < ls + 1; j++) {
               var ti = (Number(i) + Number(TempRows)) - 1 ;
               var tj = (Number(j) + Number(TempCols)) -1 ;
               var tSeat = Seat_array[ti][tj];
-              var row= Number(tSeat['row']);
+              if(tSeat){
+                var row= Number(tSeat['row']);
+              }
+
               //var status = Number(tSeat['status']);
+              //console.log(tSeat);
               if(!ResSeats[i]){
                   ResSeats[i]={};
               }
               if(!ResSeats[i][j]){
                   ResSeats[i][j]={};
               }
-              if(row==0){
+              if(row==0||!tSeat){
                  ResSeats[i][j]['id'] = 0;
                  ResSeats[i][j]['row'] = ti;
                  ResSeats[i][j]['col'] = tj;
