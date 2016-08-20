@@ -3,6 +3,8 @@
 	height:4.5rem;
 	margin:0 auto;
 	background: #fff;
+  position: relative;
+  z-index:10;
 }
 .Seat_head_body{
 	width:94.6%;
@@ -102,15 +104,19 @@
 	padding-top:1.2rem;
 	margin:0 auto;
 	position:relative;
-	overflow:hidden;
+  left:0;
 
+}
+.seat_B_ul_R_list{
+  position:a;
+  left:0;
 }
 .horizontal{
 	width:1px;
 	height:100%;
 	position:absolute;
 	left:10px;
-	height:20rem;
+	height:100%;
 	z-index:2;
 	top:0;
 	border-left:1px dotted #000;
@@ -144,7 +150,7 @@
 }
 .seat_body_ul_R{
 	width:96%;
-	position:relative;
+	position:absolute;
 	float:left;
 	z-index: 1;
 
@@ -244,16 +250,13 @@
 	font-size:0.8rem;
 	line-height:2.25rem;
 }
-
-
-
-
-
 .Seat_foot{
 	width:100%;
 	height:3.6rem;
 	position: fixed;
+  z-index:10;
 	bottom:0rem;
+
 	background:#ff0;
 }
 .Seat_foot_top{
@@ -275,6 +278,8 @@
 	line-height:1.2rem;
 	font-size:0.6rem;
 	margin:0 0.2rem;
+  background:url(../home/Seat/filme_back.png) no-repeat ;
+  background-size:100% 100%;
 }
 .Seat_foot_bottom{
 	width:100%;
@@ -290,7 +295,7 @@
 	height:1.8rem;
 	line-height:1.8rem;
 	font-size:0.75rem;
-	display: none;
+
 	background: #e9e8e8;
 }
 .Seat_foot_bottom_left_h3 .p_h3{
