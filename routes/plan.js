@@ -100,7 +100,8 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
                 Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['status']=seat.data[key].seatstatus;          //座位状态  1可用    0不可用
                 Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['type']=seat.data[key].seattype;
                 if(system_id==1){
-                    if(seat.data[key].loveseats!=''){
+                  //console.log(seat.data[key].externalseatid);
+                    if(seat.data[key].loveseats!=null){
                         Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['pairValue']=seat.data[key].loveseats;
                     }else{
                         Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['pairValue']=seat.data[key].externalseatid;
@@ -187,7 +188,7 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
               }
           }
       }
-      console.log(ResSeats);
+      //console.log(ResSeats);
 
       //var num = count(Seat_array);
       //console.log(Seat_array);
