@@ -148,13 +148,13 @@ function touchChange(index_text){
 
 							var cur = '';
 							if(dayI == 0){
-								var cur = ' class="this_on"';
+								var cur = ' class="this_on swiper-slide"';
 							}else{
-								var cur = ' ';
+								var cur = 'class="swiper-slide" ';
 							}
 							//alert(tc);
 							//dayHtml += '<a href="#"'+cur+' id="'+msg.plans_date[key][tc].date+'">'+msg.plans_date[key][tc].day+'<br>'+msg.plans_date[key][tc].fdate+'</a>';
-							dayHtml += '<li '+cur+' id="'+msg.plans_date[key][tc].date+'" data_type="'+msg.plans_date[key][tc].bs+'">'+msg.plans_date[key][tc].day+msg.plans_date[key][tc].date+'</li>';
+							dayHtml += '<li '+cur+'  id="'+msg.plans_date[key][tc].date+'" data_type="'+msg.plans_date[key][tc].bs+'">'+msg.plans_date[key][tc].day+msg.plans_date[key][tc].date+'</li>';
 					planHtml += '</ul>';
 					dayI++;
 				}
