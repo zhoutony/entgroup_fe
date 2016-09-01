@@ -27,12 +27,13 @@ router.get('/indexInit', (req, res, next) => {
   var cinemaname=req.session.cinemaname;      //影院name 的session   读取
        var film_id=req.query.film_id;
        if(film_id==null){
-          film_id='test';
+          film_id='000';
        }
   fetch(api_url+`cinema/getcinemadetail?cinemaID=`+cinemaid)
     .then(response => response.json())
 
     .then(zzz =>{
+
       zzz.resl[0]['cinemaservice'] = JSON.parse([zzz.resl[0]['cinemaservice']]);
 
 
