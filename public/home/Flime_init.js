@@ -177,7 +177,12 @@ function touchChange(index_text){
 
 
         }else{
-          $('#swiper-wrapper').html('<p style="color:red;text-align:center;font-size:1rem">今天场次已售完</p>');
+          var ZW_CC = '';
+              ZW_CC+='<div class="Z_W">';
+              ZW_CC+='<div class="Z_W_top">今天场次已售完</div>';
+              ZW_CC+='<div class="Z_W_bottom"><a>查看其它日期</a></div>';
+              ZW_CC+='</div>';
+          $('#swiper-wrapper').html(ZW_CC);
           $('.swiper-pages').hide();
           $('.Null_filme').show();
           $('#dateTabs').hide();
