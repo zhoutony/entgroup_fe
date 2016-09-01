@@ -7,6 +7,7 @@ $(document).ready(function(){
 	$.initData();
 
 });
+
 var vals = 0;
 var vald = 0;
 var indehhjhhj = 0;
