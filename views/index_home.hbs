@@ -13,29 +13,42 @@ var vald = 0;
 var CDN = '{{CDN}}'
 </script>
 <body style="background: url({{CDN}}/home/index_home/back.jpg) no-repeat;background-size: 100% 100%;">
-	<div class="index_home">
-		 <div class="swiper-container swiper_body2" >
-	        <div class="swiper-wrapper" id="ypdetail2">
-	           {{#zzz}}
+  <div class="index_home">
+     <div class="swiper-container swiper_body2" >
+          <div class="swiper-wrapper" id="ypdetail2">
+             {{#zzz}}
 
-	           		<div class="swiper-slide">
+                <div class="swiper-slide">
                 <a href="/Video_details/movieID={{entMovieId}}">
-	           			<input type="hidden" value="{{entMovieId}}">
-	            		<img src="{{titleImg}}" />
+                  <input type="hidden" value="{{entMovieId}}">
+                  <img src="{{titleImg}}" />
                   </a>
-	            	</div>
+                </div>
 
-	           {{/zzz}}
-
-
-	        </div>
-	    </div>
-	    <div class="flime_h2">
-
-	    </div>
+             {{/zzz}}
 
 
+          </div>
+      </div>
+      <div class="flime_h2">
 
-	</div>
+      </div>
+
+      <div class="mack_body">
+        <div class="mack_body_mack"></div>
+        <div class="mack_body_html">
+          <div class="mack_body_html_top">
+              <p>您有新的优惠券</p>
+              <p>请到个人中心查看</p>
+          </div>
+          <div class="mack_body_html_Btn">
+            <a class="OK_a">确定</a>
+            <a href="/user">去查看</a>
+
+          </div>
+        </div>
+      </div>
+
+  </div>
 {{> foot
   script="/home/home.js"}}
