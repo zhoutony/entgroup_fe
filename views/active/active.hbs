@@ -4,7 +4,7 @@
   description=""
   style="/active/active.css" }}
 
-<ul class="active_all">
+{{!-- <ul class="active_all">
   {{#active}}
 	<li class="active_li">
 		<a href="active/details/{{activityId}}">
@@ -18,7 +18,7 @@
 			</div>
 		</a>
 	</li>
-  {{/active}}
+  {{/active}} --}}
 	{{!-- <li class="active_li">
 		<a href="javascript:;">
 			<img src="/assets/active/images/list2.jpg"/>
@@ -30,8 +30,69 @@
 				</p>
 			</div>
 		</a>
-	</li> --}}
-</ul>
+	</li>
+</ul>--}}
+<div class="box">
+    <div class="top-div">
+      <a href="/active/details/1"><img src="/assets/home/Active/fil.jpg" alt=""></a>
+      <div class="masker-wp">
+        <div class="masker"></div>
+        <div class="text">
+          <p class="name">假装看不见</p>
+          <p class="date">2016/09/10</p>
+        </div>
+      </div>
+      <div class="hot-img">
+        <img src="/assets/home/Active/hot.png" alt="">
+      </div>
+    </div>
+    <div class="icon-menu">
+      <ul>
+        <li class="on">
+          <a href="/active/details/1">
+            <img src="/assets/home/Active/biao.png" alt="">
+            <p>新片预告</p>
+          </a>
+        </li>
+        <li>
+          <a href="/active/details/1">
+            <img src="/assets/home/Active/shou.png" alt="">
+            <p>好剧推荐</p>
+          </a>
+        </li>
+        <li>
+          <a href="/active/details/1">
+            <img src="/assets/home/Active/book.png" alt="">
+            <p>延伸阅读</p>
+          </a>
+        </li>
+        <li>
+          <a href="/active/details/1">
+            <img class="huo" src="/assets/home/Active/huo.png" alt="">
+            <p>热度剖析</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="film-list">
+      <ul>
+        <li>
+          <a href="/active/details/1">
+            <h6><img src="/assets/home/Active/db.png" alt="">2016/09/10</h6>
+            <div class="film-img"><img src="/assets/home/Active/mo.jpg" alt=""></div>
+            <div class="film-name">假装看不见</div>
+          </a>
+        </li>
+        <li>
+          <a href="/active/details/1">
+            <h6><img src="/assets/home/Active/db.png" alt="">2016/09/10</h6>
+            <div class="film-img"><img src="/assets/home/Active/mo.jpg" alt=""></div>
+            <div class="film-name">假装看不见</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
 {{> foot
   script="/active/reset.js"}}
