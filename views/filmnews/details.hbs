@@ -1,9 +1,9 @@
 {{> head
-  title="活动列表"
+  title="活动详情"
   keywords=""
   description=""
   style="/filmnews/filmdetails.css" }}
-  {{#filmDetails}}
+  {{!--  {{#filmDetails}}
 	<div class="filmDetails_all">
 		<div class="film_top">
 			<p class="film_de_tit">{{consultTitle}}</p>
@@ -18,7 +18,51 @@
 		</div>
 		<a href="javascript:;" class="buyTicket"><span>前往购票</span></a>
 	</div>
-  {{/filmDetails}}
+  {{/filmDetails}} --}}
+  {{#filmDetails}}
+  <div class="film_Detail">
+    <div class="film_Detail_img">
+        <img src="/assets/filmnews/images/mo_ban.jpg"/>
+    </div>
+    <div class="film_Detail_body">
+        <div class="film_Detail_body_h3">你不来,我不老</div>
+        <div class="film_Detail_body_bor">
+          <div class="border_bo"></div>
+          <div class="border_be">活动规则</div>
+        </div>
+        <div class="film_Detail_body_html">
+          <div class="film_Detail_body_html_len">
+            <div class="body_html_len_left">适用人群：</div>
+            <div class="body_html_len_right">新用户</div>
+          </div>
+          <div class="film_Detail_body_html_len">
+            <div class="body_html_len_left">活动时间：</div>
+            <div class="body_html_len_right">2016/07/02/10:00－2016/07/10/8:00</div>
+          </div>
+          <div class="film_Detail_body_html_len">
+            <div class="body_html_len_left">适用影片：</div>
+            <div class="body_html_len_right">全部影片</div>
+          </div>
+          <div class="film_Detail_body_html_len">
+            <div class="body_html_len_left">适用影厅：</div>
+            <div class="body_html_len_right">1号厅、2号厅、3号厅</div>
+          </div>
+          <div class="film_Detail_body_html_len">
+            <div class="body_html_len_left">活动介绍：</div>
+            <div class="body_html_len_right">“寻找最美乡村教师”是中央电视台与光明 日报联合发起的大型公益活动。在过去两 届的活动中，数百名记者，编导奔赴全国 各省。</div>
+          </div>
+          <div class="er_wei">
+            <div class="er_wei_img">
+              <img src="/assets/filmnews/images/ewm.jpg"/>
+            </div>
+          </div>
+        </div>
+    </div>
+    <a href="javascript:;" class="buyTicket"><span>特惠购票</span></a>
+
+  </div>
+{{/filmDetails}}
+
 </body>
 
 </html>

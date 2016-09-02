@@ -3,7 +3,7 @@
   keywords=""
   description=""
   style="/filmnews/film.css" }}
-
+{{!--
 <div class="film_all">
     {{#filmList}}
     {{#if isp}}
@@ -28,7 +28,7 @@
       </dl>
     {{/if}}
     {{/filmList}}
-		{{!-- <dl class="film_dl">
+		 <dl class="film_dl">
 			<a href="javascript:;">
 				<dt class="film_dt">
 					<p class="dt_tit">《功夫》中被星爷救下她如今成大美女</p>
@@ -49,7 +49,7 @@
 					<img src="/assets/filmnews/images/list3.jpg">
 				</dd>
 			</a>
-		</dl> --}}
+		</dl>
 	</div>
   <script id="entry-template" type="text/x-handlebars-template">
     <div class="entry">
@@ -61,6 +61,55 @@
     var source   = $("#entry-template").html();
     var template = Handlebars.compile(source);
     console.log(template);
-  </script>
+  </script> --}}
+  <div class="film_all">
+      <div class="film_all_top">
+        <div class="film_all_top_img">
+          <a href="filmnews/details"><img src="/assets/home/Active/fil.jpg"></a>
+          <div class="hot_img">
+            <img src="/assets/home/Active/hot.png" alt="">
+          </div>
+        </div>
+        <div class="film_all_top_text">
+          <p class="film_all_top_text_h3">假装看不见 </p>
+          <div class="film_all_top_text_Time">
+              <p class="Time">三天后结束</p>
+              <p class="len_ren">关注人数：11234</p>
+          </div>
+        </div>
+      </div>
+      <div class="T_jian">
+          <p class="p_left"></p>
+          <p class="p_text">推荐</p>
+
+      </div>
+      <div class="film_all_top">
+        <div class="film_all_top_img">
+          <a><img src="/assets/home/Active/fil.jpg"></a>
+        </div>
+        <div class="film_all_top_text">
+          <p class="film_all_top_text_h3">假装看不见</p>
+          <div class="film_all_top_text_Time">
+              <p class="Time">三天后结束</p>
+              <p class="len_ren">关注人数：11234</p>
+          </div>
+        </div>
+      </div>
+      <div class="film_all_top">
+        <div class="film_all_top_img">
+          <a><img src="/assets/home/Active/fil.jpg"></a>
+        </div>
+        <div class="film_all_top_text">
+          <p class="film_all_top_text_h3">假装看不见</p>
+          <div class="film_all_top_text_Time">
+              <p class="Time">三天后结束</p>
+              <p class="len_ren">关注人数：11234</p>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
 {{> foot
   script="/active/reset.js"}}
