@@ -9,8 +9,7 @@ const router = express.Router();
 
 //个人中心首页
 router.get('/', (req, res, next) => {
-	//var cinemaId = req.session.cinemaid;
-	var cinemaId = '2';
+	var cinemaId = req.session.cinemaid;
 	var customId = '1';
 	fetch(api_url+`fake_personal/orderlist?customId=1&cinemaId=2`)
 	.then(response => response.json())
@@ -22,6 +21,7 @@ router.get('/', (req, res, next) => {
 			get_params.cinemaid = "2";
 			get_params.uid = "3";
 			var username = 'user10377';
+      //console.log(get_params.pop());
 			console.log(ent_params(get_params,username));
 			res.render('user/user',{ foot_on_5:'_on' , cinemaid:cinemaId , orderlist:orderlistres.resl , couponlist:couponlistres.resl })
 		});
