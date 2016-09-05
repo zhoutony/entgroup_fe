@@ -70,25 +70,46 @@
   background:#fff;
   overflow:hidden;
 }
-
-.icon-menu li{
+.icon_menu_ul{
+   width:100%;
+   overflow:hidden;
+}
+.icon_menu_ul li{
   width:25%;
   text-align:center;
   float:left;
 }
 
-.icon-menu li img{
+.icon-menu li a img{
   width:1.4rem;
+  margin: 0 auto;
 }
 
-.icon-menu li img.huo{
+.icon-menu li a img.huo{
   width:1.1rem;
+  margin: 0 auto;
 }
+.icon-menu li a .on_img{
+  display:none;
+}
+.icon-menu li a .so_img{
+  display:block;
+}
+.icon-menu li.on a .so_img{
+  display:none;
+}
+.icon-menu li.on a .on_img{
+  display:block;
+}
+
 
 .icon-menu li>a>p{
   margin-top:0.3rem;
 }
 
+.icon-menu li a {
+  display:block;
+}
 .icon-menu li.on a{
   color:#ED9E5B;
 }
@@ -98,6 +119,14 @@
   overflow:hidden;
   margin-bottom:3rem;
   font-size:0.75rem;
+}
+
+
+.film-list .show_ul{
+  display:block;
+}
+.film-list ul{
+  display:none;
 }
 
 .film-list li{
