@@ -155,7 +155,7 @@ function touchChange(index_text){
               }
               //alert(tc);
               //dayHtml += '<a href="#"'+cur+' id="'+msg.plans_date[key][tc].date+'">'+msg.plans_date[key][tc].day+'<br>'+msg.plans_date[key][tc].fdate+'</a>';
-              dayHtml += '<li '+cur+'  id="'+msg.plans_date[key][tc].date+'" data_type="'+msg.plans_date[key][tc].bs+'">'+msg.plans_date[key][tc].day+msg.plans_date[key][tc].date+'</li>';
+              dayHtml += '<li '+cur+'  id="'+msg.plans_date[key][tc].date+'" data_type="'+msg.plans_date[key][tc].bs+'">'+msg.plans_date[key][tc].day+msg.plans_date[key][tc].date+'<span class="hui">惠</span></li>';
           planHtml += '</ul>';
           dayI++;
         }
