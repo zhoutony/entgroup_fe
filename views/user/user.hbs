@@ -5,81 +5,81 @@
   style="/user/user.css" }}
 
 <div class="user_all">
-		<div class="user_top">
-			<div class="head">
-				<img src="/assets/user/images/head.png"/>
-			</div>
-		</div>
-		<ul class="my_tit">
-			<li class="order_li order_li_on">
-				<img class="order_img" src="/assets/user/images/order.png"/>
-				<p class="order_p">我的订单</p>
-			</li>
-			<li class="order_li">
-				<img class="quan" src="/assets/user/images/quan.png"/>
-				<p class="order_p">我的优惠券</p>
-			</li>
-		</ul>
-		<div class="list">
-		{{#orderlist}}
-			<dl class="list_dl">
-				<a href="user/orderdetails">
-					<dt class="list_dt">
-						<img src="/assets/user/images/list1.jpg">
-					</dt>
-					<dd class="list_dd">
-						<div class="list_left">
-							<p class="list_name">{{movieName}}   {{buyCount}}张</p>
-							<p class="list_date">{{planBeginTime}}</p>
-							<p class="list_date">保定万象影城</p>
-						</div>
-						<p class="list_right">付款06:02</p>
-					</dd>
-				</a>
-			</dl>
-		{{/orderlist}}
-			<dl class="list_dl">
-				<a href="javascript:;">
-					<dt class="list_dt">
-						<img src="/assets/user/images/list2.jpg">
-					</dt>
-					<dd class="list_dd">
-						<div class="list_left">
-							<p class="list_name">北京遇上西雅图之不二情书   2张</p> 
-							<p class="list_date">2016-8-9  18:29</p>
-							<p class="list_date">保定万象影城</p>
-						</div>
-						<img class="list_img" src="/assets/user/images/yifang.jpg">
-					</dd>
-				</a>
-			</dl>
-		</div>
-		<div class="list list2">
-		{{#couponlist}}
-			<dl class="coupon_dl">
-				<a href="user/coupondetails/13">
-					<dt class="coupon_dt">¥{{denomination}}</dt>
-					<dd class="coupon_dd">
-						<div class="coupon_all">
-							<p class="user_quan">{{couponName}}</p>
-							<p class="validity">有效期至：{{overtime}}</p>
-							<p class="validity">{{instructions}}</p>
-						</div>
-						
-					</dd>
-				</a>
-			</dl>
-		{{/couponlist}}
+    <div class="user_top">
+      <div class="head">
+        <img src="/assets/user/images/head.png"/>
+      </div>
+    </div>
+    <ul class="my_tit">
+      <li class="order_li order_li_on">
+        <img class="order_img" src="/assets/user/images/order.png"/>
+        <p class="order_p">我的订单</p>
+      </li>
+      <li class="order_li">
+        <img class="quan" src="/assets/user/images/quan.png"/>
+        <p class="order_p">我的优惠券</p>
+      </li>
+    </ul>
+    <div class="list">
+    {{#orderlist}}
+      <dl class="list_dl">
+        <a href="user/orderdetails">
+          <dt class="list_dt">
+            <img src="/assets/user/images/list1.jpg">
+          </dt>
+          <dd class="list_dd">
+            <div class="list_left">
+              <p class="list_name">{{movieName}}   {{buyCount}}张</p>
+              <p class="list_date">{{planBeginTime}}</p>
+              <p class="list_date">保定万象影城</p>
+            </div>
+            <p class="list_right">付款06:02</p>
+          </dd>
+        </a>
+      </dl>
+    {{/orderlist}}
+      <dl class="list_dl">
+        <a href="javascript:;">
+          <dt class="list_dt">
+            <img src="/assets/user/images/list2.jpg">
+          </dt>
+          <dd class="list_dd">
+            <div class="list_left">
+              <p class="list_name">北京遇上西雅图之不二情书   2张</p>
+              <p class="list_date">2016-8-9  18:29</p>
+              <p class="list_date">保定万象影城</p>
+            </div>
+            <img class="list_img" src="/assets/user/images/yifang.jpg">
+          </dd>
+        </a>
+      </dl>
+    </div>
+    <div class="list list2">
+    {{#couponlist}}
+      <dl class="coupon_dl">
+        <a href="user/coupondetails/13">
+          <dt class="coupon_dt">¥{{denomination}}</dt>
+          <dd class="coupon_dd">
+            <div class="coupon_all">
+              <p class="user_quan">{{couponName}}</p>
+              <p class="validity">有效期至：{{overtime}}</p>
+              <p class="validity">{{instructions}}</p>
+            </div>
 
-			<div class="no_more">
-				<p class="no_p">没有更多可用的券了</p>
-				<p class="select_more"><a href="javascript:;"> 查看过期的券</a></p>
-			</div> 
-		</div>
-		
-	</div>
+          </dd>
+        </a>
+      </dl>
+    {{/couponlist}}
+
+      <div class="no_more">
+        <p class="no_p">没有更多可用的券了</p>
+        <p class="select_more"><a href="javascript:;"> 查看过期的券</a></p>
+      </div>
+    </div>
+
+  </div>
 
 
 
 {{> foot
-	script="/user/user.js"}}
+  script="/user/user.js"}}
