@@ -1,8 +1,8 @@
 
 import $ from 'jquery';
 import iscroll from "./iscroll.js";
-/*var jQuery =$;
-import jgestures from "./jgestures.js";*/
+/*var jQuery =$;*/
+import jgestures from "./jgestures.js";
   var Pid = $('#Pid').val(),
     mov_id = $('#Movieid').val(),//
     Arrays = new Array(),
