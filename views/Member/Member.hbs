@@ -1,0 +1,24 @@
+{{> head
+  title="绑定会员卡"
+  keywords=""
+  description=""
+  style="/Member/Member.css" }}
+<div class="box">
+    <div class="get-tel">
+      <div class="tel-inp">
+        <i class="tel-icon"><img src="/assets/Member/images/tel.png" alt=""></i>
+        <input type="text" value="13688886666">
+        <i class="colse-icon"><img src="/assets/Member/images/close.png" alt=""></i>
+      </div>
+      <div class="time">34s后重试</div>
+    </div>
+    <div class="enter-code">
+      <input type="text" value="123456">
+      <i class="suo-icon"><img src="/assets/Member/images/suo.png" alt=""></i>
+    </div>
+    <div class="enter-btn"><a href="#javascript">登录</a></div>
+    <div class="error-btn"><a href="#javascript">验证码错误<br>请重新输入</a></div>
+  </div>
+{{> foot
+  script="/Member/Member.js"
+}}
