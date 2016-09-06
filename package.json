@@ -80,6 +80,7 @@
     "eslint-plugin-react":"~5.2.2",
     "eslint-plugin-jsx-a11y":"~1.5.5",
     "crypt": "~0.0.1",
-    "jssha": "^1.5.0"
+    "jssha": "^1.5.0",
+    "form-data": "~0.0.1"
   }
 }
