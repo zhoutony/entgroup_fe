@@ -47,4 +47,6 @@ router.get('/coupondetails/:couponId', (req, res, next) =>{
 router.get('/myOrder', (req, res, next) => res.render('user/myOrder'));
 
 
+// 优惠券信息
+router.get('/couponInfo', (req, res, next) => res.render('user/couponInfo'));
 export default router;
