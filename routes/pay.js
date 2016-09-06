@@ -25,14 +25,14 @@ router.get('/:orderNo', (req, res, next) => {
   console.log(jsonparameter);
 
 
-  fetch('http://10.10.12.5:8080/payserver/queryPayOrder/getPayInfo', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', }, body: 'jsonparam='+jsonparameter })
-  .then(response => response.json())
-  .then(orderinfo =>{
-    console.log(orderinfo);
+  //fetch('http://10.10.12.5:8080/payserver/queryPayOrder/getPayInfo', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', }, body: 'jsonparam='+jsonparameter })
+  //.then(response => response.json())
+  //.then(orderinfo =>{
+    //console.log(orderinfo);
     var out_time = '2016-08-05 19:00:00';
     //console.log(cinemaid);
     res.render('pay/payment',{ cinemaid:cinemaid , out_time:out_time});
-  });
+  //});
 });
 
 
