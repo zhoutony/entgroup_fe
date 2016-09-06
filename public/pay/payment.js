@@ -3,7 +3,7 @@ $(function(){
 	$('.user_quan_s').hide();
 })
 $('.h3_left').on('click',function(){
-		
+
 })
 $('.h3_right').on('click',function(){
 	$('.user_quan_s').hide();
@@ -20,13 +20,13 @@ $('.coupon_dl').on('click',function(){
 		$(this).find('.Btn_check').hide();
 		$(this).attr('val_index',1)
 	}
-	
+
 })
 
-//倒计时  	
+//倒计时
 
 var toDate = out_time;
-  toDate = toDate.replace(/-/g,"/"); 
+  toDate = toDate.replace(/-/g,"/");
 var EndTime = new Date(toDate);
 function getRTime(){
 	var NowTime = new Date();
@@ -41,7 +41,7 @@ function getRTime(){
 		//location.href='/index.php/index/indexInt?yc={$ycname}';
 		//return false;
 	}
-	
+
 }
 
  function checkTime(i) {
@@ -51,3 +51,12 @@ function getRTime(){
 	return i;
 }
 setInterval(getRTime, 1000);
+
+
+
+/**支付方式****/
+$(".bottom_ul li").on("click",".Btn_hide",function(){
+    $(this).addClass("Btn_check").closest("li").siblings('li').find(".Btn_check").removeClass('Btn_check')
+})
+
+
