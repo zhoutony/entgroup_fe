@@ -14,6 +14,7 @@ var configuration = {
     'pay/paywx': './public/pay/paywx.js',
     'plan/index': './public/plan/index.js',
     'Member/Member': './public/Member/Member.js',
+    'selectCinema/selectCinema': './public/selectCinema/selectCinema.js',
   },
   node: {
     __filename: true,
