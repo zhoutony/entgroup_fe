@@ -13,6 +13,7 @@ var configuration = {
     'pay/payment': './public/pay/payment.js',
     'pay/paywx': './public/pay/paywx.js',
     'plan/index': './public/plan/index.js',
+    'Member/Member': './public/Member/Member.js',
   },
   node: {
     __filename: true,
