@@ -13,6 +13,7 @@ import Video_details from './Video_details';
 import sign from './check_sign';
 import setdata from '../middlewares/setdata';
 import Member from './Member';
+import selectCinema from './selectCinema';
 const router = express.Router();
 
 global.api_url = 'http://10.10.11.15:8086/mobileApi/';
@@ -30,6 +31,7 @@ router.use('/cinema',cinema);
 router.use('/Video_details',Video_details);
 router.use('/sign',sign);
 router.use('/Member',Member);
+router.use('/selectCinema',selectCinema);
 
 export default router;
 
