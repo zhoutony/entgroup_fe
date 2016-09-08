@@ -15,6 +15,7 @@ var configuration = {
     'plan/index': './public/plan/index.js',
     'Member/Member': './public/Member/Member.js',
     'selectCinema/selectCinema': './public/selectCinema/selectCinema.js',
+    'Video_details/film_details': './public/Video_details/film_details.js',
   },
   node: {
     __filename: true,
