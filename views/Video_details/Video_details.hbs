@@ -47,8 +47,9 @@
     <div class="list_Details1_h3">
       <span class="span1">简介：</span>
        {{#Video_details}}
-      <span class="span2">{{movieintro}}.......</span>
-      <span class="span2_1">{{movieintro}}</span>
+      <span class="span2"></span>
+      <input id="hide_input" type="hidden" value="{{movieintro}}"/>
+      <span class="span2_1"></span>
 
       {{/Video_details}}
       <p class="Btn_p"style='background: url({{CDN}}/Video_details/images/Btn_xia.png) no-repeat center;
@@ -84,5 +85,8 @@
   </div>
 </div> --}}
 <div class="Details_footer">选座购票</div>
+{{> foot
+  nav='film_details'
+  script="/Video_details/film_details.js"}}
 
 
