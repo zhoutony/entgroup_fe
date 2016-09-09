@@ -4,6 +4,7 @@
   description=""
   style="/pay/payment.css" }}
 <link href="{{CDN}}/user/user.css" rel="stylesheet" type="text/css">
+<link href="{{CDN}}/pay/Slide_tad.css" rel="stylesheet" type="text/css">
 
 <div class="all_Time">距离支付时间还剩 <span class='span1' id="timer">06:15</span></div>
 	<div class="all">
@@ -39,9 +40,9 @@
 				<p class="p_h2_left">优惠信息</p>
 				<p class="p_h2_right p_h2_quan ">
 				暂无优惠
-				<span class="san_quan">
+				<a class="san_quan" href="/user/couponInfo">
 					<img src='/assets/pay/images/san_jiao.png'/>
-				</span></p>
+				</a></p>
 			</li>
 		</ul>
 		<p class="bottom_h4">支付方式</p>
@@ -63,7 +64,8 @@
       <li>
         <p class="p_h2_left hy_ka">
         <a href="/Member" class="hy_ka_text">绑定会员卡</a>
-        <span class="hy_ka_Btn">更换卡</span></p>
+        <span class="hy_ka_Btn" id="hy_ka_Btn">更换卡</span></p>
+        <input type="hidden" id="input_hide" value="2"/>
         <div class='Btn_hide'>
             <span></span>
           </div>
@@ -77,47 +79,6 @@
     </div>
 	</div>
 	<div class="Btn_ok back_color">确认支付180</div>
-	<div class="user_quan_s">
-		<div class='mask'></div>
-		<div class='user_quan_body'>
-			<div class="quan_body_h3">
-				<p class="h3_left">确定</p>
-				<p class="h3_right">取消</p>
-			</div>
-			<div class="quan_body_list">
-				<dl class="coupon_dl" val_index="1">
-
-						<dt class="coupon_dt">¥10</dt>
-						<dd class="coupon_dd">
-							<div class="coupon_all">
-								<p class="user_quan">客户端会员代金券</p>
-								<p class="validity">有效期至：2016-6-29</p>
-								<p class="validity">会员专享</p>
-							</div>
-
-						</dd>
-
-					<div class='Btn_check'>
-						<span></span>
-					</div>
-				</dl>
-				<dl class="coupon_dl" val_index="1">
-
-						<dt class="coupon_dt">¥10</dt>
-						<dd class="coupon_dd">
-							<div class="coupon_all">
-								<p class="user_quan">客户端会员代金券</p>
-								<p class="validity">有效期至：2016-6-29</p>
-								<p class="validity">会员专享</p>
-							</div>
-
-						</dd>
-					<div class='Btn_check'>
-						<span></span>
-					</div>
-				</dl>
-			</div>
-		</div>
 	</div>
 <script type="text/javascript">
 	var out_time = '{{out_time}}';
