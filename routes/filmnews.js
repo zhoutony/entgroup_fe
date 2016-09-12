@@ -10,6 +10,7 @@ router.get('/', (req, res, next) => {
   fetch(api_url+'fake_news/newsList?cinemaId=1')
   .then(response => response.json())
   .then(film =>{
+     console.log(film);
     if(film.list[0]['consultImg']){
       film.list[0]['isp'] = '1';
     }

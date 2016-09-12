@@ -17,6 +17,16 @@ import $ from 'jquery';
 
     $(".select_left_li").click(function(){
       $(this).addClass("select_left_li_on").siblings("li").removeClass("select_left_li_on");
+        var city_blong = $(this).attr("belongs");
+        var li = "";
+        $(".select_right>li").each(function(){
+          if(city_blong != $(this).attr("belongs")){
+            $(this).hide();
+          }else{
+            $(this).show();
+          }
+        })
+
     })
 
     var clHeight = document.body.clientHeight;
