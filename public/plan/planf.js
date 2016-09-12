@@ -2,7 +2,8 @@
 import $ from 'jquery';
 import iscroll from "./iscroll.js";
 /*var jQuery =$;*/
-import jgestures from "./jgestures.js";
+import finger from "./jquery.finger.js";
+/*import finger from "./hammer.js";*/
   var Pid = $('#Pid').val(),
     mov_id = $('#Movieid').val(),//
     Arrays = new Array(),
@@ -56,7 +57,7 @@ function init(){
 //中间线位置计算gomes
   if(ley%2==1){
     $('.horizontal').css({
-      'left':((ley+1)/2*1.2)+'rem'
+      'left':((ley+2)/2*1.2)+'rem'
     })
   }else{
     $('.horizontal').css({
@@ -161,7 +162,14 @@ function click_Seat(){
 
   //点击事件   判断手势
 //单击事件gomes
-  $('.seat_body_ul_R_a li[data_text="1"]').bind('touchstart',function(){
+//Hammer插件
+//Hammer插件
+/*var el = $('.seat_body_ul_R_a li[data_text="1"]');
+var mc = new Hammer(el);
+
+  mc.on('tap',function(){*/
+    //finger
+  $('.seat_body_ul_R_a li[data_text="1"]').on('tap',function(){
     right_width = $( ".seat_body_ul_R" ).width()*2;
     right_height =  $( ".seat_body_ul_R" ).height()*2;
     var iScroll_left = myScroll.x;
@@ -456,10 +464,9 @@ function suo_xiao(zommsd,iScroll_left,tetes1,tets2){
       })
       var width = xian_arrar[0]*1.2+'rem',
           height = xian_arrar[1]*1.2+'rem';
-      $( ".seat_body_ul_R" ).css({
-        'width' : width,
-        'height' : height
-      })
+          console.log(xian_arrar[0])
+
+
      var ley = $('.seat_B_ul_R_list').eq(0).find('li').length,//一行的座位数
       cow = $('.text_list').find('li').length; //总行数
       ley = parseInt(ley)+2;
@@ -470,10 +477,8 @@ function suo_xiao(zommsd,iScroll_left,tetes1,tets2){
     'width':ley*1.2+'rem',
     'height':cow*1.2+'rem'
     });
-     /* $( "#wrapper" ).css({
-        'width' : "100%",
-        'height' : height
-      })*/
+
+
       setTimeout(function(){myScroll.refresh(); },500);
       //点击座位图还原XY坐标
       myScroll.scrollTo(tetes1,tets2-14,1000);
@@ -496,13 +501,14 @@ function suo_xiao(zommsd,iScroll_left,tetes1,tets2){
           "-webkit-transform" : "scale(2)"
         })
 
-        var width = (xian_arrar[0]+2)*1.2*2+'rem',
+        var width = (xian_arrar[0]+4)*1.2*2+'rem',
           height = xian_arrar[1]*1.2*2+'rem';
 
-        $( ".seat_body_ul_R" ).css({
+        $( ".seat_body_ul_R_a" ).css({
           'width' : width,
           'height' : height
         })
+
        var ley = $('.seat_B_ul_R_list').eq(0).find('li').length,//一行的座位数
         cow = $('.text_list').find('li').length; //总行数
         ley = parseInt(ley)+5;
