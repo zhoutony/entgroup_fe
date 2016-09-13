@@ -8,7 +8,13 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   //delete req.session.user;
+  // var state = 1;
+  // if(state==1){
+  //   res.redirect('/selectCinema');
+  //   return;
+  // }
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
+  // console.log(cinemaid);
   var cinemaname=req.session.cinemaname;      //影院name 的session 读取
   fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)
   //fetch(`https://api.douban.com/v2/book/isbn/9787508654294`)
@@ -16,6 +22,7 @@ router.get('/', (req, res, next) => {
     .then(response => response.json())
 
     .then(zzz =>{
+      // console.log(zzz.resl);
       res.render('index_home', { zzz:zzz.resl , foot_on_1:'_on',cinemaid:cinemaid,cinemaname:cinemaname })
   })
     .catch(next);
