@@ -16,13 +16,14 @@ import Member from './Member';
 import selectCinema from './selectCinema';
 const router = express.Router();
 
-global.api_url = 'http://10.10.11.15:8086/mobileApi/';
+//global.api_url = 'http://10.10.11.15:8086/mobileApi/';
+global.api_url = 'http://10.10.12.5:8080/mobileapi/';
+router.use('/active', active);
 
 
 router.use('/',setdata,home);
 router.use('/plan', plan);
 router.use('/book', book);
-router.use('/active', active);
 router.use('/user', user);
 router.use('/filmnews', filmnews);
 router.use('/weixin',weixin);

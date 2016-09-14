@@ -36,11 +36,11 @@ router.get('/indexInit', (req, res, next) => {
        if(film_id==null){
           film_id='000';
        }
-  fetch(api_url+`cinema/getcinemadetail?cinemaID=`+cinemaid)
+  fetch(api_url+`cinema/getcinemadetailV3?cinemaID=`+cinemaid)
     .then(response => response.json())
 
     .then(zzz =>{
-
+      console.log(zzz);
       zzz.resl[0]['cinemaservice'] = JSON.parse([zzz.resl[0]['cinemaservice']]);
 
 
@@ -99,9 +99,11 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
     .then(response => response.json())
 
     .then(movielist =>{
+      console.log(movielist);
       fetch(api_url+`cplan/getplanlist?cinemaID=`+cinemaid+`&MovieID=`+film_id)   //  读取场次列表
       .then(response => response.json())
       .then(plan =>{
+        console.log(plan);
         var new_array1={};
         var new_array=new Array();
         if(film_id!='undefined'){
