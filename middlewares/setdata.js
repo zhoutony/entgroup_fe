@@ -9,11 +9,9 @@ const setdata = (req, res, next) => {
 		return next();
 	}else{
 		var yc=req.query.yc;
-    console.log(yc);
 		fetch(api_url+'cinema/getcinemalist?username='+yc)
 		.then(response => response.json())
 		.then(cinemaList => {
-			console.log(cinemaList);
       req.session.cinemauser = yc;
 			req.session.cinemaid = cinemaList.resl[0]['cinemaid'];//写入至session   影院id
       req.session.cinemaname = cinemaList.resl[0]['cinemaname'];//写入至session   影院名称
