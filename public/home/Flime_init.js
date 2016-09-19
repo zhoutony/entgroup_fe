@@ -7,7 +7,6 @@ $(document).ready(function(){
   $.initData();
 
 });
-
 var vals = 0;
 var vald = 0;
 var indehhjhhj = 0;
@@ -228,11 +227,14 @@ function touchChange1(index_text){
             //alert(vald)
           //alert(msg.resl);
           for (var key in msg.resl) {
-          //console.log(msg.resl)
-            if(msg.resl[key].entMovieId==vald){
-              var Time = msg.resl[key].movieBetime;
+           console.log(msg.resl)
+          //alert(msg.resl[key].movieid)
+            if(msg.resl[key].movieid==vald){
+
+              // var Time = msg.resl[key].movieBetime;
+              var Time = '2016-01-04'//msg.resl[key].releasetime;
               //console.log(Time)
-              var h3html = '<p class="flime_name">'+msg.resl[key].movieZname+'</p>';
+              var h3html = '<p class="flime_name">'+msg.resl[key].movienamecn+'</p>';
                 h3html += '<div class="flime_xing">';
                   h3html += '<ul class="flime_xing_ul">';
                     h3html += '<li class="li_list"></li>';
@@ -244,14 +246,14 @@ function touchChange1(index_text){
                   h3html += '<p class="flime_text">0.8</p>';
                 h3html += '</div>';
                 h3html += '<div class="flime_style">';
-                  h3html += '<p class="p1">'+msg.resl[key].oneTalk+'</p>';
+                  h3html += '<p class="p1">'+msg.resl[key].movienamecn+'</p>';
                   Time=Time.substring(0,10);
                   //console.log(Time)
                   //h3html += '<p class="p1">'+msg.resl[key].movieStar+'</p>';
                   h3html += '<p class="p1">最近场次：'+Time+'</p>';
                 h3html +='</div>';
                 h3html +='<div class="Btn_gou">';
-                  h3html +='<a href="/indexInit/?yc='+yc+'&film_id='+msg.resl[key].entMovieId+'"><div  class="Btn_input">购票</div></a>';
+                  h3html +='<a href="/indexInit/?yc='+yc+'&film_id='+msg.resl[key].movieid+'"><div  class="Btn_input">购票</div></a>';
                 h3html +='</div>';
                 $('.flime_h2').html(h3html);
               break;
@@ -293,7 +295,7 @@ $.extend({
     $.get(href, {}, function(msg) {
       //Load_img(1);
       //alert(msg.lists);
-      //console.log(msg);
+      console.log(msg);
       var htmlLoad = '';
       if(msg.errorStatus == false){
         alert('影片信息有误');
