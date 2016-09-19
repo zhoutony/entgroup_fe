@@ -17,7 +17,7 @@ function touchChange(index_text){
      vals =  vald!=0?vald:0;
       vald = $('#ypdetail1').find('.swiper-slide').eq(index_text).find('input[type="hidden"]').eq(0).val();
 
-     //console.log(vals);
+     //console.log(vald);
      if(vald==vals){
       return false;
      }else{
@@ -32,12 +32,13 @@ function touchChange(index_text){
          data: {},
          dataType: "json",
          success: function(msg){
-          //alert(vald)
+          ///alert(msg.resl)
         //alert(msg.data.KB);
         for (var key in msg.resl) {
-        //alert()
-          if(msg.resl[key].entMovieId==vald){
-            var h3html = '<span class="span1">'+msg.resl[key].movieZname+'</span>';
+        // alert(msg.resl)
+        console.log(msg.resl)
+          if(msg.resl[key].movieid==vald){
+            var h3html = '<span class="span1">'+msg.resl[key].movienamecn+'</span>';
               if(msg.resl[key].entdataKb!=null){
                 h3html += '<span class="span2">'+msg.resl[key].entdataKb+'</span>';
               }
@@ -56,6 +57,7 @@ function touchChange(index_text){
 
         for (key in msg.plans) {
           //alert(key);
+          console.log(msg.plans);
           if(dayI == 0){
             var cur = ' click_ul';
           }else{
@@ -217,6 +219,8 @@ function touchChange1(index_text){
         var htmlLoad = '';
         var htmlLoads = '';
         var htmlk= '';
+         //var cinemauser=req.session.cinemauser;
+         //console.log(cinemauser);
         //Load_img(1);
         $.ajax({
          type: "GET",
@@ -335,7 +339,7 @@ $.extend({
 
         for (var key in msg.resl) {
         //alert()
-            var h3html = '<span class="span1">'+msg.resl[key].movieZname+'</span>';
+            var h3html = '<span class="span1">'+msg.resl[key].movienamecn+'</span>';
             if(msg.resl[key].entdataKb!=null){
               h3html += '<span class="span2">'+msg.resl[key].entdataKb+'</span>';
             }
@@ -348,9 +352,9 @@ $.extend({
                    h2html += '<div class="yu">预</div>';
                    h2html += '<div class="yu">惠</div>';
 
-                   h2html += '<a href="/Video_details/movieID='+msg.resl[zzz].entMovieId+'">';
-                      h2html += '<input type="hidden" value='+msg.resl[zzz].entMovieId+'>';
-                      h2html += '<img src='+msg.resl[zzz].titleImg+' />';
+                   h2html += '<a href="/Video_details/movieID='+msg.resl[zzz].movieid+'">';
+                      h2html += '<input type="hidden" value='+msg.resl[zzz].movieid+'>';
+                      h2html += '<img src='+msg.resl[zzz].movieposter+' />';
                     h2html += ' </a>';
                     h2html += ' </div>';
 
@@ -432,11 +436,11 @@ $.extend({
                       planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
                     }
                     //planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
-                    if(vpObj[vok].h=='p'){
-                      planHtml += '<div class="div1"></div>';//<img src="'+CDN+'/home/index/yue.png">
-                    }else{
-                      planHtml += '<div class="div1"></div>'; //<img src="'+CDN+'/home/index/ri.png">
-                    }
+                    // if(vpObj[vok].h=='p'){
+                    //   planHtml += '<div class="div1"></div>';//<img src="'+CDN+'/home/index/yue.png">
+                    // }else{
+                    //   planHtml += '<div class="div1"></div>'; //<img src="'+CDN+'/home/index/ri.png">
+                    // }
 
 
                     planHtml += '<div class="div2"><p class="p1">'+vpObj[vok].stimes+'</p><p class="p2">'+vpObj[vok].etimes+'散场</p></div>';
@@ -444,7 +448,7 @@ $.extend({
 
                     planHtml += '<div class="div4"><p class="p1">¥'+vpObj[vok].price+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
 
-                    planHtml += '<div class="div4">';
+                    planHtml += '<div class="div5">';
                       planHtml += '<div class="Btn_input">购票</div>';
                     planHtml += '</div>';
                     if(vpObj[vok].zday=='今天'){
@@ -457,17 +461,15 @@ $.extend({
                 tc = vk;
               };
 
-              var cur = '';
+               var cur = '';
               if(dayI == 0){
-                var cur = ' class="click_li"';
+                var cur = ' class="this_on swiper-slide"';
               }else{
-                var cur = ' ';
+                var cur = 'class="swiper-slide" ';
               }
-              //alert(msg.plans_date[key][tc].bs);
+              //alert(tc);
               //dayHtml += '<a href="#"'+cur+' id="'+msg.plans_date[key][tc].date+'">'+msg.plans_date[key][tc].day+'<br>'+msg.plans_date[key][tc].fdate+'</a>';
-
-
-              dayHtml += '<li '+cur+' id="'+msg.plans_date[key][tc].date+'" data_type="'+msg.plans_date[key][tc].bs+'">'+msg.plans_date[key][tc].day+msg.plans_date[key][tc].date+'</li>';
+              dayHtml += '<li '+cur+'  id="'+msg.plans_date[key][tc].date+'" data_type="'+msg.plans_date[key][tc].bs+'">'+msg.plans_date[key][tc].day+msg.plans_date[key][tc].date+'<span class="hui">惠</span></li>';
 
           planHtml += '</ul>';
           //alert(planHtml);
@@ -476,15 +478,26 @@ $.extend({
 
         $('.swiper_nav_h3').html(yphd);
         if(planHtml!=''){
-          //$('#dateTabs').show().html(dayHtml);
-          //$('#swiper-wrapper').show().html(planHtml);
-          //$('.Null_filme').hide();
+          // alert(11)
+          $('.swiper-pages').show();
+          $('#dateTabs').show().html(dayHtml);
+          $('#swiper-wrapper').html(planHtml);
+          $('.Null_filme').hide();
 
         }else{
           //$('#dateTabs').show().html(dayHtml);
           $('.Null_filme').show();
           $('#dateTabs').hide();
           //$('#swiper-wrapper').hide();
+          var ZW_CC = '';
+              ZW_CC+='<div class="Z_W">';
+              ZW_CC+='<div class="Z_W_top">今天场次已售完</div>';
+              ZW_CC+='<div class="Z_W_bottom"><a>查看其它日期</a></div>';
+              ZW_CC+='</div>';
+          $('#swiper-wrapper').html(ZW_CC);
+          $('.swiper-pages').hide();
+          $('.Null_filme').show();
+          $('#dateTabs').hide();
         }
         $('.swiper-slide').append();
         $('#ypdetail1').html(msg.initlists);
@@ -509,28 +522,7 @@ $.extend({
             //console.log(img_wid)
           }
             var mySwiper1 = new Swiper('.swiper_list',{
-              /* effect : 'coverflow',
-              centeredSlides: true,
-              slidesPerView : 4,
-              coverflow: {
-                rotate: 20,
-                stretch: 0,
-                depth: 20,
-                modifier: 1,
-                slideShadows : true
-              },
 
-
-
-              //onSlideChangeEnd: function(mySwiper1){
-              onTransitionEnd: function(mySwiper1){
-                //console.log(mySwiper1)
-                //swiper-slide1
-                 indexs = mySwiper1.activeIndex;
-                indexs1(indexs)
-                touchChange(indexs);
-
-              } */
                slidesPerView : 4,
               centeredSlides : true,
 

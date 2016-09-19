@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
     return;
   }
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
-  var cinemauser=req.session.cinemauser;      //影院yc的session 读取判断是影投还是影院
+  var cinemauser=req.session.cinemauser;  //影院yc的session读取判断是影投还是影院
   // console.log(cinemaid);
   var cinemaname=req.session.cinemaname;      //影院name 的session 读取
   fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)
@@ -31,15 +31,17 @@ router.get('/indexInit', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var cinemaname=req.session.cinemaname;      //影院name 的session   读取
+  var cinemauser=req.session.cinemauser;      //影院name 的session   读取
 
        var film_id=req.query.film_id;
        if(film_id==null){
           film_id='000';
        }
-  fetch(api_url+`cinema/getcinemadetail?cinemaID=`+cinemaid)
+  fetch(api_url+`cinema/getcinemadetailV3?cinemaID=`+cinemaid)
     .then(response => response.json())
 
-    .then(cinema =>{
+    .then(cinemaInfo =>{
+      console.log(cinemaInfo);
       /*
       cinema.resl[0]['cinemaservice'] = JSON.parse([cinema.resl[0]['cinemaservice']]);
 
@@ -86,7 +88,7 @@ router.get('/indexInit', (req, res, next) => {
       if(cinema.resl[0]['cinemaservice']['restArea']){
         cinema.resl[0]['cinemaservice']['restArea']='休息区';
       }*/
-      res.render('index', { cinema:cinema.resl, foot_on_2:'_on',cinemaid:cinemaid,film_id:film_id,cinemaname:cinemaname })
+      res.render('index', { cinema:cinemaInfo.resl, foot_on_2:'_on',cinemaid:cinemaid,film_id:film_id,cinemaname:cinemaname,cinemauser })
   })
     .catch(next);
 });
@@ -100,15 +102,15 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
     .then(response => response.json())
 
     .then(movielist =>{
-      fetch(api_url+'cplan/getplanlist?cinemaID=433&MovieID=18')   //  读取场次列表
+      fetch(api_url+'cplan/getplanlist?cinemaID='+cinemaid+'&MovieID='+film_id)   //  读取场次列表
       .then(response => response.json())
       .then(plan =>{
-        console.log(plan);
+        //console.log(movielist);
         var new_array1={};
         var new_array=new Array();
         if(film_id!='undefined'){
           for(var i=0;i<movielist.resl.length;i++){       //根据   film_id  重新排列影片列表顺序
-            if(movielist.resl[i]['entMovieId']==film_id){
+            if(movielist.resl[i]['movieid']==film_id){
                new_array.push(movielist.resl[i]);
                movielist.resl.splice(i,1);
                movielist.resl.unshift(new_array[0]);

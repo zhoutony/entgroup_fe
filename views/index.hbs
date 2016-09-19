@@ -15,8 +15,9 @@ var CDN = '{{CDN}}'
 <body>
 <div class="head">
   <div class="head_body">
+      {{#cinema}}
 			<div class="head_body_left">
-				{{#cinema}}
+
 					<div class="head_body_left_top">{{cinemaaddress}}</div>
 					<ul class="head_body_left_botton">
 						{{#each cinemaservice}}
@@ -25,14 +26,15 @@ var CDN = '{{CDN}}'
 							{{/if}}
 						{{/each}}
 					</ul>
-				{{/cinema}}
+
 			</div>
 
 			<div class="head_body_right">
-        <a href="tel:110;">
+        <a href="tel:{{cinematel}};">
 				<p class="head_body_right_img"><img src="{{CDN}}/home/index/dianhua.png"/></p>
         </a>
 			</div>
+      {{/cinema}}
 
 	</div>
 </div>
