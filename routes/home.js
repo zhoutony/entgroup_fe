@@ -4,26 +4,25 @@ import session from 'express-session';
 
 const router = express.Router();
 
-//router.get('/', (req, res, next) => res.render('home'));
 router.get('/', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   //delete req.session.user;
-  // var state = 1;
-  // if(state==1){
-  //   res.redirect('/selectCinema');
-  //   return;
-  // }
+  var cinemaState = req.session.cinemaState;
+  if(cinemaState==1){
+    res.redirect('/selectCinema');
+    return;
+  }
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
+  var cinemauser=req.session.cinemauser;      //影院yc的session 读取判断是影投还是影院
   // console.log(cinemaid);
   var cinemaname=req.session.cinemaname;      //影院name 的session 读取
   fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)
-  //fetch(`https://api.douban.com/v2/book/isbn/9787508654294`)
 
     .then(response => response.json())
 
-    .then(zzz =>{
-      // console.log(zzz.resl);
-      res.render('index_home', { zzz:zzz.resl , foot_on_1:'_on',cinemaid:cinemaid,cinemaname:cinemaname })
+    .then(cinema =>{
+      // console.log(cinema.resl);
+      res.render('index_home', { cinema:cinema.resl , foot_on_1:'_on',cinemaid:cinemaid,cinemaname:cinemaname,cinemauser:cinemauser})
   })
     .catch(next);
 });
@@ -32,75 +31,76 @@ router.get('/indexInit', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var cinemaname=req.session.cinemaname;      //影院name 的session   读取
+
        var film_id=req.query.film_id;
        if(film_id==null){
           film_id='000';
        }
-  fetch(api_url+`cinema/getcinemadetailV3?cinemaID=`+cinemaid)
+  fetch(api_url+`cinema/getcinemadetail?cinemaID=`+cinemaid)
     .then(response => response.json())
 
-    .then(zzz =>{
-      console.log(zzz);
-      zzz.resl[0]['cinemaservice'] = JSON.parse([zzz.resl[0]['cinemaservice']]);
+    .then(cinema =>{
+      /*
+      cinema.resl[0]['cinemaservice'] = JSON.parse([cinema.resl[0]['cinemaservice']]);
 
 
-      if(zzz.resl[0]['cinemaservice']['mianya']){
-        zzz.resl[0]['cinemaservice']['mianya']='免押金';
+      if(cinema.resl[0]['cinemaservice']['mianya']){
+        cinema.resl[0]['cinemaservice']['mianya']='免押金';
       }
-      if(zzz.resl[0]['cinemaservice']['wifi']){
-        zzz.resl[0]['cinemaservice']['wifi']='WIFI';
+      if(cinema.resl[0]['cinemaservice']['wifi']){
+        cinema.resl[0]['cinemaservice']['wifi']='WIFI';
       }
-      if(zzz.resl[0]['cinemaservice']['park']){
-        zzz.resl[0]['cinemaservice']['park']='免费停车';
+      if(cinema.resl[0]['cinemaservice']['park']){
+        cinema.resl[0]['cinemaservice']['park']='免费停车';
       }
-      if(zzz.resl[0]['cinemaservice']['canyin']){
-        zzz.resl[0]['cinemaservice']['canyin']='餐饮';
+      if(cinema.resl[0]['cinemaservice']['canyin']){
+        cinema.resl[0]['cinemaservice']['canyin']='餐饮';
       }
-      if(zzz.resl[0]['cinemaservice']['jvmu']){
-        zzz.resl[0]['cinemaservice']['jvmu']='巨幕';
+      if(cinema.resl[0]['cinemaservice']['jvmu']){
+        cinema.resl[0]['cinemaservice']['jvmu']='巨幕';
       }
-      if(zzz.resl[0]['cinemaservice']['yule']){
-        zzz.resl[0]['cinemaservice']['yule']='娱乐';
+      if(cinema.resl[0]['cinemaservice']['yule']){
+        cinema.resl[0]['cinemaservice']['yule']='娱乐';
       }
-      if(zzz.resl[0]['cinemaservice']['vip']){
-        zzz.resl[0]['cinemaservice']['vip']='VIP';
+      if(cinema.resl[0]['cinemaservice']['vip']){
+        cinema.resl[0]['cinemaservice']['vip']='VIP';
       }
-      if(zzz.resl[0]['cinemaservice']['shopping']){
-        zzz.resl[0]['cinemaservice']['shopping']='购物';
+      if(cinema.resl[0]['cinemaservice']['shopping']){
+        cinema.resl[0]['cinemaservice']['shopping']='购物';
       }
-      if(zzz.resl[0]['cinemaservice']['imax']){
-        zzz.resl[0]['cinemaservice']['imax']='IMAX';
+      if(cinema.resl[0]['cinemaservice']['imax']){
+        cinema.resl[0]['cinemaservice']['imax']='IMAX';
       }
-      if(zzz.resl[0]['cinemaservice']['feimai']){
-        zzz.resl[0]['cinemaservice']['feimai']='卖品';
+      if(cinema.resl[0]['cinemaservice']['feimai']){
+        cinema.resl[0]['cinemaservice']['feimai']='卖品';
       }
-      if(zzz.resl[0]['cinemaservice']['card']){
-        zzz.resl[0]['cinemaservice']['card']='刷卡';
+      if(cinema.resl[0]['cinemaservice']['card']){
+        cinema.resl[0]['cinemaservice']['card']='刷卡';
       }
-      if(zzz.resl[0]['cinemaservice']['zhoubian']){
-        zzz.resl[0]['cinemaservice']['zhoubian']='周边';
+      if(cinema.resl[0]['cinemaservice']['zhoubian']){
+        cinema.resl[0]['cinemaservice']['zhoubian']='周边';
       }
-      if(zzz.resl[0]['cinemaservice']['qinglv']){
-        zzz.resl[0]['cinemaservice']['qinglv']='情侣座';
+      if(cinema.resl[0]['cinemaservice']['qinglv']){
+        cinema.resl[0]['cinemaservice']['qinglv']='情侣座';
       }
-      if(zzz.resl[0]['cinemaservice']['restArea']){
-        zzz.resl[0]['cinemaservice']['restArea']='休息区';
-      }
-      res.render('index', { zzz:zzz.resl, foot_on_2:'_on',cinemaid:cinemaid,film_id:film_id,cinemaname:cinemaname })
+      if(cinema.resl[0]['cinemaservice']['restArea']){
+        cinema.resl[0]['cinemaservice']['restArea']='休息区';
+      }*/
+      res.render('index', { cinema:cinema.resl, foot_on_2:'_on',cinemaid:cinemaid,film_id:film_id,cinemaname:cinemaname })
   })
     .catch(next);
 });
 ////***************影片轮播页面indexdata*****  king  ************//2016-7
 router.get('/indexData/:yc/:film_id', (req, res, next) => {
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
-  var film_id=req.params.film_id;
+  var film_id=req.params.film_id;         //影片id 的session 读取
+
 
   fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)   //  读取当前影片
     .then(response => response.json())
 
     .then(movielist =>{
-      console.log(movielist);
-      fetch(api_url+`cplan/getplanlist?cinemaID=`+cinemaid+`&MovieID=`+film_id)   //  读取场次列表
+      fetch(api_url+'cplan/getplanlist?cinemaID=433&MovieID=18')   //  读取场次列表
       .then(response => response.json())
       .then(plan =>{
         console.log(plan);
@@ -183,8 +183,11 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
               weekDay[dt.getDay()]='后天';
             }
             if(dayInfos){
-
+              // console.log(str)
+              // console.log(vStartTime)
+              // console.log(str<vStartTime)
               if(str<vStartTime){
+                console.log('111')
                   DateInfos_new_array[dayInfos]={};             //轮播页面  日期轮播功能数据   king
                   DateInfos_new_array[dayInfos][h]={};
 
