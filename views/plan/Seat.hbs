@@ -6,6 +6,8 @@
 <body>
 
 <input type='hidden' id="Pid" value='{{plan.planId}}'/>
+<input type='hidden' id="YPid" value='{{plan.movieId}}'/>
+<input type='hidden' id="Price" value='{{plan.showprice}}'/>
   <div class="Seat_head">
     <div class="Seat_head_body">
       <div class="Seat_head_Top">
@@ -18,7 +20,7 @@
           <p class="p2">{{Ftime}}</p>
         </div>
         <div class="Seat_head_Top_right">
-          <input type="button" class="huan_Btn back_color" value="换一场"/>
+          <a href="/indexInit/?yc=en&film_id=12"><input type="button" class="huan_Btn back_color" value="换一场"/></a>
         </div>
       </div>
       <div class="Seat_head_Botton">
@@ -75,10 +77,10 @@
 
         <div class="flim_Time">
           <ul class="flim_Time_list">
-            <li class="this_on">今天6月28</li>
-            <li>明天6月29</li>
-            <li>后天6月30</li>
-            <li>星期一7月1</li>
+            <li class="this_on swiper-slide">今天6月28</li>
+            <li class="swiper-slide">明天6月29</li>
+            <li class="swiper-slide">后天6月30</li>
+            <li class="swiper-slide">星期一7月1</li>
           </ul>
         </div>
         <div class="flim_list">

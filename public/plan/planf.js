@@ -20,9 +20,10 @@ import finger from "./jquery.finger.js";
       　　 dataType:'json',
       　　 data:{'pid':Pid,'id':mov_id},
       　　 success:function(data){
+          console.log(data)
           Arrays.push(data);
           cntArr=data.TSeatNo;
-          console.log(data)
+          //console.log(data)
           //yin_huo.push(data.cinema_name);
           data_id.push(data.id);
           //re_count.push(data.re_count);
@@ -36,13 +37,15 @@ import finger from "./jquery.finger.js";
       });
 
 //init()初始化滑动插件gomes
- var ppp=0;
- var myScroll;
- var zoom = false;
- var seatPrice = 10;
+ var ppp=0; //座位个数
+ var myScroll; //滑动插件
+ var zoom = false; //缩放判断
+ var seatPrice = $("#Price").val() /100; //影片价格
+     seatPrice = seatPrice.toFixed(2);
  var right_width =1;
  var right_height =1;
 function init(){
+  //console.log("init方法")
     data_Handle()
   var ley = $('.seat_B_ul_R_list').eq(0).find('li').length,//一行的座位数
       cow = $('.text_list').find('li').length; //总行数
@@ -61,7 +64,7 @@ function init(){
     })
   }else{
     $('.horizontal').css({
-      'left':(ley/2*1.2)+'rem'
+      'left':(ley/2+0.3)*1.2+'rem'
     })
 
   }
@@ -78,6 +81,7 @@ function init(){
 
 //data_Handle(); 渲染座位图
 function data_Handle(){
+ // console.log("data_Handle方法")
   var seatNo = 0,
     text_FLims='',
     text_FLims1='',
@@ -92,9 +96,9 @@ function data_Handle(){
 
       var seat = '';
       seat=Arrays[0].seat[i][t];
-     /*console.log(seat)
-     console.log(seat.id)
-      return false;*/
+     //console.log(seat)
+    //console.log(seat.id)
+      //return false;
 
       if(seat.type == 'road'){
         //走廊
@@ -103,8 +107,10 @@ function data_Handle(){
       }else{
           //未订座
         var cntNms = 0;
-        for(var key in cntArr[0]){
-          if(cntArr[0][key] == seat.id){
+        //console.log(cntArr)
+        for(var key in cntArr){
+
+          if(cntArr[key] == seat.id){
             cntNms++;
           }
         }
@@ -235,8 +241,10 @@ var mc = new Hammer(el);
           }
           if(ppp>0){
             ppp=$(".Seat_foot_top_ul li").length;
-            //console.log(ppp+'a1');
+
             return false;
+          }else{
+            $('.Seat_foot_bottom_right').removeClass('Seat_foot_bottom_righta');
           }
 
         }
@@ -397,6 +405,7 @@ var mc = new Hammer(el);
       }
       if(ppp==0){
         suo_xiao(1,iScroll_left,0,0);
+        $('.Seat_foot_bottom_right').removeClass('Seat_foot_bottom_righta');
       }
 
       text_Arry.splice($.inArray(ids_li, text_Arry),1);
@@ -423,6 +432,7 @@ var mc = new Hammer(el);
     //价格改变gomes
     ppp=$(".Seat_foot_top_ul li").length
     var totalPrice = '￥'+(seatPrice * ppp).toFixed(0);
+
       $('.p_text1').text(totalPrice);
       var text = '￥'+seatPrice+'*'+ppp
       $('.p_text2').text(text);
@@ -584,6 +594,7 @@ function initFilmTopFun(ppp){
       }else{
         $(".Seat_foot_bottom_left_h3").hide();
          $(".Seat_foot_bottom_left_text").show();
+
         var totalPrice = '￥'+(seatPrice * ppp).toFixed(0);
         $('.p_text1').html(totalPrice);
          var text = '￥'+seatPrice+'*'+ppp
@@ -598,6 +609,51 @@ function initFilmTopFun(ppp){
 
   })
 }
+function ajax_Btn(){
+    $(".Seat_foot_bottom_right").on("touchstart",function(){
+        var true_false = $(this).hasClass("Seat_foot_bottom_righta");//选座状态
+        //channelName=encn&buyCount=1&userId=1&movieId=4
+        var showTimeID = $('#Pid').val(), //影片ID
+            movieID = $('#YPid').val(),//场次ID
+            seatIds = "", //座位id 字符串类型 用逗号分隔
+            seatNames = "", //座位名称 字符串类型 用逗号分隔
+            buyCount =  $(".Seat_foot_top_ul").find("li").length,//座位个数
+            totalPrice = $("#Price").val()*buyCount;//总金额
+            /*处理选中座位ID*/
+            var seatStr = new Array();
+            var seatnames = new Array();
+            var i = 0;
+            $(".Seat_foot_top_ul li").each(function(){
+              seatStr[i] = $(this).attr("pade_id");
+              seatnames[i] = $(this).html();
+              i++;
+            });
+            seatIds = seatStr.join(",");
+            seatNames = seatnames.join(",");
+            //alert(seatNames)
+
+        if(true_false){
+          //alert(movieID)
+
+            $.ajax({
+        　　 url:"/plan/SuoZuoSeatseat",
+        　　 type:"get",
+             async:false,
+        　　 dataType:'json',
+        　　 data:{'showTimeID':showTimeID,'movieID':movieID,'seatIds':seatIds,'buyCount':buyCount,'totalPrice':totalPrice,'seatNames':seatNames},
+        　　 success:function(data){
+              if(data.status==0){
+                window.location.href="/pay/payment/"+data.data;
+              }else{
+                alert("锁座失败")
+              }
+
+            }
+          });
 
 
+        }
+    })
+}
 
+ajax_Btn();

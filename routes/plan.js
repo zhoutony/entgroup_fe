@@ -14,17 +14,20 @@ router.get('/selectSeat', (req, res, next) => {
   //fetch(api_url+`act_index/querySeatStatus?showtimeId=`+pid)
     .then(response => response.json())
     .then(movie =>{
+
       fetch(api_url+`cplan/getplanlist?cinemaID=`+cinemaid+`&MovieID=`+id)   //  读取场次列表
           .then(response => response.json())
           .then(plan =>{
               for(var i=0;i<movie.resl.length;i++){         //取出当前影片的影片信息
-                  if(movie.resl[i]['entMovieId']==id){
+                  if(movie.resl[i]['movieid']==id){
                     movie.resl=movie.resl[i];
+
                   }
               }
               for(var i=0;i<plan.resl.length;i++){         //取出当前影片的当前场次的具体信息
                   if(plan.resl[i]['planId']==pid){
                     plan.resl=plan.resl[i];
+                    //console.log(movie.resl)
                   }
               }
               var date =  new Date(plan.resl.startTime);   //开长时间
@@ -58,56 +61,60 @@ router.get('/selectSeat', (req, res, next) => {
                 weekDay[dt.getDay()]='后天';
               }
               var Ftime = weekDay[dt.getDay()]+time;
-              //console.log(Ftime)
-              res.render('plan/Seat', { movie:movie.resl['movieZname'] ,plan:plan.resl,Ftime:Ftime, foot_on_1:'_on' })
+              //console.log(plan.resl)
+              res.render('plan/Seat', { movie:movie.resl['movienamecn'] ,plan:plan.resl,Ftime:Ftime, foot_on_1:'_on' })
           })
   })
+
+
     .catch(next);
 });
 
 router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   详细信息
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var cinemaname=req.session.cinemaname;      //影院name 的session 读取
-  var system_id = req.session.entInits;
+  //var system_id = req.session.entInits;
+  var system_id = 1;
   var pid=req.query.pid;
+
   fetch(api_url+`act_index/querySeatStatus?showtimeId=`+pid)  //读取座位图信息
   //fetch(`https://api.douban.com/v2/book/isbn/9787508654294`)
 
     .then(response => response.json())
 
     .then(seat =>{
-      //console.log(seat.data);
+      //console.log(seat);
       //console.log(system_id);
       var Seat_array={};  //定义座位图数据新数组
       var seatCnt = {};
       var i = 0;
       //console.log(system_id);
       if(system_id==1||system_id==2){
-        //console.log(system_id);
+        //console.log(seat.data);
           for(var key in seat.data){
-            //console.log(seat.data);
                 //console.log(seat.data[key]['seatrow']);return false;
                 //console.log(seat.data[key].seatcoordx);
-                if(!Seat_array[seat.data[key].seatcoordx]){
-                      Seat_array[seat.data[key].seatcoordx]={};         //
+                if(!Seat_array[seat.data[key].seatrow]){
+                      Seat_array[seat.data[key].seatrow]={};         //
                   }
-                  if(!Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]){
-                      Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]={};         //
+                  if(!Seat_array[seat.data[key].seatrow][seat.data[key].seatcolumn]){
+                      Seat_array[seat.data[key].seatrow][seat.data[key].seatcolumn]={};         //
                   }
-                Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['id']=seat.data[key].externalseatid;          //座位id
-                Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['row']=seat.data[key].seatcolumn;          //座位X轴
-                Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['col']=seat.data[key].seatrow;          //座位Y轴
-                Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['status']=seat.data[key].seatstatus;          //座位状态  1可用    0不可用
-                Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['type']=seat.data[key].seattype;
+
+                Seat_array[seat.data[key].seatrow][seat.data[key].seatcolumn]['id']=seat.data[key].externalseatid;          //座位id
+                Seat_array[seat.data[key].seatrow][seat.data[key].seatcolumn]['row']=seat.data[key].seatrow;          //座位X轴
+                Seat_array[seat.data[key].seatrow][seat.data[key].seatcolumn]['col']=seat.data[key].seatcolumn;          //座位Y轴
+                Seat_array[seat.data[key].seatrow][seat.data[key].seatcolumn]['status']=seat.data[key].seatstatus;          //座位状态  1可用    0不可用
+                Seat_array[seat.data[key].seatrow][seat.data[key].seatcolumn]['type']=seat.data[key].seattype;
                 if(system_id==1){
                   //console.log(seat.data[key].externalseatid);
                     if(seat.data[key].loveseats!=null){
-                        Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['pairValue']=seat.data[key].loveseats;
+                        Seat_array[seat.data[key].seatrow][seat.data[key].seatcolumn]['pairValue']=seat.data[key].loveseats;
                     }else{
-                        Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['pairValue']=seat.data[key].externalseatid;
+                        Seat_array[seat.data[key].seatrow][seat.data[key].seatcolumn]['pairValue']=seat.data[key].externalseatid;
                     }
                 }else{
-                    Seat_array[seat.data[key].seatcoordx][seat.data[key].seatcoordy]['pairValue']=seat.data[key].externalseatid;
+                    Seat_array[seat.data[key].seatrow][seat.data[key].seatcolumn]['pairValue']=seat.data[key].externalseatid;
                 }
 
                 if(seat.data[key].seatstatus != 1){       //不可售座位图（已经售出的  是不可售座位图）
@@ -119,7 +126,7 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
           }
           //console.log(seatCnt);
       }
-      //console.log(Seat_array);
+      console.log(Seat_array);
       var t = typeof Seat_array;      //  计算总行数
       if(t == 'object'){
         var n = 0;
@@ -151,14 +158,17 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
       for(var key in TempCols){         //cols值开始
           TempCols = key; break;
       }
-      //console.log(Seat_array[5][3]);
+      //console.log(Seat_array);
                                                             //座位图 数据处理      king   8月17
       var ResSeats = {};
-      //console.log(ls);
+      //console.log(n);
       for (var i = 1; i < n + 1; i++) {
           for (var j = 1; j < ls + 1; j++) {
               var ti = (Number(i) + Number(TempRows)) - 1 ;
               var tj = (Number(j) + Number(TempCols)) -1 ;
+              //console.log(ti);
+              //console.log(tj);
+              //console.log('----------');
               var tSeat = Seat_array[ti][tj];
               if(tSeat){
                 var row= Number(tSeat['row']);
@@ -187,6 +197,8 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
                  ResSeats[i][j]['type'] = tSeat['type'];
               }
           }
+          //console.log(i);
+          //console.log(ResSeats[i]);
       }
       //console.log(ResSeats);
 
@@ -202,5 +214,33 @@ router.get('/selectSeatseat', (req, res, next) => {         //读取座位图   
       res.json(seat);
   })
 })
+
+/****锁座*****/
+router.get('/SuoZuoSeatseat', (req, res, next) => {
+  var cinemaid=req.session.cinemaid;      //影院id 的session 读取
+  var UserId=req.session.userid;
+  var channelName=req.session.cinemauser;
+  var showTimeID=req.query.showTimeID;
+  var movieID=req.query.movieID;
+  var seatIds=req.query.seatIds;
+  var buyCount=req.query.buyCount;
+  var totalPrice=req.query.totalPrice;
+  var seatNames=req.query.seatNames;
+//console.log(movieID)
+ var Win_url = 'showtimeid='+showTimeID+'&cinemaId='+cinemaid+'&seatIds='+seatIds+'&seatNames='+seatNames+'&userCity=1&channelName='+channelName+'&totalPrice='+totalPrice+'&buyCount='+buyCount+'&userId='+UserId+'&movieId='+movieID
+ //console.log(Win_url)
+
+ fetch(api_url+`/act_index/lockSeat?`+Win_url)
+  //fetch(api_url+`act_index/querySeatStatus?showtimeId=`+pid)
+    .then(response => response.json())
+    .then(load_seat =>{
+      console.log(load_seat)
+       res.json(load_seat);
+  })
+
+});
+
+
+
 
 export default router;
