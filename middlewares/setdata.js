@@ -23,6 +23,7 @@ const setdata = (req, res, next) => {
 			req.session.cinemaid = cinemaList.resl[0]['cinemaid'];//写入至session   影院id
       req.session.cinemaname = cinemaList.resl[0]['cinemaname'];//写入至session   影院名称
       req.session.entInits = cinemaList.resl[0]['platformId'];   //影投id
+      req.session.userid = 1;
       if(cinemaid){
         req.session.cinemaState = 0;
       }else{
