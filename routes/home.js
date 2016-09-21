@@ -9,8 +9,8 @@ router.get('/', (req, res, next) => {
   //delete req.session.user;
   var cinemaState = req.session.cinemaState;
   if(cinemaState==1){
-    /*res.redirect('/selectCinema');
-    return;*/
+    res.redirect('/selectCinema');
+    return;
   }
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var cinemauser=req.session.cinemauser;  //影院yc的session读取判断是影投还是影院
