@@ -14,14 +14,12 @@ router.get('/', (req, res, next) => {
   }
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var cinemauser=req.session.cinemauser;  //影院yc的session读取判断是影投还是影院
-  // console.log(cinemaid);
   var cinemaname=req.session.cinemaname;      //影院name 的session 读取
+   console.log(cinemaname);
   fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)
-
     .then(response => response.json())
-
     .then(cinema =>{
-      // console.log(cinema.resl);
+      // console.log(cinema)
       res.render('index_home', { cinema:cinema.resl , foot_on_1:'_on',cinemaid:cinemaid,cinemaname:cinemaname,cinemauser:cinemauser})
   })
     .catch(next);
@@ -31,17 +29,16 @@ router.get('/indexInit', (req, res, next) => {
   //req.session.user = 'lastPage';//写入至session
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var cinemaname=req.session.cinemaname;      //影院name 的session   读取
-  var cinemauser=req.session.cinemauser;      //影院name 的session   读取
-
-       var film_id=req.query.film_id;
-       if(film_id==null){
-          film_id='000';
-       }
+  var cinemauser=req.session.cinemauser;      //影院en 的session  读取
+  var film_id=req.query.film_id;
+  if(film_id==null){
+    film_id='000';
+  }
   fetch(api_url+`cinema/getcinemadetailV3?cinemaID=`+cinemaid)
     .then(response => response.json())
 
     .then(cinemaInfo =>{
-      console.log(cinemaInfo);
+      // console.log(cinemaInfo)
       /*
       cinema.resl[0]['cinemaservice'] = JSON.parse([cinema.resl[0]['cinemaservice']]);
 
@@ -96,16 +93,15 @@ router.get('/indexInit', (req, res, next) => {
 router.get('/indexData/:yc/:film_id', (req, res, next) => {
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var film_id=req.params.film_id;         //影片id 的session 读取
-
-
+  var cinemauser=req.session.cinemauser;
   fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)   //  读取当前影片
+
     .then(response => response.json())
 
     .then(movielist =>{
       fetch(api_url+'cplan/getplanlist?cinemaID='+cinemaid+'&MovieID='+film_id)   //  读取场次列表
       .then(response => response.json())
       .then(plan =>{
-        //console.log(movielist);
         var new_array1={};
         var new_array=new Array();
         if(film_id!='undefined'){
@@ -189,7 +185,6 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
               // console.log(vStartTime)
               // console.log(str<vStartTime)
               if(str<vStartTime){
-                console.log('111')
                   DateInfos_new_array[dayInfos]={};             //轮播页面  日期轮播功能数据   king
                   DateInfos_new_array[dayInfos][h]={};
 
@@ -217,6 +212,7 @@ DataPlans_new_array[dayInfos][h][key]={};*/
                   DataPlans_new_array[dayInfos][h][key]['etimes'] = EDTM;
                   DataPlans_new_array[dayInfos][h][key]['movieid'] = film_id;
                   DataPlans_new_array[dayInfos][h][key]['price'] = plan.resl[key].price;
+                  DataPlans_new_array[dayInfos][h][key]['showprice'] = plan.resl[key].showprice;
 
                   DataPlans_new_array[dayInfos][h][key]['hallname'] = plan.resl[key].hallName;
                    //
@@ -245,8 +241,8 @@ DataPlans_new_array[dayInfos][h][key]={};*/
         movielist.resl1=plan.resl;
         movielist.plans_date = DateInfos_new_array;    ///轮播页面  日期轮播功能数据
         movielist.plans = DataPlans_new_array;      //场次具体数据
-        //console.log(DataPlans_new_array);
-        //console.log(DateInfos_new_array)
+        // console.log(DataPlans_new_array);
+        // console.log(DateInfos_new_array)
         //console.log(plan.resl);
         res.json(movielist);
           //console.log(plan.resl)

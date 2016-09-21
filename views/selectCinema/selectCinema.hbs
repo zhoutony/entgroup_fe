@@ -3,7 +3,10 @@
   keywords=""
   description=""
   style="/selectCinema/selectCinema.css" }}
+<script type="text/javascript">
+  var bolong = 1;
 
+</script>
 	<div class="select_all">
 		<div class="select_con">
 
@@ -12,54 +15,29 @@
 				<input class="select_ipt" type="text" placeholder="搜索影院名或地址"/>
 				<img class="select_empty" src="/assets/selectCinema/images/empty.jpg">
 			</div>
+
 			<div class="select_list_all">
 				<ul class="select_left">
-					<li class="select_left_li" belongs="1">北京</li>
-					<li class="select_left_li" belongs="2">天津</li>
+					<li class="select_left_li" belongs="1">{{city}}</li>
+					<li class="select_left_li" belongs="2">天津{{cinemauser}}</li>
           <li class="select_left_li" belongs="3">广州</li>
 					<li class="select_left_li" belongs="6">广州</li>
 
 				</ul>
-				<ul class="select_right">
-					<li class="select_right_li" belongs="1">
-						<a href="javascript:;">
-							<p class="big_p">双城盈日国际影城</p>
-							<p class="small_p">双城市团结大街12号曼哈顿4楼（原商业大世界11111）</p>
-						</a>
-					</li>
-					<li class="select_right_li" belongs="1">
-						<a href="javascript:;">
-							<p class="big_p">双城盈日国际影城</p>
-							<p class="small_p">双城市团结大街12号曼哈顿4楼（原商业大世界11111）</p>
-						</a>
-					</li>
-					<li class="select_right_li" belongs="3">
-						<a href="javascript:;">
-							<p class="big_p">双城盈日国际影城</p>
-							<p class="small_p">双城市团结大街12号曼哈顿4楼（原商业大世界33333）</p>
-						</a>
-					</li>
-					<li class="select_right_li" belongs="2">
-						<a href="javascript:;">
-							<p class="big_p">双城盈日国际影城</p>
-							<p class="small_p">双城市团结大街12号曼哈顿4楼（原商业大世界22222）</p>
-						</a>
-					</li>
-					<li class="select_right_li" belongs="3">
-						<a href="javascript:;">
-							<p class="big_p">双城盈日国际影城</p>
-							<p class="small_p">双城市团结大街12号曼哈顿4楼（原商业大世界33333）</p>
-						</a>
-					</li>
-					<li class="select_right_li" belongs="2">
-						<a href="javascript:;">
-							<p class="big_p">双城盈日国际影城</p>
-							<p class="small_p">双城市团结大街12号曼哈顿4楼（原商业大世界22222）</p>
-						</a>
-					</li>
 
+				<ul class="select_right">
+          {{#cinemaAll}}
+					<li class="select_right_li" belongs="1">
+						<a href="/?yc={{../cinemauser}}&cinemaid={{cinemaid}}">
+							<p class="big_p">{{cinemaname}}</p>
+							<p class="small_p">{{cinemaaddress}}</p>
+						</a>
+					</li>
+          {{/cinemaAll}}
 				</ul>
+
 			</div>
+
 			<div class="select_list_all2">
 				<ul class="select_ul_all">
 					<li class="select_li_all">
@@ -67,7 +45,7 @@
 							<img src="/assets/selectCinema/images/dian.jpg"/>
 						</div>
 						<div class="dian_right">
-							<a href="javascript:;">
+							<a href="">
 								<p class="dian_p_lf">双城盈日国际影城</p>
 								<p class="dian_p_s">双城市团结大街1双城市团结大街12号曼哈顿4楼（原商业大世界）</p>
 							</a>
@@ -99,5 +77,6 @@
 			</div>
 		</div>
 	</div>
+
 {{> foot nav="cinema"
   script="/selectCinema/selectCinema.js"}}

@@ -11,6 +11,7 @@ var vals = 0;
 var vald = 0;
 var indehhjhhj = 0;
 function touchChange(index_text){
+
   indehhjhhj++;
     var index_text = index_text>0?index_text:0;
 
@@ -32,11 +33,9 @@ function touchChange(index_text){
          data: {},
          dataType: "json",
          success: function(msg){
-          ///alert(msg.resl)
-        //alert(msg.data.KB);
+          // console.log(msg)
         for (var key in msg.resl) {
         // alert(msg.resl)
-        console.log(msg.resl)
           if(msg.resl[key].movieid==vald){
             var h3html = '<span class="span1">'+msg.resl[key].movienamecn+'</span>';
               if(msg.resl[key].entdataKb!=null){
@@ -83,7 +82,7 @@ function touchChange(index_text){
                       tImg = '<div><img src="/Public/images/quick_ticket.tai.png"></div>';
                     }
                   }
-                  //console.log(vpObj[vok]);
+                  // console.log(vpObj[vok]);
 
                   if(!vpObj[vok].dis_price) { vpObj[vok].dis_price = vpObj[vok].price; }
 
@@ -129,10 +128,13 @@ function touchChange(index_text){
                     }
 
 
+                    var showprice = parseInt(vpObj[vok].showprice)/100;
+                    var truePrice = showprice.toFixed(2);
+;
                     planHtml += '<div class="div2"><p class="p1">'+vpObj[vok].stimes+'</p><p class="p2">'+vpObj[vok].etimes+'散场</p></div>';
                     planHtml += '<div class="div3"><p class="p1">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</p><p class="p2">'+vpObj[vok].data.hallName+'</p></div>';
 
-                    planHtml += '<div class="div4"><p class="p1">¥'+vpObj[vok].price+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
+                    planHtml += '<div class="div4"><p class="p1">¥'+truePrice+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
 
                     planHtml += '<div class="div5">';
                       planHtml += '<div class="Btn_input">购票</div>';
@@ -206,12 +208,13 @@ function touchChange(index_text){
 
 function touchChange1(index_text){
     var index_text = index_text>0?index_text:0;
-//alert(1111);
+
 
      vals =  vald!=0?vald:0;
       vald = $('#ypdetail2').find('.swiper-slide').eq(index_text).find('input[type="hidden"]').eq(0).val();
 
-     //console.log(vald);
+     // alert(vals);
+     // alert(vald);
      if(vald==vals){
       return false;
      }else{
@@ -219,8 +222,6 @@ function touchChange1(index_text){
         var htmlLoad = '';
         var htmlLoads = '';
         var htmlk= '';
-         //var cinemauser=req.session.cinemauser;
-         //console.log(cinemauser);
         //Load_img(1);
         $.ajax({
          type: "GET",
@@ -228,37 +229,33 @@ function touchChange1(index_text){
          data: {},
          dataType: "json",
          success: function(msg){
-            //alert(vald)
-          //alert(msg.resl);
           for (var key in msg.resl) {
-           console.log(msg.resl)
-          //alert(msg.resl[key].movieid)
+          // alert(msg.resl[key].movieid)
             if(msg.resl[key].movieid==vald){
-
               // var Time = msg.resl[key].movieBetime;
-              var Time = '2016-01-04'//msg.resl[key].releasetime;
-              //console.log(Time)
+              var Time = '2016-09-06';
+              // console.log(Time)
               var h3html = '<p class="flime_name">'+msg.resl[key].movienamecn+'</p>';
-                h3html += '<div class="flime_xing">';
-                  h3html += '<ul class="flime_xing_ul">';
-                    h3html += '<li class="li_list"></li>';
-                    h3html += '<li class="li_list"></li>';
-                    h3html += '<li class="li_list"></li>';
-                    h3html += '<li class="li_list"></li>';
-                    h3html += '<li></li>';
-                  h3html += '</ul>';
-                  h3html += '<p class="flime_text">0.8</p>';
-                h3html += '</div>';
-                h3html += '<div class="flime_style">';
-                  h3html += '<p class="p1">'+msg.resl[key].movienamecn+'</p>';
-                  Time=Time.substring(0,10);
-                  //console.log(Time)
-                  //h3html += '<p class="p1">'+msg.resl[key].movieStar+'</p>';
-                  h3html += '<p class="p1">最近场次：'+Time+'</p>';
-                h3html +='</div>';
-                h3html +='<div class="Btn_gou">';
-                  h3html +='<a href="/indexInit/?yc='+yc+'&film_id='+msg.resl[key].movieid+'"><div  class="Btn_input">购票</div></a>';
-                h3html +='</div>';
+                  h3html += '<div class="flime_xing">';
+                    h3html += '<ul class="flime_xing_ul">';
+                      h3html += '<li class="li_list"></li>';
+                      h3html += '<li class="li_list"></li>';
+                      h3html += '<li class="li_list"></li>';
+                      h3html += '<li class="li_list"></li>';
+                      h3html += '<li></li>';
+                    h3html += '</ul>';
+                    h3html += '<p class="flime_text">0.8</p>';
+                  h3html += '</div>';
+                  h3html += '<div class="flime_style">';
+                    h3html += '<p class="p1">'+msg.resl[key].movieonetalk+'</p>';
+                    // Time=Time.substring(0,10);
+                    //console.log(Time)
+                    //h3html += '<p class="p1">'+msg.resl[key].movieStar+'</p>';
+                    h3html += '<p class="p1">最近场次：'+Time+'</p>';
+                  h3html +='</div>';
+                  h3html +='<div class="Btn_gou">';
+                    h3html +='<a href="/indexInit/?yc='+yc+'&film_id='+msg.resl[key].movieid+'"><div  class="Btn_input">购票</div></a>';
+                  h3html +='</div>';
                 $('.flime_h2').html(h3html);
               break;
             }
@@ -298,8 +295,7 @@ $.extend({
     //alert(INIT_FILM_ID);
     $.get(href, {}, function(msg) {
       //Load_img(1);
-      //alert(msg.lists);
-      console.log(msg);
+      // console.log(msg.resl);
       var htmlLoad = '';
       if(msg.errorStatus == false){
         alert('影片信息有误');
@@ -338,7 +334,6 @@ $.extend({
         $('#BL_G_article_H3_a1').html(htmlLoad);*/
 
         for (var key in msg.resl) {
-        //alert()
             var h3html = '<span class="span1">'+msg.resl[key].movienamecn+'</span>';
             if(msg.resl[key].entdataKb!=null){
               h3html += '<span class="span2">'+msg.resl[key].entdataKb+'</span>';
@@ -367,7 +362,7 @@ $.extend({
 
 
 
-        //console.log(msg.plans);
+        // console.log(msg.plans);
 
         var planHtml = '';
         var dayHtml = '';
@@ -433,7 +428,7 @@ $.extend({
                   }else{
                     planHtml += '<li>';
                     if(vpObj[vok].zday=='今天'){
-                      planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
+                      planHtml += '<a href="/plan/selectSeat/?pid='+vpObj[vok].planId+'&id='+vpObj[vok].id+'&yc='+yc+'">';
                     }
                     //planHtml += '<a href="/index.php/plan/selectSeat/pid/'+vpObj[vok].planId+'/id/'+vpObj[vok].id+'/yc/'+yc+'">';
                     // if(vpObj[vok].h=='p'){
@@ -442,11 +437,12 @@ $.extend({
                     //   planHtml += '<div class="div1"></div>'; //<img src="'+CDN+'/home/index/ri.png">
                     // }
 
-
+                    var showprice = parseInt(vpObj[vok].showprice)/100;
+                    var truePrice = showprice.toFixed(2);
                     planHtml += '<div class="div2"><p class="p1">'+vpObj[vok].stimes+'</p><p class="p2">'+vpObj[vok].etimes+'散场</p></div>';
                     planHtml += '<div class="div3"><p class="p1">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</p><p class="p2">'+vpObj[vok].data.hallName+'</p></div>';
 
-                    planHtml += '<div class="div4"><p class="p1">¥'+vpObj[vok].price+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
+                    planHtml += '<div class="div4"><p class="p1">¥'+truePrice+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
 
                     planHtml += '<div class="div5">';
                       planHtml += '<div class="Btn_input">购票</div>';
@@ -593,7 +589,7 @@ $.extend({
                     slideShadows : true
                 },
                 onTransitionStart: function(mySwiper_home){
-              //alert( mySwiper_home.activeIndex);
+              // alert( mySwiper_home.activeIndex);
               obj_index1 = mySwiper_home.activeIndex;
               touchChange1(obj_index1);
 
