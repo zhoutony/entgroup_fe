@@ -611,6 +611,7 @@ function initFilmTopFun(ppp){
 }
 function ajax_Btn(){
     $(".Seat_foot_bottom_right").on("touchstart",function(){
+      ckOrders();
         var true_false = $(this).hasClass("Seat_foot_bottom_righta");//选座状态
         //channelName=encn&buyCount=1&userId=1&movieId=4
         var showTimeID = $('#Pid').val(), //影片ID
@@ -630,7 +631,9 @@ function ajax_Btn(){
             });
             seatIds = seatStr.join(",");
             seatNames = seatnames.join(",");
-            //alert(seatNames)
+           //seatIds = decToHex(seatIds);
+            seatNames = decToHex(seatNames)
+            //console.log(seatNames)
 
         if(true_false){
           //alert(movieID)
@@ -655,5 +658,26 @@ function ajax_Btn(){
         }
     })
 }
+/****解析汉字编码***/
+var decToHex = function(str) {
+    var res=[];
+    for(var i=0;i < str.length;i++)
+        res[i]=("00"+str.charCodeAt(i).toString(16)).slice(-4);
+    return "\\u"+res.join("\\u");
+}
+
+/****解析汉字编码***/
+
 
 ajax_Btn();
+//判断是否有未支付订单
+function ckOrders(){
+ /* $.ajax({
+    type: "GET",
+    url: "",
+    dataType: "json",
+    success: function(msg){
+
+  }); */
+
+}
