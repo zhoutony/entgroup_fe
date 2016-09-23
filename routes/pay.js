@@ -10,17 +10,18 @@ router.get('/couponInfo', (req, res, next) => res.render('pay/couponInfo'));
 
 
 //微信支付
-router.get('/paywx',(req, res, next) => {
-  var orderNo = req.query.orderNo;
-  var payAmount = req.query.payAmount;
-  var payType = req.query.payType;
+router.post('/paywx',(req, res, next) => {
+  var orderNo = req.body.orderNo;
+  var payAmount = req.body.payAmount;
+  var payType = req.body.payType;
+  var mobile = req.body.mobile;
   var cinemaid = req.session.cinemaid;
   var userId = req.session.userid;
   //var openId = req.session.openId;
   var openId = 'oFJk6wNzEZO0i7KV5B_306Zm0WgQ';
 
 
-  var md5ys = 'cinemaId='+cinemaid+'&openId='+openId+'&orderNo='+orderNo+'&payAmount='+payAmount+'&payType='+payType+'6a567690e70e7096f97488fb25f1b1b9';
+  var md5ys = 'cinemaId='+cinemaid+'&mobile='+mobile+'&openId='+openId+'&orderNo='+orderNo+'&payAmount='+payAmount+'&payType='+payType+'6a567690e70e7096f97488fb25f1b1b9';
 
   var hashers=crypto.createHash("md5");
   hashers.update(md5ys);
@@ -29,6 +30,7 @@ router.get('/paywx',(req, res, next) => {
 
   var jsonparams = {
     'cinemaId' : cinemaid,
+    'mobile' : mobile,
     'openId' : openId,
     'orderNo' : orderNo,
     'payAmount' : payAmount,
@@ -38,6 +40,7 @@ router.get('/paywx',(req, res, next) => {
   var jsonparameters = JSON.stringify(jsonparams);
 
   console.log(jsonparameters);
+
   fetch('http://10.10.12.5:8080/payserver/payCommit/commitPayOrder', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', }, body: 'jsonparam='+jsonparameters })
     .then(response => response.json())
     .then(commitorder =>{

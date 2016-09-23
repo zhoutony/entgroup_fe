@@ -7,6 +7,7 @@
 <link href="{{CDN}}/pay/Slide_tad.css" rel="stylesheet" type="text/css">
 
 <div class="all_Time">距离支付时间还剩 <span class='span1' id="timer">00 分 00秒</span></div>
+<form id="orderSub" action="" method="post">
 	<div class="all">
 		<div class="top">
 			<div class="ticket_dl">
@@ -18,7 +19,7 @@
 						<span class="dt_date">{{orderinfo.planBeginTime}}{{orderinfo.createTime}}</span>
 					</p>
 					<p class="dt_p3 dt_p3s">
-						<input class="span_text" value=""/>
+						<input class="span_text" id='mobile' name='mobile' value=""/>
 						<span class="span1">(手机接收取票信息)</span>
 						<span class="span2">
 							<img src="/assets/pay/images/xiu_gai.png"/>
@@ -62,6 +63,7 @@
             <span></span>
           </div>
 			</li>
+
       -->
       <li>
         <p class="p_h2_left hy_ka">
@@ -80,9 +82,12 @@
 
     </div>
 	</div>
-	<a href="/pay/paywx?orderNo={{orderinfo.orderNo}}&payAmount={{orderinfo.totalChannelPrice}}&payType=1"><div class="Btn_ok back_color">确认支付{{orderinfo.payPrice}}</div></a>
-
+  <input type='hidden' name='orderNo' id='orderNo' value='{{orderinfo.orderNo}}'>
+  <input type='hidden' name='payAmount' id='payAmount' value='{{orderinfo.totalChannelPrice}}'>
+  <input type='hidden' name='payType' id='payType' value='1'>
+	<div class="Btn_ok back_color Ordewr_Pay3_Btn">确认支付{{orderinfo.payPrice}}</div>
 	</div>
+</form>
 <script type="text/javascript">
 	var out_time = '{{orderinfo.createTime}}';
 </script>

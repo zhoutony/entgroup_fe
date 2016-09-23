@@ -73,3 +73,31 @@ var area1 = new LArea();
         'data': [{"id":"1","name":"金卡101212121"},{"id":"2","name":"银卡卡101212121"},{"id":"3","name":"银卡去去去卡101212121"}] //数据源
     });
     area1.value=[1,0,0];//控制初始位置，注意：该方法并不会影响到input的value
+
+// 验证手机号码
+  $('.Ordewr_Pay3_Btn').on('click',function(){
+    var mobile=$.trim($('#mobile').val());
+    if(mobile == ''){
+      alert('请输入取票手机号');
+      $('#mobile').focus();
+      return false;
+    }
+        var reg = /(^1[3|4|5|7|8][0-9]{9}$)/;
+    if(!reg.test(mobile)){
+      alert("手机号码格式不对！");
+      $('#mobile').focus();
+      return false;
+    }
+    /*
+    var orderNo=$('#orderNo').val();
+    var payType =$('input:radio[name="pay"]:checked').val();
+    if(payType==1){
+      $('#orderSub').attr("action","/pay.php/PayAlipay/a_Sub");
+    }else{
+      $('#orderSub').attr("action","/pay.php/pay");
+    }*/
+    $('#orderSub').attr("action","/pay/paywx");
+
+    $('#orderSub').submit();
+
+  })
