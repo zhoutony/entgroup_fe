@@ -3,9 +3,20 @@ import fetch from 'isomorphic-fetch';
 const router = express.Router();
 
 const setdata = (req, res, next) => {
-	// console.log(req.query.yc);
-	var cid=req.session.cinemaid;
+
+
+  var cid=req.session.cinemaid; //读取sessionid
   var cinemaid = req.query.cinemaid;
+  var cinemayc = req.session.cinemauser;
+  var yc=req.query.yc;
+
+  if(yc){
+    if(yc != cinemayc){
+        cid = '';
+    }
+  }
+
+
 
 	if(cid){
     if(cinemaid){
@@ -14,8 +25,6 @@ const setdata = (req, res, next) => {
       }
 		return next();
 	}else{
-		var yc=req.query.yc;
-    //console.log(cinemaid)
 		fetch(api_url+'cinema/getcinemalist?username='+yc)
 		.then(response => response.json())
 		.then(cinemaList => {

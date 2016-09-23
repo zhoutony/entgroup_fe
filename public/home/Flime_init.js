@@ -229,6 +229,7 @@ function touchChange1(index_text){
          data: {},
          dataType: "json",
          success: function(msg){
+
           for (var key in msg.resl) {
           // alert(msg.resl[key].movieid)
             if(msg.resl[key].movieid==vald){
@@ -376,7 +377,7 @@ $.extend({
           }else{
             var cur = ' ';
           }
-          planHtml += '<ul class="list_li_div_ul '+cur+'">';
+          planHtml += '<ul class="flim_list_body_top '+cur+'">';
               var vp = msg.plans[key];
              //console.log(vp)
               var tc = '';
@@ -416,7 +417,7 @@ $.extend({
                     planHtml += '<div class="div2"><p class="p1">'+vpObj[vok].stimes+'</p><p class="p2">'+vpObj[vok].etimes+'散场</p></div>';
                     planHtml += '<div class="div3"><p class="p1">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</p><p class="p2">'+vpObj[vok].data.hallName+'</p></div>';
 
-                    planHtml += '<div class="div4"><p class="p1">¥'+vpObj[vok].price+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
+                    planHtml += '<div class="div4"><p class="p1">¥'+vpObj[vok].price+'</p></div>';
 
                     planHtml += '<div class="div4">';
                       planHtml += '<div class="Btn_input">购票</div>';
@@ -442,7 +443,7 @@ $.extend({
                     planHtml += '<div class="div2"><p class="p1">'+vpObj[vok].stimes+'</p><p class="p2">'+vpObj[vok].etimes+'散场</p></div>';
                     planHtml += '<div class="div3"><p class="p1">'+vpObj[vok].language+'/'+vpObj[vok].screenType+'</p><p class="p2">'+vpObj[vok].data.hallName+'</p></div>';
 
-                    planHtml += '<div class="div4"><p class="p1">¥'+truePrice+'</p><p class="p2">¥'+vpObj[vok].dis_price+'</p></div>';
+                    planHtml += '<div class="div4"><p class="p1">¥'+truePrice+'</p></div>';
 
                     planHtml += '<div class="div5">';
                       planHtml += '<div class="Btn_input">购票</div>';

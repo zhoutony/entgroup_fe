@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
   var cinemaid=req.session.cinemaid;      //影院id 的session 读取
   var cinemauser=req.session.cinemauser;  //影院yc的session读取判断是影投还是影院
   var cinemaname=req.session.cinemaname;      //影院name 的session 读取
-   console.log(cinemaname);
+   // console.log(cinemaname);
   fetch(api_url+`movie/getmovielist?cinemaID=`+cinemaid)
     .then(response => response.json())
     .then(cinema =>{
@@ -102,6 +102,7 @@ router.get('/indexData/:yc/:film_id', (req, res, next) => {
       fetch(api_url+'cplan/getplanlist?cinemaID='+cinemaid+'&MovieID='+film_id)   //  读取场次列表
       .then(response => response.json())
       .then(plan =>{
+        console.log(plan);
         var new_array1={};
         var new_array=new Array();
         if(film_id!='undefined'){
