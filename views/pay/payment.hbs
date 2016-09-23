@@ -6,20 +6,19 @@
 <link href="{{CDN}}/user/user.css" rel="stylesheet" type="text/css">
 <link href="{{CDN}}/pay/Slide_tad.css" rel="stylesheet" type="text/css">
 
-<div class="all_Time">距离支付时间还剩 <span class='span1' id="timer">06:15</span></div>
+<div class="all_Time">距离支付时间还剩 <span class='span1' id="timer">00 分 00秒</span></div>
 	<div class="all">
-
 		<div class="top">
 			<div class="ticket_dl">
 				<div class="ticket_dt">
-					<p class="dt_p">我叫MT <span class="span1">(国语2D)</span></p>
-					<p class="dt_p3">保定万象影城5号厅</p>
-					<p class="dt_p3">7排7座&nbsp;&nbsp;7排8座</p>
+					<p class="dt_p">{{orderinfo.movieName}} <span class="span1">({{orderinfo.movieLanguage}}{{orderinfo.movieType}})</span></p>
+					<p class="dt_p3">{{cinemauser}}{{orderinfo.hallName}}</p>
+					<p class="dt_p3">{{orderinfo.seatInfo}}</p>
 					<p class="dt_p2">
-						<span class="dt_date">2016-8-9 18:29~20:30</span>
+						<span class="dt_date">{{orderinfo.planBeginTime}}{{orderinfo.createTime}}</span>
 					</p>
 					<p class="dt_p3 dt_p3s">
-						<input class="span_text" value="13881348888"/>
+						<input class="span_text" value=""/>
 						<span class="span1">(手机接收取票信息)</span>
 						<span class="span2">
 							<img src="/assets/pay/images/xiu_gai.png"/>
@@ -34,15 +33,16 @@
 		<ul class="bottom_ul">
 			<li>
 				<p class="p_h2_left">支付明细</p>
-				<p class="p_h2_right">含服务费3元/张<span class="span2">￥108</span></p>
+				<p class="p_h2_right">含服务费3元/张<span class="span2">￥{{orderinfo.payPrice}}</span></p>
 			</li>
 			<li class="you_hui">
-				<p class="p_h2_left">优惠信息</p>
-				<p class="p_h2_right p_h2_quan ">
-				暂无优惠
-				<a class="san_quan" href="/user/couponInfo">
-					<img src='/assets/pay/images/san_jiao.png'/>
-				</a></p>
+        <a href="/pay/couponInfo">
+  				<p class="p_h2_left">优惠信息</p>
+  				<p class="p_h2_right p_h2_quan ">
+  				暂无优惠
+          <span  class="san_quan"><img src='/assets/pay/images/san_jiao.png'/></sapn>
+  				</p>
+        </a>
 			</li>
 		</ul>
 		<p class="bottom_h4">支付方式</p>
@@ -55,12 +55,14 @@
             <span></span>
           </div>
 			</li>
+      <!--
 			<li>
 				<p class="p_h2_left zf_bao">支付宝支付</p>
 				<div class='Btn_hide'>
             <span></span>
           </div>
 			</li>
+      -->
       <li>
         <p class="p_h2_left hy_ka">
         <a href="/Member" class="hy_ka_text">绑定会员卡</a>
@@ -78,10 +80,11 @@
 
     </div>
 	</div>
-	<div class="Btn_ok back_color">确认支付180</div>
+	<a href="/pay/paywx?orderNo={{orderinfo.orderNo}}&payAmount={{orderinfo.totalChannelPrice}}&payType=1"><div class="Btn_ok back_color">确认支付{{orderinfo.payPrice}}</div></a>
+
 	</div>
 <script type="text/javascript">
-	var out_time = '{{out_time}}';
+	var out_time = '{{orderinfo.createTime}}';
 </script>
 
 {{> foot
